@@ -36,12 +36,21 @@ module.exports = function(req,res){
 			if( data === null){
   				return res.status(401).json({ success: false, code: 2230, message: 'No existe relación usuario / vehiculo'});
 			}
-			var sObj = {
-				sucess : true,
-				idSiniestro : 100
-			};
-			res.status(201).json(sObj);
-
+			var newSini = new Model.Siniestro({
+				fVehiculo: req.body.idVehiculo,
+				nLT: req.body.latitud,
+				nLG: req.body.longitud,
+				tSiniestro: req.body.fechaHora,
+				bLesiones: (req.body.lesiones ? '1' : '0')
+			});
+			newSini.save().then(function(dataIns){
+				var sini=dataIns.toJSON();
+				var sObj = {
+					sucess : true,
+					idSiniestro : sini.pSiniestro
+				};
+				res.status(201).json(sObj);
+			});
 		} catch( e ) {
 			console.log( e.stack );
         	return res.status(401).json({ success: false, code: 2250, message: 'Error inesperado.' });
