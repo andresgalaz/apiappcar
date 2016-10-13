@@ -37,6 +37,7 @@ module.exports = function(req,res){
   				return res.status(401).json({ success: false, code: 2230, message: 'No existe relación usuario / vehiculo'});
 			}
 			var newSini = new Model.Siniestro({
+				fUsuario: req.user.pUsuario,
 				fVehiculo: req.body.idVehiculo,
 				nLT: req.body.latitud,
 				nLG: req.body.longitud,

@@ -19,11 +19,11 @@ module.exports = function(app) {
 	const apiRoutes = express.Router();
 
 	function agvJwt (req, res, next){
-    	passport.authenticate('jwt', { session: false }, function(err, user, info) { 
-        	if (err) { return next(err); } 
-        	if (!user) { return res.status(401).json({ success: false, code: 10, message: 'Token incorrecto o vencido.' }); } 
+    	passport.authenticate('jwt', { session: false }, function(err, user, info) {
+        	if (err) { return next(err); }
+        	if (!user) { return res.status(401).json({ success: false, code: 10, message: 'Token incorrecto o vencido.' }); }
         	// edit as per comment
-        	//return res.send("Test Route Accessed").end(); 
+        	//return res.send("Test Route Accessed").end();
 			req.user=user;
         	next();
     	})(req, res, next);
@@ -32,20 +32,22 @@ module.exports = function(app) {
 	// Conecta los servicios
 	apiRoutes.post('/wsLogin'				, require('../servicio/wsLogin'				));
 	apiRoutes.post('/wsRecuperaPassword'	, require('../servicio/wsRecuperaPassword'	));
-	apiRoutes.post('/wsRegistro'			, require('../servicio/wsRegistro'			));	
+	apiRoutes.post('/wsRegistro'			, require('../servicio/wsRegistro'			));
 	// Service que requieren TOKEN de autenticación
-  	apiRoutes.post	('/wsCambioPassword'	, agvJwt, require('../servicio/wsCambioPassword'	));
-  	apiRoutes.post	('/wsEventosViaje'		, agvJwt, require('../servicio/wsEventosViaje'		));
-  	apiRoutes.post	('/wsInvitacion'		, agvJwt, require('../servicio/wsInvitacion'		));
-  	apiRoutes.post	('/wsReToken'			, agvJwt, require('../servicio/wsReToken'			));
-  	apiRoutes.post	('/wsScore'				, agvJwt, require('../servicio/wsScore'				));
-  	apiRoutes.post	('/wsScoreVehiculo'		, agvJwt, require('../servicio/wsScoreVehiculo'		));
-  	apiRoutes.post	('/wsScoreConductor'	, agvJwt, require('../servicio/wsScoreConductor'	));
-  	apiRoutes.post	('/wsSiniestro'			, agvJwt, require('../servicio/wsSiniestro'			));
-  	apiRoutes.post	('/wsSiniestroImagen'	, agvJwt, require('../servicio/wsSiniestroImagen'	));
-  	apiRoutes.post	('/wsVehiculo'			, agvJwt, require('../servicio/wsVehiculo'			));
-  	apiRoutes.post	('/wsVehiculoDel'		, agvJwt, require('../servicio/wsVehiculoDel'		));
-  	apiRoutes.delete('/wsVehiculo'			, agvJwt, require('../servicio/wsVehiculoDel'		));
+  	apiRoutes.post	('/wsCambioPassword'		, agvJwt, require('../servicio/wsCambioPassword'		));
+  	apiRoutes.post	('/wsEventosViaje'			, agvJwt, require('../servicio/wsEventosViaje'			));
+  	apiRoutes.post	('/wsInvitacion'			, agvJwt, require('../servicio/wsInvitacion'			));
+  	apiRoutes.post	('/wsReToken'				, agvJwt, require('../servicio/wsReToken'				));
+  	apiRoutes.post	('/wsScore'					, agvJwt, require('../servicio/wsScore'					));
+  	apiRoutes.post	('/wsScoreVehiculo'			, agvJwt, require('../servicio/wsScoreVehiculo'			));
+  	apiRoutes.post	('/wsScoreConductor'		, agvJwt, require('../servicio/wsScoreConductor'		));
+  	apiRoutes.post	('/wsSiniestro'				, agvJwt, require('../servicio/wsSiniestro'				));
+	apiRoutes.post	('/wsSiniestroImagen'		, agvJwt, require('../servicio/wsSiniestroImagen'		));
+	apiRoutes.post	('/wsSiniestroLista'		, agvJwt, require('../servicio/wsSiniestroLista'		));
+  	apiRoutes.post	('/wsVehiculo'				, agvJwt, require('../servicio/wsVehiculo'				));
+	apiRoutes.post	('/wsVehiculoDel'			, agvJwt, require('../servicio/wsVehiculoDel'			));
+	apiRoutes.post	('/wsVehiculoDesconectado'	, agvJwt, require('../servicio/wsVehiculoDesconectado'	));
+  	apiRoutes.delete('/wsVehiculo'				, agvJwt, require('../servicio/wsVehiculoDel'			));
 
 	// Set url for API group routes
 	app.use('/', apiRoutes);

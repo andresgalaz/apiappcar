@@ -45,8 +45,8 @@ module.exports = function(req,res){
 	var qVeh = db.scoreDB.knex("vVehiculo")
 		.select(	"fUsuarioTitular as idTitular"		,	"cUsuarioTitular as titular"
 				,	"fUsuario as idConductor"			,	"cUsuario as conductor"
-				,	"fVehiculo as idVehiculo"			,	"cPatente as patente"   
-				,	"nKms as kms"						,	"nScore as score" 		
+				,	"fVehiculo as idVehiculo"			,	"cPatente as patente"
+				,	"nKms as kms"						,	"nScore as score"
 				,	"nDescuento as descuento"			)
 		.where		("dPeriodo"	,	">="	,	req.body.fechaInicio)
 		.andWhere	("dPeriodo"	,	"<="	,	req.body.fechaFin);
@@ -63,9 +63,9 @@ module.exports = function(req,res){
 	var qViaje = db.scoreDB.knex("vViaje")
 		.select(	"nIdViaje as idViaje"			,	"fVehiculo as idVehiculo"	,	"cPatente as patente"
 				,	"cCalleInicio as calleInicio"	,	"cCalleFin as calleFin"		,	"tInicio as fechaInicio"
-				,	"tFin as fechaFin"				,	"nScore as score"			
+				,	"tFin as fechaFin"				,	"nScore as score"
 				,	"fUsuarioTitular as idTitular"	,	"cNombreTitular as titular"
-				,	"fUsuario as idConductor"		,	"cNombreConductor as conductor" 
+				,	"fUsuario as idConductor"		,	"cNombreConductor as conductor"
 				,	"nKms as kms"						)
 		.where		("tInicio"	,	">="	,	req.body.fechaInicio)
 		.andWhere	("tInicio"	,	"<="	,	req.body.fechaFin);
@@ -106,7 +106,7 @@ module.exports = function(req,res){
 	qIdViaje.pluck('nIdViaje').then(function( id ){
 	if (id === null ) {
 		return res.status(400).json({ success: false, code: 2018, message: "Error al ejecutar consulta de Viajes" });
-	} 
+	}
 	try {
 		for( var i = 0 ; i < id.length ; i++ ){
 			var nIdViaje = id [ i ] + 0;
@@ -134,7 +134,7 @@ module.exports = function(req,res){
 	.then(function(a,b){ qVeh.then(function( data ){
 	if (data === null ) {
 		return res.status(400).json({ success: false, code: 2024, message: "Error al ejecutar consulta de Vehiculos" });
-	} 
+	}
 	try {
 		arrVeh = data;
 		// Inicializa Acumuladores para los viajes
@@ -153,17 +153,17 @@ module.exports = function(req,res){
 	qConductor.then(function( data ){
 	if (data === null ) {
 		return res.status(400).json({ success: false, code: 2024, message: "Error al ejecutar consulta de Conductores" });
-	} 
+	}
 	try {
 		arrConductor = data;
 		// Inicializa Acumuladores para los viajes
 		for( var i=0 ; i < arrVeh.length ; i++){
 			var veh = arrVeh[i];
 			veh.conductores=[];
-			for( var j=0 ; j < arrConductor.length ; j++){	
+			for( var j=0 ; j < arrConductor.length ; j++){
 				var conductor = arrConductor[j];
 				if( veh.idVehiculo == conductor.idVehiculo ){
-					delete conductor["idVehiculo"];
+//					delete conductor["idVehiculo"];
 					// conductor.kms = 0;
 					// conductor.score = 0;
 					veh.conductores.push( conductor );
@@ -175,7 +175,7 @@ module.exports = function(req,res){
 	qViaje.then(function( arrViaje ){
 	if (arrViaje === null ) {
 		return res.status(400).json({ success: false, code: 2026, message: "Error al ejecutar consulta de Viajes" });
-	} 
+	}
 	try {
 		for( var nViaje=0 ; nViaje < arrViaje.length ; nViaje++){
 			var viaje=arrViaje[nViaje];

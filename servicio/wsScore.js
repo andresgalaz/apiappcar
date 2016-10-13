@@ -4,7 +4,7 @@ const moment = require("moment");
 module.exports = function(req,res){
 	const Util = require("../util");
 
-	// Registra nuevos usuarios o usuarios existentes en dispositivos nuevos
+	// Lista Scores de un usuario
 	console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
 	console.log('req.user:',req.user);
 	console.log(req.body);
@@ -79,19 +79,19 @@ module.exports = function(req,res){
 	try {
 		if (arrEventoSum === null ) {
 			return res.status(400).json({ success: false, code: 1918, message: "Error al ejecutar consulta de Eventos" });
-		} 
+		}
 	// Cursor Score Mensual
     qEventoVeh.then(function(arrEventoVeh){
 	try {
 		if (arrEventoVeh === null ) {
 			return res.status(400).json({ success: false, code: 1920, message: "Error al ejecutar consulta de Score" });
-		} 
+		}
 
     qScore.then(function(arrScore){
 	try {
 		if (arrScore === null ) {
 			return res.status(400).json({ success: false, code: 1920, message: "Error al ejecutar consulta de Score" });
-		} 
+		}
 
 		var nKms = 0;
 		var nScore = 0;
@@ -102,7 +102,7 @@ module.exports = function(req,res){
 			nScore += entry.score;
 			nKms += entry.kms;
 			nDescuento += entry.descuento;
-			entry.eventos = [];     
+			entry.eventos = [];
 		});
 		if( arrScore.length > 0 ){
 			nScore = nScore / arrScore.length;

@@ -5,8 +5,8 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const passport = require('passport');
 const cors = require('cors');
-const port = 8080;
- 
+const port = 8090;
+
 // Use body-parser to get POST requests for API use
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

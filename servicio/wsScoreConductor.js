@@ -40,25 +40,25 @@ module.exports = function(req,res){
 		.where		("tInicio"	, 	">="	,	req.body.fechaInicio)
 		.andWhere	("tInicio"	, 	"<="	,	req.body.fechaFin);
 	var qConductor = db.scoreDB.knex("vScoreMesConductor")
-		.select	(	"fUsuario as idConductor"	,	"cUsuario as conductor" )
+		.select	(	"fUsuario as idConductor"	,	"cUsuario as conductor"
+				,	db.scoreDB.knex.raw('sum(nScore * nKms) as scoreKm'))
 		.sum	(	"nKms as kms"				)
-		.avg	(	"nScore as score"			)
 		.where		("fUsuarioTitular"		,	req.user.pUsuario)
 		.andWhere	("dPeriodo"	,	">="	,	req.body.fechaInicio)
 		.andWhere	("dPeriodo"	,	"<="	,	req.body.fechaFin);
 	var qVeh = db.scoreDB.knex("vConductorVehiculo")
 		.select(	"fUsuarioTitular as idTitular"		,	"cUsuarioTitular as titular"
 				,	"fUsuario as idConductor"
-				,	"fVehiculo as idVehiculo"			,	"cPatente as patente"   
+				,	"fVehiculo as idVehiculo"			,	"cPatente as patente"
 				,	"nKms as kms"						,	"nScore as score" 		)
 		.where		("dPeriodo"	,	">="	,	req.body.fechaInicio)
 		.andWhere	("dPeriodo"	,	"<="	,	req.body.fechaFin);
 	var qViaje = db.scoreDB.knex("vViaje")
 		.select(	"nIdViaje as idViaje"			,	"fVehiculo as idVehiculo"	,	"cPatente as patente"
 				,	"cCalleInicio as calleInicio"	,	"cCalleFin as calleFin"		,	"tInicio as fechaInicio"
-				,	"tFin as fechaFin"				,	"nScore as score"			
+				,	"tFin as fechaFin"				,	"nScore as score"
 				,	"fUsuarioTitular as idTitular"	,	"cNombreTitular as titular"
-				,	"fUsuario as idConductor"		,	"cNombreConductor as conductor" 
+				,	"fUsuario as idConductor"		,	"cNombreConductor as conductor"
 				,	"nKms as kms"						)
 		.where		("tInicio"	,	">="	,	req.body.fechaInicio)
 		.andWhere	("tInicio"	,	"<="	,	req.body.fechaFin);
@@ -97,7 +97,7 @@ module.exports = function(req,res){
 	qIdViaje.pluck('nIdViaje').then(function( id ){
 	if (id === null ) {
 		return res.status(400).json({ success: false, code: 2018, message: "Error al ejecutar consulta de Viajes" });
-	} 
+	}
 	try {
 		for( var i = 0 ; i < id.length ; i++ ){
 			var nIdViaje = id [ i ] + 0;
@@ -125,32 +125,39 @@ module.exports = function(req,res){
 	.then(function(a,b){ qConductor.then(function( data ){
 	if (data === null ) {
 		return res.status(400).json({ success: false, code: 2024, message: "Error al ejecutar consulta de Conductores" });
-	} 
+	}
 	try {
 		arrConductor = data;
 		// Inicializa Acumuladores para los viajes
 		for( var i=0 ; i < arrConductor.length ; i++){
 			nKmsGlobal += arrConductor[i].kms;
-			nScoreGlobal += arrConductor[i].score;
-			arrConductor[i].cantidadViajes = 0;
+			nScoreGlobal += arrConductor[i].scoreKm;
+			if( arrConductor[i].kms == 0 )
+				arrConductor[i].score = 100;
+			else
+				arrConductor[i].score = ( arrConductor[i].scoreKm / arrConductor[i].kms );
+			delete arrConductor[i].scoreKm;
 			arrConductor[i].eventos = [ { idEvento: '3', tipoEvento: 'Aceleración'     , cantidad: 0 }
 									  , { idEvento: '4', tipoEvento: 'Frenada'         , cantidad: 0 }
 									  , { idEvento: '5', tipoEvento: "Exceso Velocidad", cantidad: 0 }];
 		}
-		nScoreGlobal = ( nScoreGlobal / ( arrConductor.length > 0 ? arrConductor.length : 1 ));
+		if( nKmsGlobal == 0 )
+			nScoreGlobal = 100;
+		else
+			nScoreGlobal = ( nScoreGlobal / nKmsGlobal );
 
 	// Cursor de vehiculos
 	qVeh.then(function( data ){
 	if (data === null ) {
 		return res.status(400).json({ success: false, code: 2024, message: "Error al ejecutar consulta de Vehiculos" });
-	} 
+	}
 	try {
 		arrVeh = data;
 		// Inicializa Acumuladores para los viajes
 		for( var i=0 ; i < arrConductor.length ; i++){
 			var conductor = arrConductor[i];
 			conductor.vehiculos=[];
-			for( var j=0 ; j < arrVeh.length ; j++){	
+			for( var j=0 ; j < arrVeh.length ; j++){
 				var veh = arrVeh[j];
 				if( conductor.idConductor == veh.idConductor ){
 					delete veh["idConductor"];
@@ -163,7 +170,7 @@ module.exports = function(req,res){
 	qViaje.then(function( arrViaje ){
 	if (arrViaje === null ) {
 		return res.status(400).json({ success: false, code: 2026, message: "Error al ejecutar consulta de Viajes" });
-	} 
+	}
 	try {
 		for( var nViaje=0 ; nViaje < arrViaje.length ; nViaje++){
 			var viaje=arrViaje[nViaje];

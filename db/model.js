@@ -21,15 +21,25 @@ veh.validaTpDispositivo = function(nTp){
 };
 veh.salida = function(v){
 	return {
-		idVehiculo		: v.pVehiculo ? v.pVehiculo : v.fVehiculo,
-		patente			: v.cPatente,
-		marca			: v.cMarca,
-		modelo			: v.cModelo,
-		tipoDispositivo	: v.fTpDispositivo,
-		id	 			: v.cIdDispositivo,
-		idUsuarioTitular: v.fUsuarioTitular
+		idVehiculo			: v.pVehiculo ? v.pVehiculo : v.fVehiculo,
+		patente				: v.cPatente,
+		marca				: v.cMarca,
+		modelo				: v.cModelo,
+		tipoDispositivo		: v.fTpDispositivo,
+		id	 				: v.cIdDispositivo,
+		idUsuarioTitular	: v.fUsuarioTitular,
+		norma				: v.fNormaBeacon,
+		nameSpace			: v.cNameSpace,
+		instanceID			: v.cInstanceID,
+		batteryLevel		: v.cBatteryLevel,
+		color				: v.cColor,
+		broadcastingPower	: v.cBroadcastingPower
 	};
 };
+
+var vehDes = scoreDB.Model.extend({
+	tableName: 'tVehiculoDesconectado'
+});
 
 // USUARIO
 var usr = scoreDB.Model.extend({
@@ -101,6 +111,7 @@ module.exports = {
 	UsuarioVeh: usrVeh,
 	Vehiculo: veh,
 	VehTitular: vehTitular,
+	VehDesconectado: vehDes,
 	Invitacion: invita,
 	InvitacionVeh: invitaVeh,
 	Siniestro: siniestro

@@ -4,8 +4,11 @@ const email		= require('../config/emailServer');
 const Hash		= require('hashids');
 const moment	= require('moment');
 const multer	= require('multer');
+const fs		= require('fs');
+const path		= require('path');
 
-var upload = multer({ dest: '/home/ubuntu/adjunto/' }).single('imagen');
+const DIR_ADJUNTO = '/home/ubuntu/adjunto/';
+var upload = multer({ dest: DIR_ADJUNTO }).single('imagen');
 
 module.exports = function(req,res){
 	const Util = require('../util');
@@ -40,6 +43,15 @@ module.exports = function(req,res){
 					return res.status(401).json({ success: false, code: 2330, message: 'No existe siniestro'});
 				}
 				console.log(data.toJSON());
+				// crea sub-dir usuario
+				var destArch = path.join( DIR_ADJUNTO, req.user.pUsuario+'' );
+				if( ! fs.existsSync( destArch )) fs.mkdirSync( destArch );
+				// crea sub-dir siniestro
+				destArch = path.join( destArch, req.body.idSiniestro+'' );
+				if( ! fs.existsSync( destArch )) fs.mkdirSync( destArch );
+				destArch = path.join( destArch, req.file.originalname );
+				// Mueve desde el repositorio al definitivo
+				fs.rename( req.file.path, destArch );
 				var sObj = {
 					sucess : true,
 					idSiniestro : 100,
