@@ -1,3 +1,4 @@
+const db		= require("../db/db");
 const Model		= require('../db/model');
 const config	= require('../config/main');
 const email		= require('../config/emailServer');
@@ -16,11 +17,11 @@ module.exports = function(req,res){
 	// Registra nuevos usuarios o usuarios existentes en dispositivos nuevos
 	console.log('---------', moment().format('YYYY-MM-DD HH:mm:ss'), '--------');
 	console.log('req.user:',req.user);
-	console.log(req.body);
 	upload(req,res,function(err){
 		if( err ){
 			return res.status(400).json({ success: false, code: 2308, message: 'No se pudo subir el arhivo de imagen.' });
 		}
+		console.log(req.body);
 		console.log(req.file);
 		if(!req.body.idSiniestro ) {
 			return res.status(400).json({ success: false, code: 2310, message: 'Falta ID del vehiculo.' });
@@ -33,16 +34,12 @@ module.exports = function(req,res){
 		if(!req.body.tipo ) {
 			return res.status(400).json({ success: false, code: 2314, message: 'Falta tipo.' });
 		}
-		// if(!req.body.imagen ) {
-			// return res.status(400).json({ success: false, code: 2318, message: 'Falta Imagen.' });
-		// }
 
 		new Model.Siniestro({pSiniestro: req.body.idSiniestro}).fetch().then(function(data){
 			try {
 				if( data === null){
 					return res.status(401).json({ success: false, code: 2330, message: 'No existe siniestro'});
 				}
-				console.log(data.toJSON());
 				// crea sub-dir usuario
 				var destArch = path.join( DIR_ADJUNTO, req.user.pUsuario+'' );
 				if( ! fs.existsSync( destArch )) fs.mkdirSync( destArch );
@@ -52,13 +49,31 @@ module.exports = function(req,res){
 				destArch = path.join( destArch, req.file.originalname );
 				// Mueve desde el repositorio al definitivo
 				fs.rename( req.file.path, destArch );
+
 				var sObj = {
 					sucess : true,
-					idSiniestro : 100,
+					idSiniestro : req.body.idSiniestro,
 					archivo : req.file.originalname
 				};
-				res.status(201).json(sObj);
 
+				db.scoreDB.knex("tSiniestroArchivo")
+				.where('pSiniestro','=',req.body.idSiniestro)
+				.andWhere('pArchivo', '=', req.file.originalname)
+				.update({ tArchivo : req.body.fechaHora, cTipo : req.body.tipo})
+				.then(function(resp){
+					if( resp == 0 ){
+						// No existe, hay que insertar
+						new Model.SiniestroArchivo({ pSiniestro: req.body.idSiniestro, pArchivo: req.file.originalname, tArchivo : req.body.fechaHora, cTipo : req.body.tipo})
+						.save()
+						.then(function(dataIns){
+							res.status(201).json(sObj);
+							return;
+						});
+					} else {
+						res.status(201).json(sObj);
+						return;
+					}
+				});
 			} catch( e ) {
 				console.log( e.stack );
 				return res.status(401).json({ success: false, code: 2350, message: 'Error inesperado.' });

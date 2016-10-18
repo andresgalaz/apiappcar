@@ -105,6 +105,10 @@ var siniestro = scoreDB.Model.extend({
 	idAttribute: 'pSiniestro'
 });
 
+var sinArchivo = scoreDB.Model.extend({
+	tableName: 'tSiniestroArchivo'
+});
+
 module.exports = {
 	Cuenta: cta,
 	Usuario: usr,
@@ -114,5 +118,6 @@ module.exports = {
 	VehDesconectado: vehDes,
 	Invitacion: invita,
 	InvitacionVeh: invitaVeh,
-	Siniestro: siniestro
+	Siniestro: siniestro,
+	SiniestroArchivo: sinArchivo
 }
