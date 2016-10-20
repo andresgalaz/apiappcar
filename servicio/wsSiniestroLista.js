@@ -15,7 +15,7 @@ module.exports = function(req,res){
 			   , 'tSiniestro as fechaHora'				, 'bLesiones as lesiones'
 			   , 'cPatente as patente'					, 'fUsuario as idConductor'
 			   , 'cUsuario as nombreConductor'			, 'fUsuarioTitular as idTitular'
-			   , 'cUsuarioTitular as nombreTitular'
+			   , 'cUsuarioTitular as nombreTitular'		, 'cObservacion as observaciones'
 		       , db.scoreDB.knex.raw('fnSiniOtrosConductoresJSON(pSiniestro) as involucrados'));
 	if( req.body.idUsuario !== undefined ){
 		qSini.where("fUsuario", req.body.idUsuario);

@@ -42,7 +42,8 @@ module.exports = function(req,res){
 				nLT: req.body.latitud,
 				nLG: req.body.longitud,
 				tSiniestro: req.body.fechaHora,
-				bLesiones: (req.body.lesiones ? '1' : '0')
+				bLesiones: (req.body.lesiones ? '1' : '0'),
+				cObservacion: (req.body.observaciones)
 			});
 			newSini.save().then(function(dataIns){
 				var sini=dataIns.toJSON();

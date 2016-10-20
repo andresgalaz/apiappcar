@@ -57,15 +57,18 @@ module.exports = function(req,res){
 				};
 
 				db.scoreDB.knex("tSiniestroArchivo")
-				.where('pSiniestro','=',req.body.idSiniestro)
-				.andWhere('pArchivo', '=', req.file.originalname)
+				.where('fSiniestro','=',req.body.idSiniestro)
+				.andWhere('cNombreArchivo', '=', req.file.originalname)
 				.update({ tArchivo : req.body.fechaHora, cTipo : req.body.tipo})
 				.then(function(resp){
 					if( resp == 0 ){
 						// No existe, hay que insertar
-						new Model.SiniestroArchivo({ pSiniestro: req.body.idSiniestro, pArchivo: req.file.originalname, tArchivo : req.body.fechaHora, cTipo : req.body.tipo})
+						new Model.SiniestroArchivo({ fSiniestro: req.body.idSiniestro, cNombreArchivo: req.file.originalname, tArchivo : req.body.fechaHora, cTipo : req.body.tipo})
 						.save()
 						.then(function(dataIns){
+							var arch=dataIns.toJSON();
+							console.log(arch);
+							sObj.idArchivo = arch.pArchivo;
 							res.status(201).json(sObj);
 							return;
 						});
