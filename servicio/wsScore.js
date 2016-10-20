@@ -125,7 +125,7 @@ module.exports = function(req,res){
 		});
 
 		var sObj = {
-			sucess : true,
+			success : true,
 			kms : Math.round(nKms*100)/100,
 			scorePeriodo : Math.round(nScore*100)/100,
 			descuento : Math.round(nDescuento*100)/100,

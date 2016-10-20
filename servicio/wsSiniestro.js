@@ -48,7 +48,7 @@ module.exports = function(req,res){
 			newSini.save().then(function(dataIns){
 				var sini=dataIns.toJSON();
 				var sObj = {
-					sucess : true,
+					success : true,
 					idSiniestro : sini.pSiniestro
 				};
 				res.status(201).json(sObj);

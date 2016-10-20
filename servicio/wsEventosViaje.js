@@ -25,12 +25,8 @@ module.exports = function(req,res){
 					delete eventoViaje['velocidadMaxima'];
 				eventoViaje.ts = moment(eventoViaje.ts).format("YYYY-MM-DD hh:mm:ss");
 			}
-console.log({
-				sucess: true,
-				eventos : arrEventoViaje
-			});
 			return res.status(211).json({
-				sucess: true,
+				success: true,
 				eventos : arrEventoViaje
 			});
 		} catch(e){

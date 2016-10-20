@@ -51,7 +51,7 @@ module.exports = function(req,res){
 				fs.rename( req.file.path, destArch );
 
 				var sObj = {
-					sucess : true,
+					success : true,
 					idSiniestro : req.body.idSiniestro,
 					archivo : req.file.originalname
 				};

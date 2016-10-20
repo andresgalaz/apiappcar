@@ -34,12 +34,12 @@ module.exports = function(req,res){
 			});
 			newVehD.save()
 			.then(function(dataIns){
-				res.status(201).json({ sucess : true });
+				res.status(201).json({ success : true });
 			}).catch( function(err){
 				if( err.code == 'ER_DUP_ENTRY')
-					res.status(201).json({ sucess : false, message: 'Registro ya existe' });
+					res.status(201).json({ success : false, message: 'Registro ya existe' });
 				else
-					res.status(201).json({ sucess : false, message: 'Error inesperado de SQL:' + err.code });
+					res.status(201).json({ success : false, message: 'Error inesperado de SQL:' + err.code });
 			});
 		} catch( e ) {
 			console.log( e.stack );

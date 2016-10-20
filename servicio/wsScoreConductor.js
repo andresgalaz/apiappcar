@@ -215,7 +215,7 @@ module.exports = function(req,res){
 			viaje.fechaFin    = moment(viaje.fechaFin   ).format("YYYY-MM-DD hh:mm:ss");
 		}
 		return res.status(201).json({
-			sucess: true,
+			success: true,
 			score: nScoreGlobal,
 			kms : nKmsGlobal,
 			conductores: arrConductor,
