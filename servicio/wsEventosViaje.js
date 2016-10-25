@@ -21,6 +21,7 @@ module.exports = function(req,res){
 		try {
 			for( var i=0 ; i < arrEventoViaje.length ; i++){
 				var eventoViaje = arrEventoViaje[i];
+				eventoViaje.valor = Math.round(eventoViaje.valor);
 				if( eventoViaje.idEvento != 5 )
 					delete eventoViaje['velocidadMaxima'];
 				eventoViaje.ts = moment(eventoViaje.ts).format("YYYY-MM-DD hh:mm:ss");
