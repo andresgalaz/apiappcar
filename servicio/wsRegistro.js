@@ -16,7 +16,7 @@ module.exports = function(req,res){
 	if(!req.body.email ) {
 		return res.status(400).json({ success: false, code: 1310, message: 'Falta email.' });
 	}
-	if(!req.body.password) {
+	if(!req.body.password && !req.body.google && !req.body.facebook) {
 		return res.status(400).json({ success: false, code: 1320, message: 'Falta password.' });
 	}
 	new Model.UsuarioVeh({cEmail: req.body.email}).fetch({withRelated:['vehiculos']}).then(function(data){
