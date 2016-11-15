@@ -1,4 +1,5 @@
 //const User = require('../app/models/user');
+const config = require('../config/main');
 const Model = require('../db/model');
 const moment = require("moment");
 
@@ -7,6 +8,10 @@ module.exports = function(req,res){
 	// Registra nuevos usuarios o usuarios existentes en dispositivos nuevos
 	console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
 	console.log('req.user:',req.user);
+	// La password se encripta antes de desplegar en la bitácora
+	req.body.nuevaPassword = config.encripta(req.body.nuevaPassword);
+	req.body.confirmaPassword = config.encripta(req.body.confirmaPassword);
+
 	console.log(req.body);
 	if(!req.body.nuevaPassword || !req.body.confirmaPassword) {
 		return res.status(400).json({ success: false, code: 1610, message: 'Falta nueva password o confirma password.' });
@@ -22,7 +27,7 @@ module.exports = function(req,res){
 				var actUsr = new Model.Usuario(data.toJSON());
 				// Se actualiza
 				actUsr.attributes.cPassword = req.body.nuevaPassword;
- 	
+
 				// Attempt to save the user
 				actUsr.save().then(function(model) {
 					res.status(200).json({ success: true });

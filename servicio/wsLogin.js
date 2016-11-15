@@ -8,6 +8,9 @@ module.exports = function(req,res){
 
 	// Registra nuevos usuarios o usuarios existentes en dispositivos nuevos
 	console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
+	// La password se encripta antes de desplegar en la bitácora
+	req.body.password = config.encripta(req.body.password);
+
 	console.log(req.body);
 	if(!req.body.email ) {
 		return res.status(400).json({ success: false, code: 1110, message: 'Falta email.' });
@@ -27,7 +30,7 @@ module.exports = function(req,res){
         			// Create token if the password matched and no error was thrown
         			var token = 'error token';
         			token = jwt.sign( Model.Usuario.token(user), config.secret, {
-        				expiresIn: 3024000 // 35 dÃ­as en segundos
+        				expiresIn: 3024000 // 35 días en segundos
         			});
 					var usrOut = Model.UsuarioVeh.salida( user );
 					usrOut.success = true;
@@ -43,3 +46,16 @@ module.exports = function(req,res){
 		}
 	});
 };
+
+/*
+{ email: 'andres.galaz@gmail.com',
+  nombre: 'Andres Galaz',
+  password: 'aaaaaa',
+  dni: '95504597',
+  fechaNacimiento: '1962-1-18',
+  sexo: 'M',
+  google:
+   { id: '101720966443198140177',
+     token: 'ya29.CjCXA0WmzC401QOHJcY8ImqluDqwK1CbYmn3dtwPR2I59O6n1PtbWs0LnY0UMqjKFUo' } }
+
+*/
