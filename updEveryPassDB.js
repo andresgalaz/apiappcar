@@ -16,6 +16,6 @@ dbLocal
 .from('tUsuario')
 .then(function(data){
 	for( i=0 ; i < data.length ; i++ )
-    	console.log('update tUsuario set password=', "'"+config.encripta(data[i].cPassword)+"'", ' where pUsuario=',data[i].pUsuario,';');
+    	console.log('update tUsuario set cPassword=', "'"+config.encripta(data[i].cPassword)+"'", ' where pUsuario=',data[i].pUsuario,';');
 	process.exit(0);
 });
