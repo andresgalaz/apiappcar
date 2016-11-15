@@ -9,6 +9,9 @@ module.exports = function(req,res){
 
 	// Registra nuevos usuarios o usuarios existentes en dispositivos nuevos
 	console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
+	// La password se encripta antes de desplegar en la bitácora
+	req.body.password = config.encripta(req.body.password);
+
 	console.log(req.body);
 	if(!req.body.email ) {
 		return res.status(400).json({ success: false, code: 1310, message: 'Falta email.' });
@@ -53,7 +56,7 @@ module.exports = function(req,res){
 				cSexo		: req.body.sexo,
 				dNacimiento	: req.body.fechaNacimiento
 			});
- 	
+
 			// Attempt to save the user
 			newUser.save().then(function(dataIns) {
 				var user = dataIns.toJSON();
