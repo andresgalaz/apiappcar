@@ -27,7 +27,7 @@ module.exports = function(req,res){
         			// Create token if the password matched and no error was thrown
         			var token = 'error token';
         			token = jwt.sign( Model.Usuario.token(user), config.secret, {
-        				expiresIn: 3024000 // 35 días en segundos
+        				expiresIn: 3024000 // 35 dÃ­as en segundos
         			});
 					var usrOut = Model.UsuarioVeh.salida( user );
 					usrOut.success = true;
