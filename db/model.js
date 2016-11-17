@@ -110,7 +110,13 @@ var sinArchivo = scoreDB.Model.extend({
 	idAttribute: 'pArchivo'
 });
 
+// Estado APP
+var appEstado = scoreDB.Model.extend({
+	tableName: 'tAppEstado',
+	idAttribute: 'pEstado'
+});
 module.exports = {
+	AppEstado: appEstado,
 	Cuenta: cta,
 	Usuario: usr,
 	UsuarioVeh: usrVeh,
@@ -121,4 +127,4 @@ module.exports = {
 	InvitacionVeh: invitaVeh,
 	Siniestro: siniestro,
 	SiniestroArchivo: sinArchivo
-}
+};

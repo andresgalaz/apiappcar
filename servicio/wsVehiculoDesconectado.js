@@ -38,12 +38,14 @@ module.exports = function(req,res){
 			}).catch( function(err){
 				if( err.code == 'ER_DUP_ENTRY')
 					res.status(201).json({ success : false, message: 'Registro ya existe' });
-				else
-					res.status(201).json({ success : false, message: 'Error inesperado de SQL:' + err.code });
+				else {
+					console.log( err.stack );
+					res.status(401).json({ success : false, code: 2550, message: 'Error inesperado de SQL:' + err.code });
+				}
 			});
 		} catch( e ) {
 			console.log( e.stack );
-        	return res.status(401).json({ success: false, code: 2550, message: 'Error inesperado.' });
+        	return res.status(401).json({ success: false, code: 2554, message: 'Error inesperado.' });
 		}
 	});
 };
