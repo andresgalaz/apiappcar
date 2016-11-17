@@ -21,8 +21,7 @@ module.exports = function(req,res){
 				var actVeh = new Model.Vehiculo(data.toJSON());
 				// Se actualiza
 				// actVeh.cPatente			= req.body.patente;
-				actVeh.attributes.bVigente	= '0';
- 	
+				actVeh.attributes.cIdDispositivo = null;
 				// Attempt to save the user
 				actVeh.save().then(function(model) {
 					res.status(200).json({ success: true });
@@ -31,6 +30,6 @@ module.exports = function(req,res){
 		} catch(e){
 			console.log(e.stack);
 			res.status(500).json({ success: false, code: 1730, message: 'Error inesperado al leer', errors: [ {code: 1732, message: e.message }]});
-		}
+		};
 	});
 };

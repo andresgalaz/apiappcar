@@ -48,6 +48,7 @@ module.exports = function(app) {
 	apiRoutes.post	('/wsSiniestroLista'		, agvJwt, require('../servicio/wsSiniestroLista'		));
   	apiRoutes.post	('/wsVehiculo'				, agvJwt, require('../servicio/wsVehiculo'				));
 	apiRoutes.post	('/wsVehiculoDel'			, agvJwt, require('../servicio/wsVehiculoDel'			));
+	apiRoutes.post	('/wsVehiculoDelBluetooth'	, agvJwt, require('../servicio/wsVehiculoDelBluetooth'	));
 	apiRoutes.post	('/wsVehiculoDesconectado'	, agvJwt, require('../servicio/wsVehiculoDesconectado'	));
   	apiRoutes.delete('/wsVehiculo'				, agvJwt, require('../servicio/wsVehiculoDel'			));
 
