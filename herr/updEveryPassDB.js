@@ -1,4 +1,4 @@
-const config = require('./config/main');
+const config = require('../config/main');
 
 dbLocal = require('knex')({
 	client: 'mysql',
