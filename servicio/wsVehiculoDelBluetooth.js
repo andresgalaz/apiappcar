@@ -20,7 +20,6 @@ module.exports = function(req,res){
 			} else {
 				var actVeh = new Model.Vehiculo(data.toJSON());
 				// Se actualiza
-				// actVeh.cPatente			= req.body.patente;
 				actVeh.attributes.cIdDispositivo = null;
 				// Attempt to save the user
 				actVeh.save().then(function(model) {
