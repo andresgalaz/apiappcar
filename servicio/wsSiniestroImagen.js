@@ -24,7 +24,7 @@ module.exports = function(req,res){
 		console.log(req.body);
 		console.log(req.file);
 		if(!req.body.idSiniestro ) {
-			return res.status(400).json({ success: false, code: 2310, message: 'Falta ID del vehiculo.' });
+			return res.status(400).json({ success: false, code: 2310, message: 'Falta ID del siniestro.' });
 		}
 		if(!req.body.fechaHora ) {
 			return res.status(400).json({ success: false, code: 2322, message: 'Falta fecha y hora de la denuncia siniestro.' });
@@ -35,10 +35,10 @@ module.exports = function(req,res){
 			return res.status(400).json({ success: false, code: 2314, message: 'Falta tipo.' });
 		}
 
-		new Model.Siniestro({pSiniestro: req.body.idSiniestro}).fetch().then(function(data){
+		new Model.Siniestro({pSiniestro: req.body.idSiniestro, fUsuario: req.user.pUsuario}).fetch().then(function(data){
 			try {
 				if( data === null){
-					return res.status(401).json({ success: false, code: 2330, message: 'No existe siniestro'});
+					return res.status(401).json({ success: false, code: 2330, message: 'No existe siniestro o no le pertenece al usuario'});
 				}
 				// crea sub-dir usuario
 				var destArch = path.join( DIR_ADJUNTO, req.user.pUsuario+'' );
