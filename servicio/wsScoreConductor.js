@@ -132,7 +132,10 @@ module.exports = function(req,res){
 			// Se fuerza la existencia del conductor mismo, dado que no va a tener Score si no tiene
 			// autos asociados
 			arrConductor.push({
+				idConductor : req.user.pUsuario,
+				conductor : req.user.cNombre,
 				score : 100,
+				kms : 0,
 				eventos : [ { idEvento: '3', tipoEvento: 'Aceleración'     , cantidad: 0 }
 						  , { idEvento: '4', tipoEvento: 'Frenada'         , cantidad: 0 }
 						  , { idEvento: '5', tipoEvento: "Exceso Velocidad", cantidad: 0 }]
