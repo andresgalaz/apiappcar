@@ -43,7 +43,8 @@ module.exports = function(app) {
   	apiRoutes.post	('/wsScoreVehiculo'			, agvJwt, require('../servicio/wsScoreVehiculo'			));
   	apiRoutes.post	('/wsScoreConductor'		, agvJwt, require('../servicio/wsScoreConductor'		));
   	apiRoutes.post	('/wsSiniestro'				, agvJwt, require('../servicio/wsSiniestro'				));
-	apiRoutes.post	('/wsSiniestroImagen'		, agvJwt, require('../servicio/wsSiniestroImagen'		));
+	apiRoutes.post	('/wsSiniestroImagen'		, agvJwt, require('../servicio/wsSiniestroMedia'		));
+	apiRoutes.post	('/wsSiniestroMedia'		, agvJwt, require('../servicio/wsSiniestroMedia'		));
 	apiRoutes.post	('/wsSiniestroLista'		, agvJwt, require('../servicio/wsSiniestroLista'		));
   	apiRoutes.post	('/wsVehiculo'				, agvJwt, require('../servicio/wsVehiculo'				));
 	apiRoutes.post	('/wsVehiculoDel'			, agvJwt, require('../servicio/wsVehiculoDel'			));
