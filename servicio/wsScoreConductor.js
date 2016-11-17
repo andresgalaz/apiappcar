@@ -76,7 +76,7 @@ module.exports = function(req,res){
 			qIdViaje.andWhere	("fUsuarioTitular", req.user.pUsuario);
 			qVeh.andWhere		("fUsuarioTitular", req.user.pUsuario);
 			qViaje.andWhere		("fUsuarioTitular", req.user.pUsuario);
-		}
+		};
 	} else {
 		qIdViaje.andWhere	("fUsuarioTitular"	, req.user.pUsuario);
 		qVeh.andWhere		("fUsuarioTitular"	, req.user.pUsuario);
@@ -100,7 +100,7 @@ module.exports = function(req,res){
 	}
 	try {
 		for( var i = 0 ; i < id.length ; i++ ){
-			var nIdViaje = id [ i ] + 0;
+			// var nIdViaje = id [ i ] + 0;
    			db.scoreDB.knex("vEvento")
 			.select("nIdViaje as idViaje", "fTpEvento as idEvento", "cEvento as tipoEvento")
 			.count("fTpEvento as cantidad")
@@ -113,7 +113,7 @@ module.exports = function(req,res){
 					delete eventoViaje["idViaje"];
 					var sum = eventoSum.filter(function(o){ return o.idEvento == eventoViaje.idEvento });
 					sum[0].cantidad += eventoViaje.cantidad;
-				}
+				};
 			});
 		}
 	} catch(e){
@@ -128,18 +128,29 @@ module.exports = function(req,res){
 	}
 	try {
 		arrConductor = data;
-		// Inicializa Acumuladores para los viajes
-		for( var i=0 ; i < arrConductor.length ; i++){
-			nKmsGlobal += arrConductor[i].kms;
-			nScoreGlobal += arrConductor[i].scoreKm;
-			if( arrConductor[i].kms == 0 )
-				arrConductor[i].score = 100;
-			else
-				arrConductor[i].score = ( arrConductor[i].scoreKm / arrConductor[i].kms );
-			delete arrConductor[i].scoreKm;
-			arrConductor[i].eventos = [ { idEvento: '3', tipoEvento: 'Aceleración'     , cantidad: 0 }
-									  , { idEvento: '4', tipoEvento: 'Frenada'         , cantidad: 0 }
-									  , { idEvento: '5', tipoEvento: "Exceso Velocidad", cantidad: 0 }];
+		if( arrConductor.length == 0 ){
+			// Se fuerza la existencia del conductor mismo, dado que no va a tener Score si no tiene
+			// autos asociados
+			arrConductor.push({
+				score : 100,
+				eventos : [ { idEvento: '3', tipoEvento: 'Aceleración'     , cantidad: 0 }
+						  , { idEvento: '4', tipoEvento: 'Frenada'         , cantidad: 0 }
+						  , { idEvento: '5', tipoEvento: "Exceso Velocidad", cantidad: 0 }]
+			});
+		} else {
+			// Inicializa Acumuladores para los viajes
+			for( var i=0 ; i < arrConductor.length ; i++){
+				nKmsGlobal += arrConductor[i].kms;
+				nScoreGlobal += arrConductor[i].scoreKm;
+				if( arrConductor[i].kms == 0 )
+					arrConductor[i].score = 100;
+				else
+					arrConductor[i].score = ( arrConductor[i].scoreKm / arrConductor[i].kms );
+				delete arrConductor[i].scoreKm;
+				arrConductor[i].eventos = [ { idEvento: '3', tipoEvento: 'Aceleración'     , cantidad: 0 }
+										  , { idEvento: '4', tipoEvento: 'Frenada'         , cantidad: 0 }
+										  , { idEvento: '5', tipoEvento: "Exceso Velocidad", cantidad: 0 }];
+			};
 		}
 		if( nKmsGlobal == 0 )
 			nScoreGlobal = 100;
