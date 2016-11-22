@@ -35,6 +35,7 @@ module.exports = function(app) {
 	apiRoutes.post('/wsRegistro'			, require('../servicio/wsRegistro'			));
 	// Service que requieren TOKEN de autenticación
   	apiRoutes.post	('/wsAppEstado'				, agvJwt, require('../servicio/wsAppEstado'				));
+  	apiRoutes.post	('/wsAuditoria'				, agvJwt, require('../servicio/wsAuditoria'				));
   	apiRoutes.post	('/wsCambioPassword'		, agvJwt, require('../servicio/wsCambioPassword'		));
   	apiRoutes.post	('/wsEventosViaje'			, agvJwt, require('../servicio/wsEventosViaje'			));
   	apiRoutes.post	('/wsInvitacion'			, agvJwt, require('../servicio/wsInvitacion'			));

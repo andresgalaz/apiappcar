@@ -8,6 +8,7 @@ const multer	= require('multer');
 const fs		= require('fs');
 const path		= require('path');
 
+// 'archivo' es el nombre del campo UPLOAD que viene del formulario
 var upload = multer({ dest: config.dirAdjunto }).single('archivo');
 
 module.exports = function(req,res){
