@@ -115,8 +115,16 @@ var appEstado = scoreDB.Model.extend({
 	tableName: 'tAppEstado',
 	idAttribute: 'pEstado'
 });
+
+// Auditoria
+var auditoria = scoreDB.Model.extend({
+	tableName: 'tAuditoria',
+	idAttribute: 'pAuditoria'
+});
+
 module.exports = {
 	AppEstado: appEstado,
+	Auditoria: auditoria,
 	Cuenta: cta,
 	Usuario: usr,
 	UsuarioVeh: usrVeh,
