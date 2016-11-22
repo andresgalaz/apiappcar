@@ -41,19 +41,22 @@ module.exports = function(req,res){
 					return res.status(401).json({ success: false, code: 2720, message: 'No existe vehículo'});
 				}
 				// crea sub-dir usuario
-				var destArch = path.join( config.dirAdjunto, req.user.pUsuario+'' );
+				var destArch = path.join( cNomArchivo, req.user.pUsuario+'' );
 				if( ! fs.existsSync( destArch )) fs.mkdirSync( destArch );
-				// crea sub-dir siniestro
-				destArch = path.join( destArch, req.body.idVehiculo+'' );
+				// crea sub-dir de auditoria
+				destArch = path.join( destArch, +'auditoria' );
 				if( ! fs.existsSync( destArch )) fs.mkdirSync( destArch );
-				destArch = path.join( destArch, req.file.originalname );
+				// Nombre del archivo se guarda con la fecha y hora, y se mantiene la extensión del archivo original
+				var cNomArchivo = moment().format('YYYYMMDD_HHmmss') + path.extname(config.dirAdjunto);
+				destArch = path.join( destArch, cNomArchivo );
 				// Mueve desde el repositorio al definitivo
 				fs.rename( req.file.path, destArch );
 
 				var sObj = {
 					success : true,
 					idVehiculo : req.body.idVehiculo,
-					archivo : req.file.originalname
+					archivo : req.file.originalname,
+					auditoria : cNomArchivo
 				};
 
 				db.scoreDB.knex("tSiniestroArchivo")
