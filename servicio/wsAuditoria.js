@@ -35,41 +35,47 @@ module.exports = function(req,res){
 			return res.status(400).json({ success: false, code: 2718, message: "Kilometros debe ser numérico" });
 		}
 
-		try {
-			// crea sub-dir usuario
-			var destArch = path.join( config.dirAdjunto, req.user.pUsuario+'' );
-			if( ! fs.existsSync( destArch )) fs.mkdirSync( destArch );
-			// crea sub-dir de auditoria
-			destArch = path.join( destArch, 'auditoria' );
-			if( ! fs.existsSync( destArch )) fs.mkdirSync( destArch );
-			// Nombre del archivo se guarda con la fecha y hora, y se mantiene la extensión del archivo original
-			var cNomArchivo = moment().format('YYYYMMDD_HHmmss') + path.extname(req.file.originalname);
-			destArch = path.join( destArch, cNomArchivo );
-			// Mueve desde el repositorio al definitivo
-			fs.rename( req.file.path, destArch );
-
-			var sObj = {
-				success : true,
-				idVehiculo : req.body.idVehiculo,
-				archivo : req.file.originalname,
-				auditoria : cNomArchivo
+		new Model.Vehiculo({pVehiculo: req.body.idVehiculo}).fetch() //
+		.then(function(data){
+			try {
+				if( data === null){
+					return res.status(401).json({ success: false, code: 2720, message: 'No existe vehículo'});
+				}
+				// crea sub-dir usuario
+				var destArch = path.join( config.dirAdjunto, req.user.pUsuario+'' );
+				if( ! fs.existsSync( destArch )) fs.mkdirSync( destArch );
+				// crea sub-dir de auditoria
+				destArch = path.join( destArch, 'auditoria' );
+				if( ! fs.existsSync( destArch )) fs.mkdirSync( destArch );
+				// Nombre del archivo se guarda con la fecha y hora, y se mantiene la extensión del archivo original
+				var cNomArchivo = moment().format('YYYYMMDD_HHmmss') + path.extname(req.file.originalname);
+				destArch = path.join( destArch, cNomArchivo );
+				// Mueve desde el repositorio al definitivo
+				fs.rename( req.file.path, destArch );
+	
+				var sObj = {
+					success : true,
+					idVehiculo : req.body.idVehiculo,
+					archivo : req.file.originalname,
+					auditoria : cNomArchivo
+				};
+	
+				new Model.Auditoria({ fVehiculo: req.body.idVehiculo
+									, cNombreArchivo: cNomArchivo
+									, nKilometros : req.body.kms})
+				.save()
+				.then(function(dataIns){
+					var arch=dataIns.toJSON();
+					console.log(arch);
+					sObj.idArchivo = arch.pArchivo;
+					res.status(201).json(sObj);
+					return;
+				});
+			} catch( e ) {
+				console.log( e.stack );
+				return res.status(401).json({ success: false, code: 2750, message: 'Error inesperado.' });
 			};
-
-			new Model.Auditoria({ fVehiculo: req.body.idVehiculo
-								, cNombreArchivo: cNomArchivo
-								, nKilometros : req.body.kms})
-			.save()
-			.then(function(dataIns){
-				var arch=dataIns.toJSON();
-				console.log(arch);
-				sObj.idArchivo = arch.pArchivo;
-				res.status(201).json(sObj);
-				return;
-			});
-		} catch( e ) {
-			console.log( e.stack );
-			return res.status(401).json({ success: false, code: 2750, message: 'Error inesperado.' });
-		};
+		});
 	});
 
 };
