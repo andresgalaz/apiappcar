@@ -41,7 +41,7 @@ module.exports = function(req,res){
 					return res.status(401).json({ success: false, code: 2720, message: 'No existe vehículo'});
 				}
 				// crea sub-dir usuario
-				var destArch = path.join( config.dirAdjunto, req.user.pUsuario+'' );
+				var destArch = path.join( cNomArchivo, req.user.pUsuario+'' );
 				if( ! fs.existsSync( destArch )) fs.mkdirSync( destArch );
 				// crea sub-dir de auditoria
 				destArch = path.join( destArch, +'auditoria' );
