@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
-const config = require('../config/main');
+const config = require('./config/main');
 
 var app = express();
 // Define el puerto de acuerdo al ambiente
