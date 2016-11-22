@@ -41,10 +41,10 @@ module.exports = function(req,res){
 					return res.status(401).json({ success: false, code: 2720, message: 'No existe vehículo'});
 				}
 				// crea sub-dir usuario
-				var destArch = path.join( cNomArchivo, req.user.pUsuario+'' );
+				var destArch = path.join( config.dirAdjunto, req.user.pUsuario+'' );
 				if( ! fs.existsSync( destArch )) fs.mkdirSync( destArch );
 				// crea sub-dir de auditoria
-				destArch = path.join( destArch, +'auditoria' );
+				destArch = path.join( destArch, 'auditoria' );
 				if( ! fs.existsSync( destArch )) fs.mkdirSync( destArch );
 				// Nombre del archivo se guarda con la fecha y hora, y se mantiene la extensión del archivo original
 				var cNomArchivo = moment().format('YYYYMMDD_HHmmss') + path.extname(config.dirAdjunto);
