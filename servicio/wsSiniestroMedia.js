@@ -8,18 +8,16 @@ const multer	= require('multer');
 const fs		= require('fs');
 const path		= require('path');
 
-const DIR_ADJUNTO = '/home/ubuntu/adjunto/';
-var upload = multer({ dest: DIR_ADJUNTO }).single('archivo');
+var upload = multer({ dest: config.dirAdjunto }).single('archivo');
 
 module.exports = function(req,res){
 	const Util = require('../util');
 
-	// Registra nuevos usuarios o usuarios existentes en dispositivos nuevos
+	// Sube archivos y los deja en config.dirAdjunto
 	console.log('---------', moment().format('YYYY-MM-DD HH:mm:ss'), '--------');
 	console.log('req.user:',req.user);
 	upload(req,res,function(err){
 		if( err ){
-	console.log('err[0]:',err[0]);
 			if( err.code == 'LIMIT_UNEXPECTED_FILE' )
 				return res.status(400).json({ success: false, code: 2306, message: "Se esperaba 'archivo' como nombre de campo"});
 			return res.status(400).json({ success: false, code: 2308, message: 'No se pudo subir el arhivo de imagen.' });
@@ -44,7 +42,7 @@ module.exports = function(req,res){
 					return res.status(401).json({ success: false, code: 2330, message: 'No existe siniestro o no le pertenece al usuario'});
 				}
 				// crea sub-dir usuario
-				var destArch = path.join( DIR_ADJUNTO, req.user.pUsuario+'' );
+				var destArch = path.join( config.dirAdjunto, req.user.pUsuario+'' );
 				if( ! fs.existsSync( destArch )) fs.mkdirSync( destArch );
 				// crea sub-dir siniestro
 				destArch = path.join( destArch, req.body.idSiniestro+'' );
