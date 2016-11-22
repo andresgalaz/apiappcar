@@ -9,7 +9,7 @@ const fs		= require('fs');
 const path		= require('path');
 
 const DIR_ADJUNTO = '/home/ubuntu/adjunto/';
-var upload = multer({ dest: DIR_ADJUNTO }).single('imagen');
+var upload = multer({ dest: DIR_ADJUNTO }).single('archivo');
 
 module.exports = function(req,res){
 	const Util = require('../util');
@@ -19,6 +19,9 @@ module.exports = function(req,res){
 	console.log('req.user:',req.user);
 	upload(req,res,function(err){
 		if( err ){
+	console.log('err[0]:',err[0]);
+			if( err.code == 'LIMIT_UNEXPECTED_FILE' )
+				return res.status(400).json({ success: false, code: 2306, message: "Se esperaba 'archivo' como nombre de campo"});
 			return res.status(400).json({ success: false, code: 2308, message: 'No se pudo subir el arhivo de imagen.' });
 		}
 		console.log(req.body);
