@@ -7,6 +7,7 @@ const multer	= require('multer');
 const fs		= require('fs');
 const path		= require('path');
 
+//'archivo' es el nombre del campo UPLOAD que viene del formulario
 var upload = multer({ dest: config.dirAdjunto }).single('archivo');
 
 module.exports = function(req,res){
@@ -30,7 +31,7 @@ module.exports = function(req,res){
 			return res.status(400).json({ success: false, code: 2714, message: "Falta campo 'kms'" });
 		}
 		// Se espara que KMS sea un número decimal
-		if( /^-?\d*(\.\d+)?$/.test(req.body.kms)) {
+		if( ! /^-?\d*(\.\d+)?$/.test(req.body.kms)) {
 			return res.status(400).json({ success: false, code: 2718, message: "Kilometros debe ser numérico" });
 		}
 
