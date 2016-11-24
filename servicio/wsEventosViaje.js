@@ -24,9 +24,12 @@ module.exports = function(req,res){
 				eventoViaje.valor = Math.round(eventoViaje.valor);
 				if( eventoViaje.idEvento != 5 )
 					delete eventoViaje['velocidadMaxima'];
-				eventoViaje.ts = moment(eventoViaje.ts).format("YYYY-MM-DD hh:mm:ss");
+				else
+					// Se trunca al techo del valor, así si la máxima es 40 km/h y el evento tiene como 
+					// valor 40.001 km/h, se pasa a 41 km/h.
+					eventoViaje.valor = Math.ceil( eventoViaje.valor );
 			}
-			return res.status(211).json({
+			return res.status(201).json({
 				success: true,
 				eventos : arrEventoViaje
 			});
