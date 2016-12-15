@@ -22,7 +22,7 @@ module.exports = function(req,res){
 		return res.status(400).json({ success: false, code: 2523, message: 'Formato fecha debe ser yyyy-mm-dd hh:mm:ss.' });
 	}
 
-	new Model.VehTitular({fUsuario: req.user.pUsuario, fVehiculo: req.body.idVehiculo}).fetch().then(function(data){
+	new Model.VehTitular({fUsuario: req.user.pUsuario, fVehiculo: req.body.idVehiculo, dPeriodo: moment().format('YYYY-MM-01')}).fetch().then(function(data){
 		try {
 			if( data === null){
   				return res.status(401).json({ success: false, code: 2530, message: 'No existe relación usuario / vehiculo'});

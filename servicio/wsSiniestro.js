@@ -31,7 +31,7 @@ module.exports = function(req,res){
 	}
 	req.body.lesiones=(req.body.lesiones=='true' || req.body.lesiones=='1');
 
-	new Model.VehTitular({fUsuario: req.user.pUsuario, fVehiculo: req.body.idVehiculo}).fetch().then(function(data){
+	new Model.VehTitular({fUsuario: req.user.pUsuario, fVehiculo: req.body.idVehiculo, dPeriodo: moment().format('YYYY-MM-01')}).fetch().then(function(data){
 		try {
 			if( data === null){
   				return res.status(401).json({ success: false, code: 2230, message: 'No existe relación usuario / vehiculo'});

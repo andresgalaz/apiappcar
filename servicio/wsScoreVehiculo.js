@@ -48,18 +48,15 @@ module.exports = function(req,res){
 				,	"fVehiculo as idVehiculo"			,	"cPatente as patente"
 				,	"nKms as kms"						,	"nScore as score"
 				,	"nDescuento as descuento"			)
-		.where		("dPeriodo"	,	">="	,	req.body.fechaInicio)
-		.andWhere	("dPeriodo"	,	"<="	,	req.body.fechaFin);
+		// Trunca el dia de la fecha y lo pne en 01 para tomar solo el periodo
+		.where		("dPeriodo"	,	"="	,	req.body.fechaInicio.substr(0,8)+'01' );
 	var qConductor = db.scoreDB.knex("vScoreMesConductor")
 		.select(	"fUsuario as idConductor"			,	"cUsuario as conductor"
 				,	"fVehiculo as idVehiculo"			,	"nKms as kms"
 				,	"nScore as score"					)
-//		.select(	"fUsuarioTitular as idTitular"		,	"cUsuarioTitular as titular"
-//				,	"fUsuario as idConductor"			,	"cUsuario as conductor"
-//				,	"fVehiculo as idVehiculo"			,	"cPatente as patente"   )
 		.where		("fUsuarioTitular"		,	req.user.pUsuario)
-		.andWhere	("dPeriodo"	,	">="	,	req.body.fechaInicio)
-		.andWhere	("dPeriodo"	,	"<="	,	req.body.fechaFin);
+		// Trunca el dia de la fecha y lo pne en 01 para tomar solo el periodo
+		.andWhere	("dPeriodo"	,	"="	,	req.body.fechaInicio.substr(0,8)+'01' );
 	var qViaje = db.scoreDB.knex("vViaje")
 		.select(	"nIdViaje as idViaje"			,	"fVehiculo as idVehiculo"	,	"cPatente as patente"
 				,	"cCalleInicio as calleInicio"	,	"cCalleFin as calleFin"		,	"tInicio as fechaInicio"
