@@ -2,7 +2,7 @@ const Model	= require('../db/model');
 const moment= require("moment");
 
 module.exports = function(req,res){
-	// Registra nuevos usuarios o usuarios existentes en dispositivos nuevos
+	// Registra onexiones y desconexiones de la APP cuando está en movimiento el vehículo
 	console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
 	console.log('req.user:',req.user);
 	console.log(req.body);

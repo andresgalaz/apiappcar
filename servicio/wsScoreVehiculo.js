@@ -38,8 +38,6 @@ module.exports = function(req,res){
 
     var qIdViaje = db.scoreDB.knex("vViaje")
 		.select("nIdViaje")
-		//.where("fUsuarioTitular",req.user.pUsuario)
-		//.andWhere("fVehiculo",req.body.idVehiculo)
 		.where		("tInicio"	, 	">="	,	req.body.fechaInicio)
 		.andWhere	("tInicio"	, 	"<="	,	req.body.fechaFin);
 	var qVeh = db.scoreDB.knex("vVehiculo")

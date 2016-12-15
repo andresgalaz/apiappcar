@@ -7,7 +7,7 @@ const moment	= require("moment");
 module.exports = function(req,res){
 	const Util = require('../util');
 
-	// Registra nuevos usuarios o usuarios existentes en dispositivos nuevos
+	// Registra nuevos siniestros desde la APP
 	console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
 	console.log('req.user:',req.user);
 	console.log(req.body);
