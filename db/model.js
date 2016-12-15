@@ -47,7 +47,7 @@ var usr = scoreDB.Model.extend({
 	idAttribute: 'pUsuario'
 });
 var vehTitular = scoreDB.Model.extend({
-	tableName: 'vVehiculo',
+	tableName: 'vVehiculoLast',
 	idAttribute: 'pVehiculo'
 });
 var usrVeh = scoreDB.Model.extend({
