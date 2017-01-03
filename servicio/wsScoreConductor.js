@@ -214,6 +214,8 @@ module.exports = function(req,res){
 			}
 			if( nConductorFound >= 0 ) {
 				var conductor = arrConductor[nConductorFound];
+				if( ! conductor.cantidadViajes )
+					conductor.cantidadViajes = 0;
 				conductor.cantidadViajes++;
 				// Suma el evento del viaje correspondiente al vehiculo
 				for( var iv = 0 ; iv < viaje.eventos.length ; iv++ ){
