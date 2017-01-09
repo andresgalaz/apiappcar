@@ -28,7 +28,7 @@ app.get('/', function(req, res) {
 	res.send('Página en construcción.');
 });
 app.get('/bitacora', function(req, res) {
-	res.sendfile('server.log');
+	res.sendfile('server_'+config.ambiente+'.log');
 });
 
 require('./app/routes')(app);
