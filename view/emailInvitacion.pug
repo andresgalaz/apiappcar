@@ -3,9 +3,9 @@ html(lang=es)
     head
     body
         h1 Invitacion SnapCar
-        p Usted ha sido invitado como conductor adicional por ${nombreUsuario}
+        p Usted ha sido invitado como conductor adicional por #{nombreUsuario}
         p
-            b Email Usuario ${emailUsuario}
+            b Email Usuario #{emailUsuario}
         p
-            b Email Invitado ${emailInvitado}
-        a(href='https://api.appcar.com.ar/confirma?id=${idInvitacion}') Aceptar Invitacion
+            b Email Invitado #{emailInvitado}
+        a(href='https://api.appcar.com.ar/confirma?id=#{idInvitacion}') Aceptar Invitacion
