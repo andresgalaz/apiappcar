@@ -78,6 +78,7 @@ module.exports = function(req,res){
 						cEmailBody.push( '</a>' );
 						cEmailBody.push( '</html>' );
 						*/
+
 						// Envía correo al usuario invitado
 						email.server.send({
 								from:    "soporte <soporte@appcar.com.ar>", 
