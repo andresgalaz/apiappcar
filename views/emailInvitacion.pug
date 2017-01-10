@@ -1,15 +1,51 @@
+var fechaHoy = new Date().getFullYear();
+
 doctype html
 html(lang=es)
     head
     body
-        div(style={width: '620px'})
-            div(style={width: '100%'})
+        table#container(border='0' cellpadding='0' cellspacing='0' height='100%' width='100%')
+            tr
+                td(align='center' valign='top')
+                    table#header(border='0' cellpadding='20' cellspacing='0' width='600')
+                        tr
+                            td(align='center' valign='top')
+                                table(border='0' cellpadding='20' cellspacing='0' width='100%')
+                                    tr
+                                        td(align='center' valign='top')
+                                            img(
+                                                src='assets/img/snapcar-email-header.png'
+                                                width='322'
+                                                height='89'
+                                                )
+                        tr
+                            td(align='center' valign='top')
+                                table(border='0' cellpadding='20' cellspacing='0' width='100%')
+                                    tr
+                                        td(align='center' valign='top')
+                                            h1 Invitación SnapCar
+                                            p Usted ha sido invitado como conductor adicional por #{nombreUsuario}
+                                            p
+                                                b Email Usuario #{emailUsuario}
+                                            p
+                                                b Email Invitado #{emailInvitado}
+                                            a(href='https://api.appcar.com.ar/confirma?id=' + idInvitacion) Aceptar Invitación
+                        tr
+                            td(align='center' valign='top')
+                                table(border='0' cellpadding='20' cellspacing='0' width='100%')
+                                    tr
+                                        td(align='center' valign='top' style={background: '#006BFF', height: '40px'})
+                                            p SnapCar #{fechaHoy}
+
+//
+        div#container(style={width: '620px'})
+            div#header(style={width: '100%'})
                 img(
                     src='assets/img/snapcar-email-header.png'
                     width='322'
                     height='89'
                     )
-            div(style={width: '100%'})
+            div#content(style={width: '100%'})
                 h1 Invitación SnapCar
                 p Usted ha sido invitado como conductor adicional por #{nombreUsuario}
                 p
@@ -17,3 +53,4 @@ html(lang=es)
                 p
                     b Email Invitado #{emailInvitado}
                 a(href='https://api.appcar.com.ar/confirma?id=' + idInvitacion) Aceptar Invitación
+            div#footer(style={background-color: '#006BFF', height: '30px'})
