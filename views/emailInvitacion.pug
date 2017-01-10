@@ -34,10 +34,17 @@ html(lang=es)
                                                 'border-radius': '4px',
                                                 'color': '#FFFFFF',
                                                 'font-size': '1em',
-                                                'width': '80px'
+                                                'width': '100px'
                                                 })
                                                 b
-                                                    a(href='https://api.appcar.com.ar/confirma?id=' + idInvitacion) Aceptar Invitación
+                                                    a(
+                                                        href='https://api.appcar.com.ar/confirma?id=' + idInvitacion
+                                                        style={
+                                                            'color': '#FFFFFF',
+                                                            'font-size': '1.5em'
+                                                            'text-decoration': 'none'
+                                                            }
+                                                    ) Aceptar Invitación
                         tr
                             td(align='center' valign='top')
                                 table#footer(border='0' cellpadding='20' cellspacing='0' width='100%')
