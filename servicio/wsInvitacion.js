@@ -62,10 +62,11 @@ module.exports = function(req,res){
 						// Convierte el PK de invitación en un HASH de largo razonable
 						invita.idInvitacion = hashId.encode( 10e10 + invita.pInvitacion );
 						dataIns.vehiculos().attach( arrVeh );
-						
+		
 						// Template
-						const cEmailBody = pug.compileFile('view/emailInvitacion.pug');
-/*
+						var cEmailBody = pug.compileFile('view/emailInvitacion.pug');
+
+						/*
 						var cEmailBody = [];
 						cEmailBody.push( '<html>' );
 						cEmailBody.push( '<h1>Invitación SnapCar</h1>' );
