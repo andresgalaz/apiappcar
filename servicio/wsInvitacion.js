@@ -3,6 +3,7 @@ const config	= require('../config/main');
 const email		= require('../config/emailServer');
 const Hash		= require('hashids');
 const moment	= require("moment");
+const pug 		= require("pug");
 
 module.exports = function(req,res){
 	const Util = require('../util');
@@ -61,6 +62,10 @@ module.exports = function(req,res){
 						// Convierte el PK de invitación en un HASH de largo razonable
 						invita.idInvitacion = hashId.encode( 10e10 + invita.pInvitacion );
 						dataIns.vehiculos().attach( arrVeh );
+						
+						// Template
+						const cEmailBody = pug.compileFile('../view/emailInvitacion.pug');
+/*
 						var cEmailBody = [];
 						cEmailBody.push( '<html>' );
 						cEmailBody.push( '<h1>Invitación SnapCar</h1>' );
@@ -71,15 +76,23 @@ module.exports = function(req,res){
 						cEmailBody.push( 'Acepta' );
 						cEmailBody.push( '</a>' );
 						cEmailBody.push( '</html>' );
+						*/
 						// Envía correo al usuario invitado
 						email.server.send({
 								from:    "soporte <soporte@appcar.com.ar>", 
-								to:      "Andres Galaz <andres.galaz@gmail.com>", //, another <another@your-email.com>",
+								// to:      "Andres Galaz <andres.galaz@gmail.com>", //, another <another@your-email.com>",
 								// cc:      "else <else@your-email.com>",
+								to:      req.body.emailInvitado, //, another <another@your-email.com>",
 								subject: "Invitación Snapcar",
 								attachment: [{
-									data : cEmailBody.join(''),
-									alternative:true
+									//data : cEmailBody.join(''),
+									data: cEmailBody({
+										nombreUsuario: req.user.cNombre,
+										emailUsuario: req.user.cEmail,
+										emailInvitado: req.body.emailInvitado,
+										idInvitacion: invita.idInvitacion
+									}),
+									alternative: true
 								}]
 						}, function(err, message) { console.log(err || message); });
 						return res.status(200).json( { success: true, idInvitacion: invita.idInvitacion });

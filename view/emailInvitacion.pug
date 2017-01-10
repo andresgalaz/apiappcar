@@ -4,10 +4,9 @@ html(lang=es)
         title= Invitación SnapCar
     body
         h1 Invitación SnapCar
-        p Usted ha sido invitado como conductor adicional por
+        p Usted ha sido invitado como conductor adicional por ${nombreUsuario}
         p
-            b Email Usuario
+            b Email Usuario ${emailUsuario}
         p
-            b Email Invitado
-        a(href='https://api.appcar.com.ar/confirma?id=') Aceptar Invitación
-        = '\n'
+            b Email Invitado ${emailInvitado}
+        a(href='https://api.appcar.com.ar/confirma?id=${idInvitacion}') Aceptar Invitación
