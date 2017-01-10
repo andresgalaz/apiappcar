@@ -3,16 +3,16 @@
 doctype html
 html(lang=es)
     head
-    body
+    body(style={'font-family': 'Helvetica, Arial, Verdana, Trebuchet MS', color: '0000000'})
         table(border='0' cellpadding='0' cellspacing='0' height='100%' width='100%' style={'background-color': '#EFEFEF'})
             tr
                 td(align='center' valign='top')
-                    table#container(border='0' cellpadding='0' cellspacing='0' width='600' style={'background-color': '#FFFFFF', 'margin-top': '20px'})
+                    table#container(border='0' cellpadding='10' cellspacing='0' width='600' style={'background-color': '#FFFFFF', 'margin-top': '20px'})
                         tr
                             td(align='center' valign='top')
                                 table#header(border='0' cellpadding='20' cellspacing='0' width='100%')
                                     tr
-                                        td(align='center' valign='top')
+                                        td(align='left' valign='top' style={display: 'block'})
                                             img(
                                                 src='assets/img/snapcar-email-header.png'
                                                 width='322'
@@ -29,12 +29,14 @@ html(lang=es)
                                                 b Email Usuario #{emailUsuario}
                                             p
                                                 b Email Invitado #{emailInvitado}
-                                            a(href='https://api.appcar.com.ar/confirma?id=' + idInvitacion) Aceptar Invitación
+                                            div(style={'background-color': '#000000', color: '#FFFFFF', border-radius: '4px', 'font-size': '1em'})
+                                                b
+                                                    a(href='https://api.appcar.com.ar/confirma?id=' + idInvitacion) Aceptar Invitación
                         tr
                             td(align='center' valign='top')
                                 table#footer(border='0' cellpadding='20' cellspacing='0' width='100%')
                                     tr
-                                        td(align='center' valign='top' style={'background-color': '#006BFF', height: '30px'})
+                                        td(align='center' valign='top' style={'background-color': '#006BFF', height: '20px'})
                                             p(style={color: '#FFFFFF', 'text-align': 'left', 'padding-left': '20px'}) SnapCar #{fechaHoy} - Todos los derechos reservados
 
 //
