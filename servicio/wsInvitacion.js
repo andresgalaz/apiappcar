@@ -64,7 +64,7 @@ module.exports = function (req, res) {
 						dataIns.vehiculos().attach(arrVeh);
 
 						// Template
-						var cEmailBody = pug.compileFile('view/emailInvitacion.pug');
+						var cEmailBody = pug.compileFile('views/emailInvitacion.pug');
 
 						/*
 						var cEmailBody = [];
