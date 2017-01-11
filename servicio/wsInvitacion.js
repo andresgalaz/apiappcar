@@ -93,7 +93,8 @@ module.exports = function (req, res) {
 									nombreUsuario: req.user.cNombre,
 									emailUsuario: req.user.cEmail,
 									emailInvitado: req.body.emailInvitado,
-									idInvitacion: invita.idInvitacion
+									idInvitacion: invita.idInvitacion,
+									baseUrl: req.url
 								}),
 								alternative: true
 							}]
