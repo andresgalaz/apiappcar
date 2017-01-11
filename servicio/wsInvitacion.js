@@ -4,7 +4,6 @@ const email = require('../config/emailServer');
 const Hash = require('hashids');
 const moment = require('moment');
 const pug = require('pug');
-const url = require('url');
 
 module.exports = function (req, res) {
 	const Util = require('../util');
@@ -13,7 +12,6 @@ module.exports = function (req, res) {
     console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
 	console.log('req.user:', req.user);
     console.log(req.body);
-	console.log(req.url);
 	if (!req.body.emailInvitado) {
 		return res.status(400).json({ success: false, code: 1810, message: 'Falta email invitado.' });
 	}
@@ -66,7 +64,7 @@ module.exports = function (req, res) {
 						dataIns.vehiculos().attach(arrVeh);
 
 						// Template
-						var cEmailBody = pug.compileFile('views/emailInvitacion.pug');
+						const cEmailBody = pug.compileFile('views/emailInvitacion.pug');
 
 						/*
 						var cEmailBody = [];

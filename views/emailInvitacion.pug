@@ -29,8 +29,6 @@ html(lang=es)
                                                 b Email Usuario #{emailUsuario}
                                             p
                                                 b Email Invitado #{emailInvitado}
-                                            p URL: #{baseUrl} /assets/img/snapcar-email-header.png
-
                         tr
                             td(align='center' valign='top')
                                 table#content(border='0' cellpadding='10' cellspacing='0' width='100%')
@@ -59,21 +57,3 @@ html(lang=es)
                                     tr
                                         td(align='center' valign='top' style={'background-color': '#006BFF', height: '20px'})
                                             p(style={color: '#FFFFFF', 'text-align': 'left', 'padding-left': '20px'}) SnapCar #{fechaHoy} - Todos los derechos reservados
-
-//
-        div#container(style={width: '620px'})
-            div#header(style={width: '100%'})
-                img(
-                    src='assets/img/snapcar-email-header.png'
-                    width='322'
-                    height='89'
-                    )
-            div#content(style={width: '100%'})
-                h1 Invitación SnapCar
-                p Usted ha sido invitado como conductor adicional por #{nombreUsuario}
-                p
-                    b Email Usuario #{emailUsuario}
-                p
-                    b Email Invitado #{emailInvitado}
-                a(href='https://api.appcar.com.ar/confirma?id=' + idInvitacion) Aceptar Invitación
-            div#footer(style={background-color: '#006BFF', height: '30px'})
