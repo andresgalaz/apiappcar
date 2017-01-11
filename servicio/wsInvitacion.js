@@ -93,7 +93,7 @@ module.exports = function (req, res) {
 									emailUsuario: req.user.cEmail,
 									emailInvitado: req.body.emailInvitado,
 									idInvitacion: invita.idInvitacion,
-									baseUrl: '//' + req.headers.host
+									baseUrl: 'http://' + req.headers.host
 								}),
 								alternative: true
 							}]
