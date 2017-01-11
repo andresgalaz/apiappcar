@@ -7,6 +7,7 @@ const config = require('./config/main');
 
 var app = express();
 
+// Otorga acceso a los archivos estaticos dentro de la carpeta "assets"
 app.use(express.static('assets'));
 
 // Define el puerto de acuerdo al ambiente
