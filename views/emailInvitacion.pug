@@ -3,6 +3,15 @@
 doctype html
 html(lang=es)
     head
+    style
+        @media only screen and (max-width: 480px),
+            only screen and (-webkit-min-device-pixel-ratio: 1.5),
+            only screen and (min-device-pixel-ratio: 1.5) {
+                table[class="button"] {width: 100% !important;}
+                table[class="button"] td[class="buttonTop"] {padding: 0 !important; font-size: 1.3em !important; }
+                table[class="button"] td[class="buttonTop"] a {padding: 1em 0 1em 0 !important; display: block !important; }
+                table[class="button"] td[class="buttonBottom"] {font-size: 1.4em !important; display: block !important; }
+            }
     body(width='100%' bgcolor='#EFEFEF' style={'font-family': 'Helvetica, Arial, Verdana, Trebuchet MS', 'color': '#000000', 'margin': '0', 'mso-line-height-rule': 'exactly'})
         center(style={'width': '100%', 'background': '#EFEFEF'})
             div(style={'max-width': '600px', 'margin': 'auto'})
@@ -28,26 +37,12 @@ html(lang=es)
                                 | #{emailInvitado}
                 table#call-to-action(border='0' cellpadding='20' cellspacing='0' width='100%')
                         td(align='center' valign='top' bgcolor='#FFFFFF')
-                            div(style={
-                                'background-color': '#000000',
-                                'min-height': '40px',
-                                'height': 'auto',
-                                'max-width': '70%',
-                                'width': 'auto',
-                                'line-height': '40px',
-                                'text-align': 'center'
-                                })
-                                b
-                                    a(
-                                        href='https://api.appcar.com.ar/confirma?id=' + idInvitacion
-                                        style={
-                                            'color': '#FFFFFF',
-                                            'font-size': '1.5em',
-                                            'font-weight': 'normal',
-                                            'text-decoration': 'none',
-                                            'padding': '20px'
-                                            }
-                                    ) Aceptar Invitación
+                            table.button
+                            tr
+                                td.buttonTop(align='center', width='auto', bgcolor='#8a2829', style='padding-top: 14px; padding-right: 80px; padding-bottom: 14px; padding-left: 80px; background: #8a2829; background: -moz-linear-gradient(top,  #a64849 0%, #8a2829 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a64849), color-stop(100%,#8a2829)); background: -webkit-linear-gradient(top,  #a64849 0%,#8a2829 100%); -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px; color: #fff; border: solid 1px #5b1b1c; font-size: 18px; font-weight: normal; text-decoration: none; display: block;')
+                                a(href='https://api.appcar.com.ar/confirma?id=' + idInvitacion, style='color: #FFF; text-decoration: none; font-family: Helvetica, Arial, sans-serif; vertical-align: baseline;') Aceptar Invitación
+                            tr
+                                td.buttonBottom(width='auto', style='display: block; font-size: 16px;') 
                 table#footer(border='0' cellpadding='5' cellspacing='0' width='100%')
                     tr
                         td(align='center' valign='top' width='80%' style={'background-color': '#006BFF', 'line-height': '20px'})
