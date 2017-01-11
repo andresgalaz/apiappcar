@@ -3,8 +3,8 @@
 doctype html
 html(lang=es)
     head
-    body(width='100%' bgcolor='#EFEFEF' style={'font-family': 'Helvetica, Arial, Verdana, Trebuchet MS', 'color': '#000000', 'margin': '0', 'mso-line-height-rule': 'exactly'})
-        center(style={'width': '100%', 'background': '#EFEFEF'})
+    body(width='100%' bgcolor='#efefef' style={'font-family': 'Helvetica, Arial, Verdana, Trebuchet MS', 'color': '#000000', 'margin': '0'})
+        center(style={'width': '100%', 'background': '#efefef'})
             div(style={'max-width': '600px', 'margin': 'auto'})
                 table#header(border='0' cellpadding='0' cellspacing='0' width='100%')
                     tr
@@ -13,11 +13,12 @@ html(lang=es)
                                 src=baseUrl + '/img/snapcar-email-header.png'
                                 width='210'
                                 height='58'
+                                title='SnapCar Seguros'
                                 )
                             style={display: 'block'}
                 table#content(border='0' cellpadding='15' cellspacing='0' width='100%')
                     tr
-                        td(align='center' valign='top' bgcolor='#FFFFFF')
+                        td(align='center' valign='top' bgcolor='#ffffff')
                             h1 Invitación SnapCar
                             p Usted ha sido invitado como conductor adicional por #{nombreUsuario}.
                             p
@@ -42,7 +43,7 @@ html(lang=es)
                                     a(
                                         href='https://api.appcar.com.ar/confirma?id=' + idInvitacion
                                         style={
-                                            'color': '#FFFFFF',
+                                            'color': '#ffffff',
                                             'font-size': '1.5em',
                                             'font-weight': 'normal',
                                             'text-decoration': 'none',
@@ -51,78 +52,21 @@ html(lang=es)
                                     ) Aceptar Invitación
                 table#footer(border='0' cellpadding='5' cellspacing='0' width='100%')
                     tr
-                        td(align='center' valign='top' width='80%' style={'background-color': '#006BFF', 'line-height': '20px'})
-                            p(style={color: '#FFFFFF', 'text-align': 'left', 'padding-left': '20px'}) SnapCar &reg; #{fechaHoy}
-                        td(align='center' valign='top' width='10%' style={'background-color': '#006BFF', 'height': '20px'})
+                        td(align='center' valign='top' width='80%' style={'background-color': '#006bff', 'line-height': '20px'})
+                            p(style={color: '#ffffff', 'text-align': 'left', 'padding-left': '20px'}) SnapCar &reg; #{fechaHoy}
+                        td(align='center' valign='top' width='10%' style={'background-color': '#006bff', 'height': '20px'})
                             a(href='#')
                                 img(
                                     src=baseUrl + '/img/snapcar-email-facebook.png'
                                     width='40'
                                     height='40'
+                                    title='Seguinos en Facebook'
                                     )
-                        td(align='center' valign='top' width='10%' style={'background-color': '#006BFF', 'height': '20px'})
+                        td(align='center' valign='top' width='10%' style={'background-color': '#006bff', 'height': '20px'})
                             a(href='#')
                                 img(
                                     src=baseUrl + '/img/snapcar-email-twitter.png'
                                     width='40'
                                     height='40'
+                                    title='Seguinos en Twitter'
                                     )
-
-// -
-        table(border='0' cellpadding='0' cellspacing='0' height='100%' width='100%' style={'background-color': '#EFEFEF'})
-            tr
-                td(align='center' valign='top')
-                    table#container(border='0' cellpadding='10' cellspacing='0' width='600' style={'margin-top': '20px', 'margin-bottom': '20px'})
-                        tr
-                            td(align='center' valign='top')
-                                table#header(border='0' cellpadding='0' cellspacing='0' width='100%')
-                                    tr
-                                        td(align='left' valign='top' style={display: 'block'})
-                                            img(
-                                                src=baseUrl + '/img/snapcar-email-header.png'
-                                                width='322'
-                                                height='89'
-                                                )
-                                            style={display: 'block'}
-                        tr
-                            td(align='center' valign='top')
-                                table#container(border='0' cellpadding='10' cellspacing='0' width='600' style={'background-color': '#FFFFFF'})
-                                    tr
-                                        td(align='center' valign='top')
-                                            table#content(border='0' cellpadding='20' cellspacing='0' width='100%')
-                                                tr
-                                                    td(align='center' valign='top')
-                                                        h1 Invitación SnapCar
-                                                        p Usted ha sido invitado como conductor adicional por #{nombreUsuario}
-                                                        p
-                                                            b Email Usuario #{emailUsuario}
-                                                        p
-                                                            b Email Invitado #{emailInvitado}
-                                    tr
-                                        td(align='center' valign='top')
-                                            table#content(border='0' cellpadding='10' cellspacing='0' width='100%')
-                                                tr
-                                                    td(align='center' valign='top')
-                                                        div(style={
-                                                            'background-color': '#000000',
-                                                            'height': '50px',
-                                                            'width': '60%',
-                                                            'line-height': '50px'
-                                                            })
-                                                            b
-                                                                a(
-                                                                    href='https://api.appcar.com.ar/confirma?id=' + idInvitacion
-                                                                    style={
-                                                                        'color': '#FFFFFF',
-                                                                        'font-size': '1.5em',
-                                                                        'font-weight': 'normal',
-                                                                        'text-decoration': 'none',
-                                                                        'padding': '5px 10px'
-                                                                        }
-                                                                ) Aceptar Invitación
-                                    tr
-                                        td(align='center' valign='top')
-                                            table#footer(border='0' cellpadding='20' cellspacing='0' width='100%')
-                                                tr
-                                                    td(align='center' valign='top' style={'background-color': '#006BFF', height: '20px'})
-                                                        p(style={color: '#FFFFFF', 'text-align': 'left', 'padding-left': '20px'}) SnapCar #{fechaHoy} - Todos los derechos reservados
