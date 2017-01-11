@@ -36,9 +36,9 @@ app.get('/bitacora', function(req, res) {
 // Autor: Rodrigo Sobrero
 app.set('view engine', 'pug');
 app.get('/confirma', function(req, res) {
-	res.render(
+    res.render(
 		'confirmaInvitacion'
-	)
+	);
 });
 
 require('./app/routes')(app);
