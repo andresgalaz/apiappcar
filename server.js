@@ -5,9 +5,10 @@ const morgan = require('morgan');
 const cors = require('cors');
 const config = require('./config/main');
 
+var app = express();
+
 app.use(express.static('assets'));
 
-var app = express();
 // Define el puerto de acuerdo al ambiente
 var port = null;
 if (config.ambiente == 'DESA')
