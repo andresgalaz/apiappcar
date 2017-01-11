@@ -21,17 +21,21 @@ html(lang=es)
                             h1 Invitación SnapCar
                             p Usted ha sido invitado como conductor adicional por #{nombreUsuario}
                             p
-                                b Email Usuario #{emailUsuario}
+                                b Email Usuario:
+                                | #{emailUsuario}
                             p
-                                b Email Invitado #{emailInvitado}
+                                b Email Invitado:
+                                | #{emailInvitado}
                 table#call-to-action(border='0' cellpadding='10' cellspacing='0' width='100%')
                     tr
                         td(align='center' valign='top' bgcolor='#FFFFFF' style={'margin-bottom': '20px'})
                             div(style={
                                 'background-color': '#000000',
+                                'min-height': '40px',
                                 'height': 'auto',
                                 'width': '60%',
-                                'line-height': 'auto'
+                                'line-height': 'auto',
+                                'text-align': 'center'
                                 })
                                 b
                                     a(
@@ -44,7 +48,7 @@ html(lang=es)
                                             'padding': '20px'
                                             }
                                     ) Aceptar Invitación
-                table#footer(border='0' cellpadding='20' cellspacing='0' width='100%')
+                table#footer(border='0' cellpadding='5' cellspacing='0' width='100%')
                     tr
                         td(align='center' valign='top' style={'background-color': '#006BFF', 'height': '20px'})
                             p(style={color: '#FFFFFF', 'text-align': 'left', 'padding-left': '20px'}) SnapCar #{fechaHoy} - Todos los derechos reservados
