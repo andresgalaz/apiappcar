@@ -19,7 +19,7 @@ html(lang=es)
                     tr
                         td(align='center' valign='top' bgcolor='#FFFFFF')
                             h1 Invitación SnapCar
-                            p Usted ha sido invitado como conductor adicional por #{nombreUsuario}
+                            p Usted ha sido invitado como conductor adicional por #{nombreUsuario}.
                             p
                                 b Email Usuario: 
                                 | #{emailUsuario}
@@ -28,27 +28,20 @@ html(lang=es)
                                 | #{emailInvitado}
                 table#call-to-action(border='0' cellpadding='20' cellspacing='0' width='100%')
                     tr
-                        td(align='center' valign='top' bgcolor='#FFFFFF')
-                            div(style={
-                                'background-color': '#000000',
-                                'min-height': '40px',
-                                'height': 'auto',
-                                'max-width': '50%',
-                                'width': 'auto',
-                                'line-height': '40px',
-                                'text-align': 'center'
-                                })
-                                b
-                                    a(
-                                        href='https://api.appcar.com.ar/confirma?id=' + idInvitacion
-                                        style={
-                                            'color': '#FFFFFF',
-                                            'font-size': '1.5em',
-                                            'font-weight': 'normal',
-                                            'text-decoration': 'none',
-                                            'padding': '20px'
-                                            }
-                                    ) Aceptar Invitación
+                        td(align='center' valign='top' bgcolor='#FFFFFF' style={'width': 'auto', 'max-width': '30%', 'height': 'auto', 'min-height': '40px'})
+                        td(align='center' valign='top' bgcolor='#000000' style={'width': 'auto', 'max-width': '40%', 'height': 'auto', 'min-height': '40px'})
+                            b
+                                a(
+                                    href='https://api.appcar.com.ar/confirma?id=' + idInvitacion
+                                    style={
+                                        'color': '#FFFFFF',
+                                        'font-size': '1.5em',
+                                        'font-weight': 'normal',
+                                        'text-decoration': 'none',
+                                        'padding': '20px'
+                                        }
+                                ) Aceptar Invitación
+                        td(align='center' valign='top' bgcolor='#FFFFFF' style={'width': 'auto', 'max-width': '30%', 'height': 'auto', 'min-height': '40px'})                                
                 table#footer(border='0' cellpadding='5' cellspacing='0' width='100%')
                     tr
                         td(align='center' valign='top' width='80%' style={'background-color': '#006BFF', 'line-height': '20px'})
