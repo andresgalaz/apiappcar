@@ -12,6 +12,7 @@ module.exports = function (req, res) {
     console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
 	console.log('req.user:', req.user);
     console.log(req.body);
+	console.log(req.url);
 	if (!req.body.emailInvitado) {
 		return res.status(400).json({ success: false, code: 1810, message: 'Falta email invitado.' });
 	}
