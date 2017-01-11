@@ -41,8 +41,10 @@ app.get('/bitacora', function(req, res) {
 app.set('view engine', 'pug');
 app.get('/confirma', function(req, res) {
 	// Logica
+	var id = req.param('id');
     res.render(
-		'confirmaInvitacion'
+		'confirmaInvitacion',
+		{ idInvitacion: id }
 	);
 });
 
