@@ -5,6 +5,8 @@ const morgan = require('morgan');
 const cors = require('cors');
 const config = require('./config/main');
 
+app.use(express.static('assets'));
+
 var app = express();
 // Define el puerto de acuerdo al ambiente
 var port = null;
@@ -36,6 +38,7 @@ app.get('/bitacora', function(req, res) {
 // Autor: Rodrigo Sobrero
 app.set('view engine', 'pug');
 app.get('/confirma', function(req, res) {
+	// Logica
     res.render(
 		'confirmaInvitacion'
 	);
