@@ -3,15 +3,6 @@
 doctype html
 html(lang=es)
     head
-    style
-        != '@media only screen and (max-width: 480px),'
-        != 'only screen and (-webkit-min-device-pixel-ratio: 1.5),'
-        !=    'only screen and (min-device-pixel-ratio: 1.5) {'
-        !=        'table[class="button"] {width: 100% !important;}'
-        !=        'table[class="button"] td[class="buttonTop"] {padding: 0 !important; font-size: 1.3em !important; }'
-        !=        'table[class="button"] td[class="buttonTop"] a {padding: 1em 0 1em 0 !important; display: block !important; }'
-        !=        'table[class="button"] td[class="buttonBottom"] {font-size: 1.4em !important; display: block !important; }'
-        !=    '}'
     body(width='100%' bgcolor='#EFEFEF' style={'font-family': 'Helvetica, Arial, Verdana, Trebuchet MS', 'color': '#000000', 'margin': '0', 'mso-line-height-rule': 'exactly'})
         center(style={'width': '100%', 'background': '#EFEFEF'})
             div(style={'max-width': '600px', 'margin': 'auto'})
@@ -44,7 +35,8 @@ html(lang=es)
                                 'max-width': '80%',
                                 'width': 'auto',
                                 'line-height': '40px',
-                                'text-align': 'center'
+                                'text-align': 'center',
+                                'margin': '0 20px'
                                 })
                                 b
                                     a(
@@ -54,7 +46,7 @@ html(lang=es)
                                             'font-size': '1.5em',
                                             'font-weight': 'normal',
                                             'text-decoration': 'none',
-                                            'padding': '20px'
+                                            'padding': '20px',
                                             }
                                     ) Aceptar Invitación
                 table#footer(border='0' cellpadding='5' cellspacing='0' width='100%')
