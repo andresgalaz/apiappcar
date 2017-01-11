@@ -27,8 +27,18 @@ app.use(morgan('dev'));
 app.get('/', function(req, res) {
 	res.send('Página en construcción.');
 });
+
 app.get('/bitacora', function(req, res) {
 	res.sendfile('server_'+config.ambiente+'.log');
+});
+
+// Modificado 11/01/2017
+// Autor: Rodrigo Sobrero
+app.set('view engine', 'pug');
+app.get('/confirma', function(req, res) {
+	res.render(
+		'confirmaInvitacion'
+	)
 });
 
 require('./app/routes')(app);
