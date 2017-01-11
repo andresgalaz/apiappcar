@@ -95,7 +95,7 @@ module.exports = function (req, res) {
 									emailUsuario: req.user.cEmail,
 									emailInvitado: req.body.emailInvitado,
 									idInvitacion: invita.idInvitacion,
-									baseUrl: 'http://' + req.headers.host + url.parse(req.url).pathname
+									baseUrl: '//' + req.headers.host
 								}),
 								alternative: true
 							}]
