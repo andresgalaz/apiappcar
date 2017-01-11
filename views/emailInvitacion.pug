@@ -3,7 +3,53 @@
 doctype html
 html(lang=es)
     head
-    body(style={'font-family': 'Helvetica, Arial, Verdana, Trebuchet MS', color: '0000000'})
+    body(width='100%' bgcolor='#222222' style={'font-family': 'Helvetica, Arial, Verdana, Trebuchet MS', 'color': '#000000', 'margin': '0'; 'mso-line-height-rule': 'exactly'})
+        center(style={'width': '100%', 'background': '#222222'})
+            div(style={'max-width': '600px', 'margin': 'auto'})
+                table#header(border='0' cellpadding='0' cellspacing='0' width='100%')
+                    tr
+                        td(align='left' valign='top' style={display: 'block'})
+                            img(
+                                src=baseUrl + '/img/snapcar-email-header.png'
+                                width='322'
+                                height='89'
+                                )
+                            style={display: 'block'}
+                table#content(border='0' cellpadding='20' cellspacing='0' width='100%')
+                    tr
+                        td(align='center' valign='top')
+                            h1 Invitación SnapCar
+                            p Usted ha sido invitado como conductor adicional por #{nombreUsuario}
+                            p
+                                b Email Usuario #{emailUsuario}
+                            p
+                                b Email Invitado #{emailInvitado}
+                table#call-to-action(border='0' cellpadding='10' cellspacing='0' width='100%')
+                    tr
+                        td(align='center' valign='top')
+                            div(style={
+                                'background-color': '#000000',
+                                'height': '50px',
+                                'width': '60%',
+                                'line-height': '50px'
+                                })
+                                b
+                                    a(
+                                        href='https://api.appcar.com.ar/confirma?id=' + idInvitacion
+                                        style={
+                                            'color': '#FFFFFF',
+                                            'font-size': '1.5em',
+                                            'font-weight': 'normal',
+                                            'text-decoration': 'none',
+                                            'padding': '5px 10px'
+                                            }
+                                    ) Aceptar Invitación
+                table#footer(border='0' cellpadding='20' cellspacing='0' width='100%')
+                    tr
+                        td(align='center' valign='top' style={'background-color': '#006BFF', height: '20px'})
+                            p(style={color: '#FFFFFF', 'text-align': 'left', 'padding-left': '20px'}) SnapCar #{fechaHoy} - Todos los derechos reservados
+
+//
         table(border='0' cellpadding='0' cellspacing='0' height='100%' width='100%' style={'background-color': '#EFEFEF'})
             tr
                 td(align='center' valign='top')
