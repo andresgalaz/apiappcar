@@ -1,0 +1,8 @@
+{
+  "options" : {
+    "snapcar-custom.less" : {
+       css: "../css/snapcar-custom.css",
+       minify: true
+    }
+  }
+}
