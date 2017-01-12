@@ -1,7 +1,18 @@
 doctype html
 html(lang=es)
     head
+        link(href='/css/bootstrap.min.css' rel='stylesheet')
     body
-        h1 Usted ha confirmado la invitación
-        h3 Su número de ID es 
-            b #{idInvitacion}
+        nav.navbar.navbar-default
+            div.container-fluid
+                div.navbar-header
+                    img(src='' title='SnapCar Seguros')
+                        a.navbar-brand(href='#')
+        div.container
+            div.row
+                div.col-md-12
+                    h1 Usted ha confirmado la invitación
+                    h3 Su número de ID es 
+                        b #{idInvitacion}
+
+        script(src='/js/bootstrap.min.js')
