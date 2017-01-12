@@ -1,21 +1,21 @@
 doctype html
 html(lang=es)
     head
-        link(href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet')
-        link(href='/css/bootstrap.min.css' rel='stylesheet')
+        link(href='//fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
+        link(href='/css/materialize.min.css' rel='stylesheet')
         link(href='/css/snapcar-custom.min.css' rel='stylesheet')
     body
-        nav.navbar.navbar-snapcar
-            div.container
-                div.navbar-header
+        .navbar-fixed
+            nav
+                .nav-wrapper
                     a.navbar-brand(href='#')
                         img(src='/img/snapcar-logo-arti.svg' width='180' title='SnapCar Seguros')
-        div.container
-            div.row
-                div.col-md-12
-                    h1 Usted ha confirmado la invitación
-                    h3 Su número de ID es 
-                        b #{idInvitacion}
+        .container
+            .row
+                .col.s1
+                    h2 Usted ha confirmado la invitación
+                        p El ID de invitación es
+                            b #{idInvitacion}
 
         script(src='/js/jquery-3.1.1.min.js')
-        script(src='/js/bootstrap.min.js')
+        script(src='/js/materialize.min.js')
