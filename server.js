@@ -40,12 +40,15 @@ app.get('/bitacora', function(req, res) {
 // Autor: Rodrigo Sobrero
 app.set('view engine', 'pug');
 app.get('/confirma', function(req, res) {
+	require('controllers/invitacion.js');
 	// Logica
+	/*
 	var id = req.param('id');
     res.render(
 		'confirmaInvitacion',
 		{ idInvitacion: id }
 	);
+	*/
 });
 
 require('./app/routes')(app);
