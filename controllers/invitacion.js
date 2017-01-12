@@ -1,6 +1,7 @@
-app.set('view engine', 'pug');
+const express = require('express');
+const config = require('./config/main');
 
-var id = req.param('id');
+app.set('view engine', 'pug');
 
 res.render(
     'confirmaInvitacion',
