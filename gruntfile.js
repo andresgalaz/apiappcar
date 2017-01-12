@@ -10,7 +10,7 @@ module.exports = function(grunt) {
           optimization: 2
         },
         files: {
-          "css/snapcar-custom.css": "less/snapcar-custom.less" // destination file and source file
+          "assets/css/snapcar-custom.min.css": "assets/less/snapcar-custom.less" // destination file and source file
         }
       }
     },
