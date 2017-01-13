@@ -1,1 +1,3 @@
-console.log(id);
+module.exports = function(options) {
+  console.log(id);
+};
