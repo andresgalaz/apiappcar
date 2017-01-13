@@ -10,6 +10,9 @@ var app = express();
 // Otorga acceso a los archivos estaticos dentro de la carpeta "assets"
 app.use(express.static('assets'));
 
+// Define pug como templating
+app.set('view engine', 'pug');
+
 // Define el puerto de acuerdo al ambiente
 var port = null;
 if (config.ambiente == 'DESA')
@@ -37,15 +40,14 @@ app.get('/bitacora', function (req, res) {
 });
 
 // Página de confirmación a la invitación
-//app.set('view engine', 'pug');
 app.get('/confirma', function (req, res) {
 	// Logica
 	var id = req.param('id');
-	require('./controllers/invitacion.js')(res, id);
-//	res.render(
-//		'confirmaInvitacion',
-//		{ idInvitacion: id }
-//	);
+	require('./controllers/invitacion.js')(req, id);
+	res.render(
+		'confirmaInvitacion',
+		{ idInvitacion: id }
+	);
 });
 
 require('./app/routes')(app);

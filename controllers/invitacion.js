@@ -1,15 +1,12 @@
 const express = require('express');
-const pug = require('pug');
 const config = require('../config/main');
 
-var app = express();
-
-app.set('view engine', 'pug');
-
-module.exports = function(res, id) {
+module.exports = function(req, id) {
     console.log('ID: ' + id);
-    res.render(
-		'confirmaInvitacion',
-		{ idInvitacion: id }
-	);
+
+    new Model.Cuenta({
+        fUsuarioTitular: req.user.pUsuario
+    }).fetch().then(function (data) {
+        console.log('DATA:' + data);
+    })
 };
