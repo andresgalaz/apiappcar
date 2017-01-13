@@ -30,10 +30,8 @@ module.exports = function (req, res, id) {
     new Model.Invitacion({
         pInvitacion: idDecoded
     }).fetch().then(function (data) {
-        console.log('data.bRecibido:', data.attributes.bRecibido);
-        console.log('data', data);
-        if (data.bRecibido === '1') {
-            estado = 'YA LA ACEPTASTE';
+        if (data.attributes.bRecibido === '1') {
+            estado = 'aceptado';
         } else {
             this.save({
                 bRecibido: '1'
@@ -41,9 +39,9 @@ module.exports = function (req, res, id) {
                 patch: true
             }).then(function (data) {
                 if (data === null) {
-                    estado = 'ERROR';
+                    estado = 'error';
                 } else {
-                    estado = 'BIEN';
+                    estado = 'exito';
                 }
                 res.render(
                     'confirmaInvitacion',
