@@ -14,6 +14,15 @@ module.exports = function (grunt) {
         }
       }
     },
+    gitadd: {
+      task: {
+        options: {
+          force: true,
+          all: true,
+          cwd: '/'
+        }
+      }
+    },
     watch: {
       styles: {
         files: ['less/**/*.less'], // which files to watch
