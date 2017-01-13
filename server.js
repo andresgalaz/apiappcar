@@ -43,13 +43,14 @@ app.get('/bitacora', function (req, res) {
 app.get('/confirma', function (req, res) {
 	// Logica
 	var id = req.param('id');
-	require('./controllers/invitacion.js')(req, id);
+	require('./controllers/invitacion.js')(req, res, id);
 	/*
 	res.render(
 		'confirmaInvitacion',
 		{ idInvitacion: id }
 	);
 	*/
+
 });
 
 require('./app/routes')(app);

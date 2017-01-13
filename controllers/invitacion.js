@@ -8,7 +8,7 @@ var hashId = new Hash(config.secret);
 
 app.set('view engine', 'pug');
 
-module.exports = function (req, id) {
+module.exports = function (req, res, id) {
     id = String(hashId.decode(id)).slice(9);
 
     new Model.Invitacion({
