@@ -23,10 +23,12 @@ html(lang=es)
                             h4
                                 if estado
                                     i.material-icons done
-                                    | Usted ha confirmado la invitación.
+                                    estado
+                                    // | Usted ha confirmado la invitación.
                                 else
                                     i.material-icons error_outline
-                                    | La invitación no es válida. Vuelva a solicitar una.
+                                    // | La invitación no es válida. Vuelva a solicitar una.
+                                    estado
                             p El ID de invitación es 
                                 b #{idInvitacion}.
 

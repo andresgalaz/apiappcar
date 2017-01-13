@@ -50,5 +50,4 @@ module.exports = function (req, res, id) {
 		        { idInvitacion: id, estadoInvitacion: estado }
 	        );
         });
-        console.log(estado);
 };
