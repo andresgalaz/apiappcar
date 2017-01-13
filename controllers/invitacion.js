@@ -8,11 +8,11 @@ var hashId = new Hash(config.secret);
 module.exports = function(req, id) {
     id = String(hashId.decode(id)).slice(9);
 
-    console.log('#ID:', id);
-
-    new Model.Invitacion({
+    var invitacion = new Model.Invitacion({
         pInvitacion: id
-    }).fetch().then(function (data) {
-        console.log('Data:', data);
+    });
+
+    invitacion.update({
+        bRecibido: '1'
     });
 };
