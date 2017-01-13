@@ -6,19 +6,11 @@ const config = require('../config/main');
 var hashId = new Hash(config.secret);
 
 module.exports = function(req, id) {
-    var idDecoded = String(hashId.decode(id));
+    id = String(hashId.decode(id).slice(9));
 
-    console.log('ID: ', id);
-    console.log('ID Decoded:', idDecoded);
-    console.log('Test:', hashId.decode(id).slice(9));
-    console.log('ID Final:', idDecoded.slice(9));
-    console.log('Tipo:', typeof idDecoded);
-
-/*
     new Model.Invitacion({
-        fCuenta: cta.pCuenta
+        pInvitacion: id
     }).fetch().then(function (data) {
         console.log('Data:' + data);
     });
-*/
 };
