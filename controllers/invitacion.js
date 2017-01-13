@@ -1,5 +1,3 @@
-module.exports = function(params) {
-    console.log('Entró');
-    console.log('ID: ' + params.id);
-    console.log('Params:' + params);
+module.exports = function(id) {
+    console.log('ID: ' + id);
 };
