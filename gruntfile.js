@@ -19,7 +19,7 @@ module.exports = function (grunt) {
     gitadd: {
       task: {
         options: {
-          force: true
+          all: true
         }
       }
     },
@@ -41,7 +41,7 @@ module.exports = function (grunt) {
     },
     watch: {
       styles: {
-        files: ['assets/less/**/*.less'], // which files to watch
+        files: ['assets/less/**/*.less'],
         tasks: ['less'],
         options: {
           nospawn: true
