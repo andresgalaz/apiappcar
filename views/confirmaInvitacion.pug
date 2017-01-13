@@ -8,17 +8,18 @@ html(lang=es)
         link(href='/css/materialize.min.css' rel='stylesheet')
         link(href='/css/snapcar-custom.min.css' rel='stylesheet')
     body
-        .navbar-fixed
-            nav.z-depth-0(role='navigation')
-                .nav-wrapper.container
-                    a.brand-logo(href='#') SnapCar Seguros
-                        // - img(src='/img/snapcar-logo-arti.svg' width='180' title='SnapCar Seguros')
-        .container
-            .row
-                .col.s12
-                    h4 Usted ha confirmado la invitación
-                    p El ID de invitación es 
-                        b #{idInvitacion}
+        main
+            .navbar-fixed
+                nav.z-depth-0(role='navigation')
+                    .nav-wrapper.container
+                        a.brand-logo(href='#') SnapCar Seguros
+                            // - img(src='/img/snapcar-logo-arti.svg' width='180' title='SnapCar Seguros')
+            .container
+                .row
+                    .col.s12
+                        h4 Usted ha confirmado la invitación
+                        p El ID de invitación es 
+                            b #{idInvitacion}
 
         footer.page-footer
             .footer-copyright
