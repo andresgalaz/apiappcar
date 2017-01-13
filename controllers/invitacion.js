@@ -31,7 +31,7 @@ module.exports = function (req, res, id) {
         pInvitacion: idDecoded
     }).fetch().then(function (data) {
         if (data.bRecibido === '1') {
-            estado = 'ERROR';
+            estado = 'YA LA ACEPTASTE';
         } else {
             this.save({
                 bRecibido: '1'
@@ -50,4 +50,5 @@ module.exports = function (req, res, id) {
 		        { idInvitacion: id, estadoInvitacion: estado }
 	        );
         });
+        console.log(estado);
 };
