@@ -6,7 +6,7 @@ var hashId = new Hash(config.secret);
 
 module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9),
-        resInvitacion;
+        estado;
 
     new Model.Invitacion({
         pInvitacion: idDecoded
@@ -16,13 +16,13 @@ module.exports = function (req, res, id) {
             patch: true
         }).then(function (data) {
             if (data === null) {
-                resInvitacion = false;
+                estado = false;
             } else {
-                resInvitacion = true;
+                estado = true;
             }
             res.render(
 		        'confirmaInvitacion',
-		        { idInvitacion: id, resInvitacion: mensaje }
+		        { idInvitacion: id, estadoInvitacion: estado }
 	        );
         });
 };
