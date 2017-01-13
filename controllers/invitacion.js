@@ -4,7 +4,7 @@ const config = require('../config/main');
 
 module.exports = function(newReq, id) {
     console.log('ID: ' + id);
-    console.log('Usuario: ' + newReq);
+    console.log('Usuario: ' + newReq.user);
 
 /*
     new Model.Cuenta({
