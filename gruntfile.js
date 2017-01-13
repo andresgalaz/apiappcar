@@ -46,13 +46,17 @@ module.exports = function (grunt) {
         options: {
           nospawn: true
         }
-      },
-      templates: {
-        files: ['views/*', 'assets/css/*'],
-        tasks: ['gitadd','gitcommit','gitpush']
       }
     }
   });
 
   grunt.registerTask('default', ['less', 'watch']);
 };
+
+/*
+,
+      templates: {
+        files: ['views/*', 'assets/css/*'],
+        tasks: ['gitadd','gitcommit','gitpush']
+      }
+*/
