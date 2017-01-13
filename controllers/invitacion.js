@@ -31,6 +31,7 @@ module.exports = function (req, res, id) {
         pInvitacion: idDecoded
     }).fetch().then(function (data) {
         console.log('data.bRecibido:', data.bRecibido);
+        console.log('data', data);
         if (data.bRecibido === '1') {
             estado = 'YA LA ACEPTASTE';
         } else {
