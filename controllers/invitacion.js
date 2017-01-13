@@ -6,8 +6,12 @@ const config = require('../config/main');
 var hashId = new Hash(config.secret);
 
 module.exports = function(req, id) {
+    var idDecoded = hashId.decode(id);
+
     console.log('ID: ' + id);
-    console.log('ID Decoded:' + hashId.decode(id).slice(9));
+    console.log('ID Decoded:' + idDecoded);
+    console.log('Test:' + hashId.decode(id).slice(9));
+    console.log('ID Final:' + idDecoded.slice(9));
 
 /*
     new Model.Invitacion({
