@@ -6,7 +6,7 @@ const config = require('../config/main');
 var app = express();
 var hashId = new Hash(config.secret);
 
-app.set('view engine', 'pug');
+//app.set('view engine', 'pug');
 
 module.exports = function (req, res, id) {
     id = String(hashId.decode(id)).slice(9);
