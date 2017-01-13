@@ -1,3 +1,3 @@
-module.exports = function(options) {
-  console.log(id);
+module.exports = function(params) {
+  console.log(params.id);
 };
