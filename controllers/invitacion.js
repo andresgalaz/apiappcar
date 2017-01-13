@@ -1,1 +1,1 @@
-alert(id);
+console.log('Test');
