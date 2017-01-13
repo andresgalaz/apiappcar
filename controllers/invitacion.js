@@ -8,10 +8,11 @@ var hashId = new Hash(config.secret);
 module.exports = function(req, id) {
     var idDecoded = hashId.decode(id);
 
-    console.log('ID: ' + id);
-    console.log('ID Decoded:' + idDecoded);
-    console.log('Test:' + hashId.decode(id).slice(9));
-    console.log('ID Final:' + idDecoded.slice(9));
+    console.log('ID: ', id);
+    console.log('ID Decoded:', idDecoded);
+    console.log('Test:', hashId.decode(id).slice(9));
+    console.log('ID Final:', idDecoded.slice(9));
+    console.log('Tipo:', typeof idDecoded);
 
 /*
     new Model.Invitacion({
