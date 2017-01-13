@@ -55,11 +55,3 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', ['less', 'watch']);
 };
-
-/*
-,
-      templates: {
-        files: ['views/*', 'assets/css/*'],
-        tasks: ['gitadd','gitcommit','gitpush']
-      }
-*/
