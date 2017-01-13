@@ -1,7 +1,12 @@
 const express = require('express');
-const config = require('../config/main');
+const Model = require('../db/model');
 
 module.exports = function(req, id) {
     console.log('ID: ' + id);
-    console.log('Req: ' + req);
+
+    new Model.Cuenta({
+        fUsuarioTitular: req.user.pUsuario
+    }).fetch().then(function (data) {
+        console.log('Data:' + data);
+    });
 };
