@@ -1,14 +1,15 @@
 const express = require('express');
+const Hash = require('hashids');
 const Model = require('../db/model');
 const config = require('../config/main');
 
-module.exports = function(newReq, id) {
+module.exports = function(req, id) {
     console.log('ID: ' + id);
-    console.log('Usuario: ' + newReq.user);
+    console.log('ID Decoded:' + hashId.decode(id));
 
 /*
-    new Model.Cuenta({
-        fUsuarioTitular: req.user.pUsuario
+    new Model.Invitacion({
+        fCuenta: cta.pCuenta
     }).fetch().then(function (data) {
         console.log('Data:' + data);
     });
