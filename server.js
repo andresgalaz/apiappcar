@@ -19,7 +19,7 @@ else if (config.ambiente == 'PROD')
 
 // Use body-parser to get POST requests for API use
 app.use(bodyParser.urlencoded({
-	extended : true
+	extended: true
 }));
 app.use(bodyParser.json());
 app.use(cors());
@@ -28,22 +28,21 @@ app.use(cors());
 app.use(morgan('dev'));
 
 // Home route. We'll end up changing this to our main front end index later.
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
 	res.send('Página en construcción.');
 });
 
-app.get('/bitacora', function(req, res) {
-	res.sendfile('server_'+config.ambiente+'.log');
+app.get('/bitacora', function (req, res) {
+	res.sendfile('server_' + config.ambiente + '.log');
 });
 
-// Modificado 11/01/2017
-// Autor: Rodrigo Sobrero
+// Página de confirmación a la invitación
 app.set('view engine', 'pug');
-app.get('/confirma', function(req, res) {
+app.get('/confirma', function (req, res) {
 	require('./controllers/invitacion.js');
 	// Logica
 	var id = req.param('id');
-    res.render(
+	res.render(
 		'confirmaInvitacion',
 		{ idInvitacion: id }
 	);
