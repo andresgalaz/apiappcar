@@ -6,8 +6,7 @@ var hashId = new Hash(config.secret);
 
 module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9),
-        mensaje,
-        icono;
+        resInvitacion;
 
     new Model.Invitacion({
         pInvitacion: idDecoded
@@ -17,15 +16,13 @@ module.exports = function (req, res, id) {
             patch: true
         }).then(function (data) {
             if (data === null) {
-                icono = 'error_outline';
-                mensaje = 'La invitación no es válida. Vuelva a solicitar una.';
+                resInvitacion = false;
             } else {
-                icono = 'done';
-                mensaje = 'Usted ha confirmado la invitación.';
+                resInvitacion = true;
             }
             res.render(
 		        'confirmaInvitacion',
-		        { idInvitacion: id, mInvitacion: mensaje, mIcono: icono }
+		        { idInvitacion: id, resInvitacion: mensaje }
 	        );
         });
 };

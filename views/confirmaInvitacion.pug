@@ -1,4 +1,5 @@
 - var fechaHoy = new Date().getFullYear();
+- var invitacion = resInvitacion;
 
 doctype html
 html(lang=es)
@@ -20,8 +21,12 @@ html(lang=es)
                     .col.s12
                         .section
                             h4
-                                i.material-icons #{mIcono}
-                                | #{mInvitacion}
+                                if invitacion
+                                    i.material-icons done
+                                    | Usted ha confirmado la invitación.
+                                else
+                                    i.material-icons error_outline
+                                    | La invitación no es válida. Vuelva a solicitar una.
                             p El ID de invitación es 
                                 b #{idInvitacion}.
 
