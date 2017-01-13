@@ -1,3 +1,5 @@
+- var fechaHoy = new Date().getFullYear();
+
 doctype html
 html(lang=es)
     head
@@ -17,6 +19,10 @@ html(lang=es)
                     h4 Usted ha confirmado la invitación
                     p El ID de invitación es 
                         b #{idInvitacion}
+
+        footer.page-footer
+            .footer-copyright
+                .container SnapCar &reg; #{fechaHoy} | Todos los derechos reservados
 
         script(src='/js/jquery-3.1.1.min.js')
         script(src='/js/materialize.min.js')
