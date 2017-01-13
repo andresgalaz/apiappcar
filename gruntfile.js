@@ -26,9 +26,8 @@ module.exports = function (grunt) {
     gitcommit: {
       task: {
         options: {
-          message: 'Actualizado' + grunt.template.today(),
-          noVerify: true,
-          noStatus: false
+          message: 'Actualizado ' + grunt.template.today(),
+          allowEmpty: true
         }
       }
     },
@@ -42,14 +41,14 @@ module.exports = function (grunt) {
     },
     watch: {
       styles: {
-        files: ['less/**/*.less'], // which files to watch
+        files: ['assets/less/**/*.less'], // which files to watch
         tasks: ['less'],
         options: {
           nospawn: true
         }
       },
       templates: {
-        files: ['views/*', 'assets/*'],
+        files: ['views/*', 'assets/*', '!assets/*.less'],
         tasks: ['gitadd','gitcommit','gitpush']
       }
     }
