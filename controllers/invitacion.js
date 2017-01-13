@@ -6,7 +6,7 @@ const config = require('../config/main');
 var hashId = new Hash(config.secret);
 
 module.exports = function(req, id) {
-    var idDecoded = hashId.decode(id);
+    var idDecoded = String(hashId.decode(id));
 
     console.log('ID: ', id);
     console.log('ID Decoded:', idDecoded);
