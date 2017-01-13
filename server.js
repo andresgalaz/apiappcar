@@ -39,9 +39,9 @@ app.get('/bitacora', function (req, res) {
 // Página de confirmación a la invitación
 app.set('view engine', 'pug');
 app.get('/confirma', function (req, res) {
-	require('./controllers/invitacion.js');
 	// Logica
 	var id = req.param('id');
+	require('./controllers/invitacion.js')(id);
 	res.render(
 		'confirmaInvitacion',
 		{ idInvitacion: id }
