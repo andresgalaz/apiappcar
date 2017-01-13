@@ -2,9 +2,9 @@ const express = require('express');
 const Model = require('../db/model');
 const config = require('../config/main');
 
-module.exports = function(req, id) {
+module.exports = function(newReq, id) {
     console.log('ID: ' + id);
-    console.log('Usuario: ' + req.user);
+    console.log('Usuario: ' + newReq);
 
 /*
     new Model.Cuenta({
