@@ -7,7 +7,7 @@ var hashId = new Hash(config.secret);
 
 module.exports = function(req, id) {
     console.log('ID: ' + id);
-    console.log('ID Decoded:' + hashId.decode(id) - 10e10);
+    console.log('ID Decoded:' + hashId.decode(id).slice(9));
 
 /*
     new Model.Invitacion({
