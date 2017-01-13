@@ -19,6 +19,7 @@ module.exports = function (grunt) {
     gitadd: {
       task: {
         options: {
+          all: true,
           force: true
         }
       }
