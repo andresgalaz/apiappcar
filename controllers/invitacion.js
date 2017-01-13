@@ -3,10 +3,7 @@ const Hash = require('hashids');
 const Model = require('../db/model');
 const config = require('../config/main');
 
-var app = express();
 var hashId = new Hash(config.secret);
-
-//app.set('view engine', 'pug');
 
 module.exports = function (req, res, id) {
     id = String(hashId.decode(id)).slice(9);
