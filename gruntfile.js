@@ -1,5 +1,7 @@
 module.exports = function (grunt) {
+  grunt.loadNpmTasks('grunt-contrib-watch');
   require('jit-grunt')(grunt);
+  require('matchdep').filterAll('grunt-*').forEach(grunt.loadNpmTasks);
 
   grunt.initConfig({
     less: {
@@ -17,9 +19,24 @@ module.exports = function (grunt) {
     gitadd: {
       task: {
         options: {
-          force: true,
-          all: true,
-          cwd: '/'
+          force: true
+        }
+      }
+    },
+    gitcommit: {
+      task: {
+        options: {
+          message: 'Actualizado' + grunt.template.today(),
+          noVerify: true,
+          noStatus: false
+        }
+      }
+    },
+    gitpush: {
+      task: {
+        options: {
+          remote: 'origin',
+          branch: 'master'
         }
       }
     },
@@ -30,6 +47,10 @@ module.exports = function (grunt) {
         options: {
           nospawn: true
         }
+      },
+      templates: {
+        files: ['views/*', 'assets/*'],
+        tasks: ['gitadd','gitcommit','gitpush']
       }
     }
   });
