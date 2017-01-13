@@ -37,17 +37,17 @@ module.exports = function (req, res, id) {
                 bRecibido: '1'
             }, {
                 patch: true
+            }).then(function (data) {
+                if (data === null) {
+                    estado = 'ERROR';
+                } else {
+                    estado = 'BIEN';
+                }
+                res.render(
+                    'confirmaInvitacion',
+                    { idInvitacion: id, estadoInvitacion: estado }
+                );
             });
         }
-    }).then(function (data) {
-            if (data === null) {
-                estado = 'ERROR';
-            } else {
-                estado = 'BIEN';
-            }
-            res.render(
-		        'confirmaInvitacion',
-		        { idInvitacion: id, estadoInvitacion: estado }
-	        );
-        });
+    })
 };
