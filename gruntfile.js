@@ -34,8 +34,7 @@ module.exports = function (grunt) {
     gitpush: {
       task: {
         options: {
-          remote: 'origin',
-          branch: 'master'
+          remote: 'origin'
         }
       }
     },
@@ -46,6 +45,10 @@ module.exports = function (grunt) {
         options: {
           nospawn: true
         }
+      },
+      templates: {
+        files: ['views/*', 'assets/css/*'],
+        tasks: ['gitadd','gitcommit','gitpush']
       }
     }
   });
