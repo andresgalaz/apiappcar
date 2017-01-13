@@ -21,15 +21,15 @@ html(lang=es)
                     .col.s12
                         .section
                             h4
-                                if estado.exito
+                                if estado === exito
                                     i.material-icons done
                                     | Usted ha confirmado la invitación.
-                                else if estado.error
-                                    i.material-icons error_outline
-                                    | La invitación no es válida. Vuelva a solicitar una.
-                                else if estado.aceptado
+                                else if estado === aceptado
                                     i.material-icons error_outline
                                     | La invitación ya ha sido aceptada, ingrese a su cuenta.
+                                else estado === error
+                                    i.material-icons error_outline
+                                    | La invitación no es válida. Vuelva a solicitar una.
                             p El ID de invitación es 
                                 b #{idInvitacion}.
 
