@@ -5,14 +5,14 @@ const config = require('../config/main');
 
 var hashId = new Hash(config.secret);
 
+var estado = '';
+
 module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9);
 
     new Model.Invitacion({
         pInvitacion: idDecoded
     }).fetch().then(function (data) {
-        var estado = '';
-
         if (data.attributes.bRecibido === '1') {
             estado = 'aceptado';
         } else {
