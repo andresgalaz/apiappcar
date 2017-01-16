@@ -12,6 +12,8 @@ module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9),
         estado;
 
+    console.log(idDecoded);
+
     new Model.Invitacion({
         pInvitacion: idDecoded
     }).fetch().then(function (data) {
