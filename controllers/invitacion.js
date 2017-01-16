@@ -28,8 +28,8 @@ module.exports = function (req, res, id) {
                     }
                 });
         }
-        
     }).then(function () {
+        console.log('ESTADO:', estado);
         res.render(
             'confirmaInvitacion',
             { idInvitacion: id, estadoInvitacion: estado }
