@@ -12,7 +12,7 @@ module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9),
         estado;
 
-    console.log(idDecoded);
+    console.log('idDecoded:', idDecoded);
 
     new Model.Invitacion({
         pInvitacion: idDecoded
