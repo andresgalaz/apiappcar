@@ -22,13 +22,13 @@ html(lang=es)
                         .section
                             h4
                                 if estado === 'exito'
-                                    i.material-icons done
+                                    i.small.material-icons done
                                     | Usted ha confirmado la invitación.
                                 else if estado === 'aceptado'
-                                    i.material-icons error_outline
+                                    i.small.material-icons error_outline
                                     | La invitación ya ha sido aceptada, ingrese a su cuenta.
                                 else
-                                    i.material-icons error_outline
+                                    i.small.material-icons error_outline
                                     | La invitación no es válida.
                             p El ID de invitación es 
                                 b #{idInvitacion}.
