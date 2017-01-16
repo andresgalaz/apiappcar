@@ -35,10 +35,10 @@ html(lang=es)
                             i.fa.fa-check-circle.success
                             |  Usted ha confirmado la invitación.
                         else if estado === 'aceptado'
-                            i.fa.fa-exclamation-circle.error
+                            i.fa.fa-exclamation-circle
                             |  La invitación ya ha sido aceptada, ingrese a su cuenta.
                         else
-                            i.fa.fa-exclamation-circle
+                            i.fa.fa-exclamation-circle.error
                             |  La invitación no es válida.
                     p El ID de invitación es 
                         b #{idInvitacion}
