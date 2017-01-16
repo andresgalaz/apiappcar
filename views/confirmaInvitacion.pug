@@ -21,14 +21,14 @@ html(lang=es)
                 .col-md-12
                     h2
                         if estado === 'exito'
-                            i.fa.fa-check-circle 
-                            | Usted ha confirmado la invitación.
+                            i.fa.fa-check-circle
+                            |  Usted ha confirmado la invitación.
                         else if estado === 'aceptado'
-                            i.fa.fa-exclamation-circle 
-                            | La invitación ya ha sido aceptada, ingrese a su cuenta.
+                            i.fa.fa-exclamation-circle
+                            |  La invitación ya ha sido aceptada, ingrese a su cuenta.
                         else
-                            i.fa.fa-exclamation-circle 
-                            | La invitación no es válida.
+                            i.fa.fa-exclamation-circle
+                            |  La invitación no es válida.
                     p El ID de invitación es 
                         b #{idInvitacion}
                         | .
