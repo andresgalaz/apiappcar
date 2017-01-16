@@ -20,7 +20,6 @@ module.exports = function (req, res, id) {
             }, {
                     patch: true
                 }).then(function (data) {
-                    console.log('DATA:', data);
                     if (data === null) {
                         estado = 'error';
                     } else {
@@ -28,8 +27,6 @@ module.exports = function (req, res, id) {
                     }
                 });
         }
-    }).then(function () {
-        console.log('ESTADO:', estado);
         res.render(
             'confirmaInvitacion',
             { idInvitacion: id, estadoInvitacion: estado }
