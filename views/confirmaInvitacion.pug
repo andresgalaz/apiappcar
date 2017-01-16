@@ -43,36 +43,5 @@ html(lang=es)
                     .col-md-12
                         small.text-muted SnapCar &reg; #{fechaHoy} | Todos los derechos reservados
 
-
-// -
-        header
-            .navbar-fixed
-                nav.z-depth-0(role='navigation')
-                    .nav-wrapper.container
-                        a.brand-logo(href='#')
-                            img(src='/img/snapcar-logo-arti.svg' width='180' title='SnapCar Seguros')
-        main
-            .container
-                .row
-                    .col.s12
-                        .section
-                            h4
-                                if estado === 'exito'
-                                    // - i.small.material-icons done
-                                    | Usted ha confirmado la invitación.
-                                else if estado === 'aceptado'
-                                    // - i.small.material-icons error_outline
-                                    | La invitación ya ha sido aceptada, ingrese a su cuenta.
-                                else
-                                    // - i.small.material-icons error_outline
-                                    | La invitación no es válida.
-                            p El ID de invitación es 
-                                b #{idInvitacion}
-                                | .
-
-        footer.page-footer
-            .footer-copyright
-                .container SnapCar &reg; #{fechaHoy} | Todos los derechos reservados
-
         script(src='/js/jquery-3.1.1.min.js')
         script(src='/js/bootstrap.min.js')
