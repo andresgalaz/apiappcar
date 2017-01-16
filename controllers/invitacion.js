@@ -11,20 +11,25 @@ module.exports = function (req, res, id) {
     new Model.Invitacion({
         pInvitacion: idDecoded
     }).fetch().then(function (data) {
-        if (data.attributes.bRecibido === '1') {
-            estado = 'aceptado';
-        } else {
-            this.save({
-                bRecibido: '1'
-            }, {
-                    patch: true
-                }).then(function (data) {
-                    if (data === null) {
-                        estado = 'error';
-                    } else {
-                        estado = 'exito';
-                    }
-                });
+        try {
+            if (data.attributes.bRecibido === '1') {
+                estado = 'aceptado';
+            } else {
+                this.save({
+                    bRecibido: '1'
+                }, {
+                        patch: true
+                    }).then(function (data) {
+                        if (data === null) {
+                            estado = 'error';
+                        } else {
+                            estado = 'exito';
+                        }
+                    });
+            }
+        } catch (err) {
+            estado = 'error';
+            console.log(err);
         }
     }).then(function () {
         res.render(
