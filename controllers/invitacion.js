@@ -1,4 +1,4 @@
-const express = require('express');
+//const express = require('express');
 const Hash = require('hashids');
 const Model = require('../db/model');
 const config = require('../config/main');
@@ -27,6 +27,7 @@ module.exports = function (req, res, id) {
                     }
                 });
         }
+    }).then(function () {
         res.render(
             'confirmaInvitacion',
             { idInvitacion: id, estadoInvitacion: estado }
