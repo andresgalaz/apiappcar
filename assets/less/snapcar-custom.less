@@ -1,4 +1,5 @@
 @color-base: #006BFF;
+@color-base-oscuro: #29303a;
 
 .main-font {
     font-family: 'Open Sans', sans-serif;
@@ -6,13 +7,17 @@
 }
 
 html {
-    .main-font;
     position: relative;
     min-height: 100%;
 }
 
 body {
+    .main-font;
     margin-bottom: 60px;
+}
+
+.navbar-snapcar {
+    background-color: @color-base;
 }
 
 .footer {
@@ -20,5 +25,5 @@ body {
     bottom: 0;
     width: 100%;
     height: 60px;
-    background-color: @color-base;
+    background-color: @color-base-oscuro;
 }
