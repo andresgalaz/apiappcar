@@ -8,25 +8,6 @@ module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9),
         estado;
 
-/*
-    new Model.Invitacion({
-        pInvitacion: idDecoded
-    }).save({
-        bRecibido: '1'
-    }, {
-            patch: true
-        }).then(function (data) {
-            if (data === null) {
-                estado = false;
-            } else {
-                estado = true;
-            }
-            res.render(
-		        'confirmaInvitacion',
-		        { idInvitacion: id, estadoInvitacion: estado }
-	        );
-        });
-*/
     new Model.Invitacion({
         pInvitacion: idDecoded
     }).fetch().then(function (data) {
@@ -36,18 +17,18 @@ module.exports = function (req, res, id) {
             this.save({
                 bRecibido: '1'
             }, {
-                patch: true
-            }).then(function (data) {
-                if (data === null) {
-                    estado = 'error';
-                } else {
-                    estado = 'exito';
-                }
-                res.render(
-                    'confirmaInvitacion',
-                    { idInvitacion: id, estadoInvitacion: estado }
-                );
-            });
+                    patch: true
+                }).then(function (data) {
+                    if (data === null) {
+                        estado = 'error';
+                    } else {
+                        estado = 'exito';
+                    }
+                    res.render(
+                        'confirmaInvitacion',
+                        { idInvitacion: id, estadoInvitacion: estado }
+                    );
+                });
         }
-    })
+    });
 };
