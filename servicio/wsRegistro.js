@@ -20,8 +20,14 @@ module.exports = function(req,res){
 	}
 	new Model.UsuarioVeh({cEmail: req.body.email}).fetch({withRelated:['vehiculos']}).then(function(data){
 		try {
+			var pUsuario = null;
 			if (data !== null ) {
 				var user = data.toJSON();
+				pUsuario = user.pUsuario;
+				if(user.bConfirmado=='1'){
+					return res.status(400).json({ success: false, code: 1322, message: 'Usuario ya est{a registrado.' });					
+				}
+				/*
 				// Create token if the password matched and no error was thrown
 				const token = jwt.sign(Model.Usuario.token(user), config.secret, {
 					expiresIn: 86400 // 24 horas en segundos
@@ -30,6 +36,7 @@ module.exports = function(req,res){
 				usrOut.success = true;
 				usrOut.token = 'JWT ' + token;
   				return res.status(200).json( usrOut );
+				*/
 			}
 			// No existe y se crea el usuario
 			if(!req.body.nombre) {
@@ -47,13 +54,19 @@ module.exports = function(req,res){
 				return res.status(400).json({ success: false, code: 1350, message: 'Fecha de nacimiento incorrecta.' });
 			}
 
+			if( pUsuario ){
+				// Actualiza
+			} else {
+				// Inserta
+			}
 			var newUser = new Model.Usuario({
 				cEmail		: req.body.email,
 				cPassword	: req.body.password,
 				cNombre		: req.body.nombre,
 				nDni		: req.body.dni,
 				cSexo		: req.body.sexo,
-				dNacimiento	: req.body.fechaNacimiento
+				dNacimiento	: req.body.fechaNacimiento,
+				bConfirmado : '1'
 			});
 
 			// Attempt to save the user
