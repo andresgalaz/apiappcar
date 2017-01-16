@@ -27,8 +27,9 @@ module.exports = function (req, res, id) {
                     }
                 });
         }
+        console.log('ESTADO #1:', estado);
     }).then(function () {
-        console.log('ESTADO:', estado);
+        console.log('ESTADO #2:', estado);
         res.render(
             'confirmaInvitacion',
             { idInvitacion: id, estadoInvitacion: estado }
