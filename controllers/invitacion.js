@@ -29,6 +29,7 @@ module.exports = function (req, res, id) {
                     } else {
                         estado = 'exito';
                     }
+                    console.log('LLEGO');
                     res.render(
                         'confirmaInvitacion',
                         { idInvitacion: id, estadoInvitacion: estado }
