@@ -26,16 +26,16 @@ html(lang=es)
                 .col-md-12
                     ol.breadcrumb
                         li
-                            a(href='#') SnapCar
+                            a(href='#') SnapCar Seguros
                         li.active Invitación
             .row
                 .col-md-12
                     h2
                         if estado === 'exito'
-                            i.fa.fa-check-circle
+                            i.fa.fa-check-circle.success
                             |  Usted ha confirmado la invitación.
                         else if estado === 'aceptado'
-                            i.fa.fa-exclamation-circle
+                            i.fa.fa-exclamation-circle.error
                             |  La invitación ya ha sido aceptada, ingrese a su cuenta.
                         else
                             i.fa.fa-exclamation-circle

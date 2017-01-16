@@ -1,5 +1,9 @@
 @color-base: #006BFF;
 @color-base-oscuro: #29303a;
+@brand-success: #5cb85c;
+@brand-info:    #5bc0de;
+@brand-warning: #f0ad4e;
+@brand-danger:  #d9534f;
 
 .main-font {
     font-family: 'Open Sans', sans-serif;
@@ -14,6 +18,14 @@ html {
 body {
     .main-font;
     margin-bottom: 60px;
+}
+
+.success {
+   @brand-success;
+}
+
+.error {
+    @brand-danger;
 }
 
 .navbar-snapcar {
