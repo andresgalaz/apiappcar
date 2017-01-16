@@ -12,8 +12,6 @@ module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9),
         estado;
 
-    console.log('idDecoded:', idDecoded);
-
     new Model.Invitacion({
         pInvitacion: idDecoded
     }).fetch().then(function (data) {
@@ -36,5 +34,6 @@ module.exports = function (req, res, id) {
                     );
                 });
         }
+        console.log(estado);
     });
 };
