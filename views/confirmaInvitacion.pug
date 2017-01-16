@@ -21,13 +21,13 @@ html(lang=es)
                 .col-md-12
                     h2
                         if estado === 'exito'
-                            // - i.small.material-icons done
+                            i.fa.fa-check-circle
                             | Usted ha confirmado la invitación.
                         else if estado === 'aceptado'
-                            // - i.small.material-icons error_outline
+                            i.fa.fa-exclamation-circle
                             | La invitación ya ha sido aceptada, ingrese a su cuenta.
                         else
-                            // - i.small.material-icons error_outline
+                            i.fa.fa-exclamation-circle
                             | La invitación no es válida.
                     p El ID de invitación es 
                         b #{idInvitacion}
