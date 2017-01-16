@@ -20,7 +20,7 @@ module.exports = function (req, res, id) {
                 }, {
                         patch: true
                     }).then(function (data) {
-                        console.log('DATA:' data);
+                        console.log('DATA:', data);
                         if (data === null) {
                             estado = 'error';
                         } else {
