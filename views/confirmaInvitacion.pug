@@ -9,6 +9,35 @@ html(lang=es)
         link(href='/css/bootstrap.min.css' rel='stylesheet')
         link(href='/css/snapcar-custom.min.css' rel='stylesheet')
     body
+        nav.navbar.navbar-default
+            .container
+                .navbar-header
+                    a.navbar-brand(href='#')
+                        img(src='/img/snapcar-logo-arti.svg' width='180' title='SnapCar Seguros')
+
+        .container
+            .row
+                .col-md-12
+                    h4
+                        if estado === 'exito'
+                            // - i.small.material-icons done
+                            | Usted ha confirmado la invitación.
+                        else if estado === 'aceptado'
+                            // - i.small.material-icons error_outline
+                            | La invitación ya ha sido aceptada, ingrese a su cuenta.
+                        else
+                            // - i.small.material-icons error_outline
+                            | La invitación no es válida.
+                            p El ID de invitación es 
+                                b #{idInvitacion}
+                                | .
+
+        footer.footer
+            .container
+                p.text-muted SnapCar &reg; #{fechaHoy} | Todos los derechos reservados
+
+
+// -
         header
             .navbar-fixed
                 nav.z-depth-0(role='navigation')
@@ -39,4 +68,4 @@ html(lang=es)
                 .container SnapCar &reg; #{fechaHoy} | Todos los derechos reservados
 
         script(src='/js/jquery-3.1.1.min.js')
-        script(src='/js/materialize.min.js')
+        script(src='/js/bootstrap.min.js')
