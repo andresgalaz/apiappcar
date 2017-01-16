@@ -47,7 +47,7 @@ module.exports = function (grunt) {
         }
       },
       templates: {
-        files: ['views/*', 'assets/css/*', 'controllers/*'],
+        files: ['views/*', 'assets/css/*', 'controllers/*', 'server.js'],
         tasks: ['gitadd','gitcommit','gitpush']
       }
     }
