@@ -34,6 +34,6 @@ module.exports = function (req, res, id) {
                     );
                 });
         }
-        console.log(estado);
+        console.log('Estado:', estado);
     });
 };
