@@ -11,7 +11,7 @@ module.exports = function (req, res, id) {
     new Model.Invitacion({
         pInvitacion: idDecoded
     }).fetch().then(function (data) {
-        var estado;
+        var estado = '';
 
         if (data.attributes.bRecibido === '1') {
             estado = 'aceptado';
