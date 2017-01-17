@@ -86,7 +86,7 @@ module.exports = function (req, res) {
 								return res.status(200).json(usrOut);
 							});
 					})
-					.then(function (data) {
+					.then(function () {
 						email.server.send({
 							from: 'SnapCar Seguros <no-responder@snapcar.com.ar>',
 							to: req.body.email,
