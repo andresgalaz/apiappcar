@@ -62,7 +62,7 @@ module.exports = function (req, res) {
 				nDni: req.body.dni,
 				cSexo: req.body.sexo,
 				dNacimiento: req.body.fechaNacimiento,
-				bConfirmado: '1'
+				bConfirmado: '0'
 			});
 
 			if (pUsuario) {
@@ -92,7 +92,8 @@ module.exports = function (req, res) {
 							subject: 'Confirme su Registro',
 							attachment: [{
 								data: cEmailBody({
-
+									emailUsuario: req.body.nombre,
+									nombreUsuario: req.body.email
 								})
 							}]
 						})

@@ -65,20 +65,19 @@ module.exports = function (req, res) {
 
 						// Template
 						const cEmailBody = pug.compileFile('views/emailInvitacion.pug');
-						console.log("PROTOCOLO:", req.protocol);
 
 						// Envía correo al usuario invitado
 						email.server.send({
-							from: "soporte <soporte@appcar.com.ar>",
+							from: "SnapCar Seguros <soporte@appcar.com.ar>",
 							to: req.body.emailInvitado,
-							subject: "Invitación Snapcar",
+							subject: "Invitación",
 							attachment: [{
 								data: cEmailBody({
 									nombreUsuario: req.user.cNombre,
 									emailUsuario: req.user.cEmail,
 									emailInvitado: req.body.emailInvitado,
 									idInvitacion: invita.idInvitacion,
-									baseUrl: 'http://' + req.headers.host
+									baseUrl: req.protocol + req.headers.host
 								}),
 								alternative: true
 							}]
