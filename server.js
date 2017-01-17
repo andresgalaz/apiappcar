@@ -15,7 +15,7 @@ app.use(express.static('assets'));
 app.set('view engine', 'pug');
 
 // Configura basedir para pug
-app.set('views', __dirname + '/views');
+app.set('views', './views');
 
 // Define el puerto de acuerdo al ambiente
 var port = null;
