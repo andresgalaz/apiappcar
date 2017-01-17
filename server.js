@@ -43,7 +43,7 @@ app.get('/bitacora', function (req, res) {
 app.get('/confirma', function (req, res) {
 	// var id = req.param('id');
 	// var id = req.params.id;
-	var id = req.query[id];
+	var id = req.query;
 	require('./controllers/invitacion.js')(req, res, id);
 });
 
