@@ -27,6 +27,7 @@ module.exports = function (req, res, id) {
                         }
                     });
             }
+             console.log('ESTADO:', estado);
         } catch (err) {
             estado = 'error';
             console.log(err);
