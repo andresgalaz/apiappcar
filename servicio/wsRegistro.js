@@ -3,6 +3,7 @@ const config = require('../config/main');
 const email = require('../config/emailServer');
 const jwt = require('jsonwebtoken');
 const moment = require("moment");
+const pug = require('pug');
 
 module.exports = function (req, res) {
 	const Util = require('../util');
