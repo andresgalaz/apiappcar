@@ -3,12 +3,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
+const pug = require('pug');
 const config = require('./config/main');
 
 var app = express();
 
 // Otorga acceso a los archivos estaticos dentro de la carpeta "assets"
 app.use(express.static('assets'));
+
+// Configura basedir para pug
+const pug = new Pug({ basedir: 'views' });
 
 // Define pug como templating
 app.set('view engine', 'pug');
