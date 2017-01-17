@@ -64,7 +64,6 @@ module.exports = function (req, res) {
 						dataIns.vehiculos().attach(arrVeh);
 
 						// Template
-						app.locals.basedir = './views';
 						const cEmailBody = pug.compileFile('views/emailInvitacion.pug');
 
 						// Envía correo al usuario invitado
