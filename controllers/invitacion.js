@@ -11,6 +11,7 @@ module.exports = function (req, res, id) {
     new Model.Invitacion({
         pInvitacion: idDecoded
     }).fetch().then(function (data) {
+        console.log('DATA:', data);
         try {
             if (data.attributes.bRecibido === '1') {
                 estado = 'aceptado';
@@ -27,7 +28,6 @@ module.exports = function (req, res, id) {
                         }
                     });
             }
-             console.log('ESTADO:', estado);
         } catch (err) {
             estado = 'error';
             console.log(err);
