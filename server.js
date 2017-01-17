@@ -12,7 +12,7 @@ var app = express();
 app.use(express.static('assets'));
 
 // Configura basedir para pug
-const pug = new Pug({ basedir: 'views' });
+pug = new Pug({ basedir: 'views' });
 
 // Define pug como templating
 app.set('view engine', 'pug');
