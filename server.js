@@ -14,9 +14,6 @@ app.use(express.static('assets'));
 // Define pug como templating
 app.set('view engine', 'pug');
 
-// Configura basedir para pug
-// app.set('views', './views');
-
 // Define el puerto de acuerdo al ambiente
 var port = null;
 if (config.ambiente == 'DESA')
