@@ -31,8 +31,7 @@ module.exports = function (req, res, id) {
         }).then(function () {
             res.render(
                 'confirmaInvitacion',
-                { idInvitacion: id, estadoInvitacion: estado },
-                { basedir: '../views' }
+                { idInvitacion: id, estadoInvitacion: estado }
             );
         });
 };
