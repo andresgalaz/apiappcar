@@ -1,32 +1,32 @@
-include /emailHeader.pug
+include emailHeader.pug
 
-table#content(border='0' cellpadding='15' cellspacing='0' width='100%')
-    tr
-        td(align='center' valign='top' bgcolor='#ffffff')
-            h1 #{nombreUsuario} bienvenido a SnapCar
-            p Para poder comenzar a utilizar tu cuenta de SnapCar por favor confirmá tu registro.
-table#call-to-action(border='0' cellpadding='20' cellspacing='0' width='100%')
-        td(align='center' valign='top' bgcolor='#ffffff')
-            div(style={
-                'background-color': '#000000',
-                'min-height': '40px',
-                'height': 'auto',
-                'max-width': '80%',
-                'width': 'auto',
-                'line-height': '40px',
-                'text-align': 'center',
-                'margin': '0 20px'
-                })
-                b
-                    a(
-                        href='#'
-                        style={
-                            'color': '#ffffff',
-                            'font-size': '1.5em',
-                            'font-weight': 'normal',
-                            'text-decoration': 'none',
-                            'padding': '20px',
-                            }
-                    ) Confirmá tu Registro
+                table#content(border='0' cellpadding='15' cellspacing='0' width='100%')
+                    tr
+                        td(align='center' valign='top' bgcolor='#ffffff')
+                            h1 #{nombreUsuario} bienvenido a SnapCar
+                            p Para poder comenzar a utilizar tu cuenta de SnapCar por favor confirmá tu registro.
+                table#call-to-action(border='0' cellpadding='20' cellspacing='0' width='100%')
+                        td(align='center' valign='top' bgcolor='#ffffff')
+                            div(style={
+                                'background-color': '#000000',
+                                'min-height': '40px',
+                                'height': 'auto',
+                                'max-width': '80%',
+                                'width': 'auto',
+                                'line-height': '40px',
+                                'text-align': 'center',
+                                'margin': '0 20px'
+                                })
+                                b
+                                    a(
+                                        href='#'
+                                        style={
+                                            'color': '#ffffff',
+                                            'font-size': '1.5em',
+                                            'font-weight': 'normal',
+                                            'text-decoration': 'none',
+                                            'padding': '20px',
+                                            }
+                                    ) Confirmá tu Registro
 
-include /emailFooter.pug
+                include emailFooter.pug
