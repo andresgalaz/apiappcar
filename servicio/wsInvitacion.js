@@ -77,7 +77,7 @@ module.exports = function (req, res) {
 									emailUsuario: req.user.cEmail,
 									emailInvitado: req.body.emailInvitado,
 									idInvitacion: invita.idInvitacion,
-									baseUrl: req.protocol + '://' + req.hostname
+									baseUrl: req.protocol + '://' + req.headers.host
 								}),
 								alternative: true
 							}]
