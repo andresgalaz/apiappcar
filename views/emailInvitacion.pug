@@ -1,38 +1,38 @@
 include emailHeader.pug
 
-table#content(border='0' cellpadding='15' cellspacing='0' width='100%')
-    tr
-        td(align='center' valign='top' bgcolor='#ffffff')
-            h1 Invitación SnapCar
-            p Usted ha sido invitado como conductor adicional por #{nombreUsuario}.
-            p
-                b Email Usuario: 
-                | #{emailUsuario}
-            p
-                b Email Invitado: 
-                | #{emailInvitado}
-table#call-to-action(border='0' cellpadding='20' cellspacing='0' width='100%')
-        td(align='center' valign='top' bgcolor='#ffffff')
-            div(style={
-                'background-color': '#000000',
-                'min-height': '40px',
-                'height': 'auto',
-                'max-width': '80%',
-                'width': 'auto',
-                'line-height': '40px',
-                'text-align': 'center',
-                'margin': '0 20px'
-                })
-                b
-                    a(
-                        href=baseUrl + '/confirma?id=' + idInvitacion
-                        style={
-                            'color': '#ffffff',
-                            'font-size': '1.5em',
-                            'font-weight': 'normal',
-                            'text-decoration': 'none',
-                            'padding': '20px',
-                            }
-                    ) Aceptar Invitación
+    table#content(border='0' cellpadding='15' cellspacing='0' width='100%')
+        tr
+            td(align='center' valign='top' bgcolor='#ffffff')
+                h1 Invitación SnapCar
+                p Usted ha sido invitado como conductor adicional por #{nombreUsuario}.
+                p
+                    b Email Usuario: 
+                    | #{emailUsuario}
+                p
+                    b Email Invitado: 
+                    | #{emailInvitado}
+    table#call-to-action(border='0' cellpadding='20' cellspacing='0' width='100%')
+            td(align='center' valign='top' bgcolor='#ffffff')
+                div(style={
+                    'background-color': '#000000',
+                    'min-height': '40px',
+                    'height': 'auto',
+                    'max-width': '80%',
+                    'width': 'auto',
+                    'line-height': '40px',
+                    'text-align': 'center',
+                    'margin': '0 20px'
+                    })
+                    b
+                        a(
+                            href=baseUrl + '/confirma?id=' + idInvitacion
+                            style={
+                                'color': '#ffffff',
+                                'font-size': '1.5em',
+                                'font-weight': 'normal',
+                                'text-decoration': 'none',
+                                'padding': '20px',
+                                }
+                        ) Aceptar Invitación
 
-include emailFooter.pug
+    include emailFooter.pug
