@@ -3,7 +3,7 @@ const Model = require('../db/model');
 const config = require('../config/main');
 
 var hashId = new Hash(config.secret),
-    estado = '';
+    estado = null;
 
 module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9);
