@@ -11,9 +11,7 @@ var app = express();
 app.use(express.static('assets'));
 
 // Define pug como templating
-const pug = new Pug({
-	basedir: 'views'
-});
+const pug = new Pug({ basedir: 'views' });
 
 app.set('view engine', 'pug');
 
