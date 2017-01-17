@@ -1,5 +1,6 @@
 const Model = require('../db/model');
 const config = require('../config/main');
+const email = require('../config/emailServer');
 const jwt = require('jsonwebtoken');
 const moment = require("moment");
 
@@ -25,7 +26,7 @@ module.exports = function (req, res) {
 				var user = data.toJSON();
 				pUsuario = user.pUsuario;
 				if (user.bConfirmado == '1') {
-					return res.status(400).json({ success: false, code: 1322, message: 'Usuario ya est{a registrado.' });
+					return res.status(400).json({ success: false, code: 1322, message: 'El usuario ya está registrado.' });
 				}
 				/*
 				// Create token if the password matched and no error was thrown
@@ -54,11 +55,6 @@ module.exports = function (req, res) {
 				return res.status(400).json({ success: false, code: 1350, message: 'Fecha de nacimiento incorrecta.' });
 			}
 
-			if (pUsuario) {
-				// Actualiza
-			} else {
-				// Inserta
-			}
 			var newUser = new Model.Usuario({
 				cEmail: req.body.email,
 				cPassword: req.body.password,
@@ -69,7 +65,42 @@ module.exports = function (req, res) {
 				bConfirmado: '1'
 			});
 
+			if (pUsuario) {
+				// Actualiza
+				console.log('Actualiza usuario');
+			} else {
+				// Inserta
+				// Envía email de bienvenida
+				const cEmailBody = pug.compileFile('views/emailRegistro.pug');
+
+				newUser.save()
+					.then(function (dataIns) {
+						var user = dataIns.toJSON();
+						new Model.UsuarioVeh({ pUsuario: user.pUsuario })
+							.fetch({ withRelated: ['vehiculos'] })
+							.then(function (data) {
+								user = data.toJSON();
+								var usrOut = Model.UsuarioVeh.salida(user);
+								usrOut.success = true;
+								return res.status(200).json(usrOut);
+							});
+					})
+					.then(function (data) {
+						email.server.send({
+							from: 'SnapCar Seguros <no-responder@snapcar.com.ar>',
+							to: req.body.email,
+							subject: 'Confirme su Registro',
+							attachment: [{
+								data: cEmailBody({
+
+								})
+							}]
+						})
+					});
+			}
+
 			// Attempt to save the user
+			/*
 			newUser.save().then(function (dataIns) {
 				var user = dataIns.toJSON();
 				new Model.UsuarioVeh({ pUsuario: user.pUsuario }).fetch({ withRelated: ['vehiculos'] }).then(function (data) {
@@ -83,6 +114,7 @@ module.exports = function (req, res) {
 					return res.status(200).json(usrOut);
 				});
 			});
+			*/
 		} catch (e) {
 			console.log(e);
 			return res.status(401).json({ success: false, code: 1360, message: 'Error inesperado.' });
