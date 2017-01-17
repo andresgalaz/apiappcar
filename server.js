@@ -11,8 +11,6 @@ var app = express();
 app.use(express.static('assets'));
 
 // Define pug como templating
-const pug = new Pug({ basedir: 'views' });
-
 app.set('view engine', 'pug');
 
 // Define el puerto de acuerdo al ambiente
