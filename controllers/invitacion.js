@@ -32,7 +32,7 @@ module.exports = function (req, res, id) {
             res.render(
                 'confirmaInvitacion',
                 { idInvitacion: id, estadoInvitacion: estado },
-                { basedir: './views' }
+                { basedir: '../views' }
             );
         });
 };
