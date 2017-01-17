@@ -96,7 +96,7 @@ module.exports = function (req, res) {
 									nombreUsuario: req.body.email
 								})
 							}]
-						})
+						});
 					});
 			}
 
