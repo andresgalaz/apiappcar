@@ -11,11 +11,11 @@ var app = express();
 // Otorga acceso a los archivos estaticos dentro de la carpeta "assets"
 app.use(express.static('assets'));
 
-// Configura basedir para pug
-app.locals.basedir = app.get('views');
-
 // Define pug como templating
 app.set('view engine', 'pug');
+
+// Configura basedir para pug
+app.locals.basedir = app.get('views');
 
 // Define el puerto de acuerdo al ambiente
 var port = null;
