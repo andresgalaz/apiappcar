@@ -8,6 +8,7 @@ module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9);
     var estado = null;
 
+/*
     new Model.Usuario({ pUsuario: idDecoded })
         .fetch()
         .then(function (data) {
@@ -31,5 +32,12 @@ module.exports = function (req, res, id) {
             } catch (err) {
                 console.log(err);
             }
+        });
+*/
+
+    new Model.Usuario({ pUsuario: idDecoded })
+        .fetch()
+        .then(function (data) {
+            console.log('DATA:', data);
         });
 };
