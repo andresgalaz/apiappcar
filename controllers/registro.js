@@ -12,16 +12,13 @@ module.exports = function (req, res, id) {
         .fetch()
         .then(function (data) {
             try {
-                this.save({ bConfirmado: '1' }, { patch: true }).on('saved', function () {
-                    estado = true;
-                });
+                this.save({ bConfirmado: '1' }, { patch: true });
             } catch (err) {
                 console.log(err);
-                estado = false;
+                estado = 'error';
             }
         })
         .then(function () {
-            console.log('ESTADO:', estado);
             res.render(
                 'confirmaRegistro',
                 { idRegistro: id, estadoRegistro: estado }
