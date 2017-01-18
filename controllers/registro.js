@@ -39,9 +39,19 @@ module.exports = function (req, res, id) {
         .fetch()
         .then(function (data) {
             if (data.attributes.bConfirmado === '1') {
-
+                estado = 'confirmado';
             } else {
-                this.save({ bConfirmado: '1' }, { patch: true });
+                this.save({ bConfirmado: '1' }, { patch: true })
+                    .then(function (data) {
+                        if (data === null) {
+                            estado = 'error';
+                        } else {
+                            estado = 'exito'
+                        }
+                    });
             }
+        })
+        then(function () {
+            console.log('ESTADO:', estado);
         });
 };
