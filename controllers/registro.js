@@ -48,6 +48,9 @@ module.exports = function (req, res, id) {
                         } else {
                             estado = 'exito';
                         }
+                    })
+                    .catch(function () {
+                        console.log('Error');
                     });
             }
         })
