@@ -38,6 +38,8 @@ module.exports = function (req, res, id) {
     new Model.Usuario({ pUsuario: idDecoded })
         .fetch()
         .then(function (data) {
-            console.log('DATA:', data);
+            if (data.attributes.bConfirmado === '1') {
+                console.log('YA CONFIRMÓ');
+            }
         });
 };
