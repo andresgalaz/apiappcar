@@ -73,7 +73,6 @@ module.exports = function (req, res) {
 			} else {
 				// Inserta
 				// Envía email de bienvenida
-
 				newUser.save()
 					.then(function (dataIns) {
 						var user = dataIns.toJSON();
