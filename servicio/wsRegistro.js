@@ -71,8 +71,6 @@ module.exports = function (req, res) {
 				// Actualiza
 				console.log('Actualiza usuario');
 			} else {
-				// Inserta
-				// Envía email de bienvenida
 				var hashId = new Hash(config.secret);
 
 				newUser.save()
