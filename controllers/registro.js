@@ -30,7 +30,7 @@ module.exports = function (req, res, id) {
             }
         })
         .then(function () {
-            console.log("ESTADO:", estado);
+            console.log("ESTADO:", this.estado);
             res.render(
                 'confirmaRegistro',
                 { idRegistro: id, estadoRegistro: estado }
