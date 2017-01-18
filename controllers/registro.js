@@ -6,8 +6,8 @@ var hashId = new Hash(config.secret);
 
 module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9);
-    var estado = null;
-/*
+    let estado = null;
+
     new Model.Usuario({ pUsuario: idDecoded })
         .fetch()
         .then(function (data) {
@@ -32,7 +32,6 @@ module.exports = function (req, res, id) {
                 console.log(err);
             }
         });
-*/
 
     new Model.Usuario({ pUsuario: idDecoded })
         .fetch()
