@@ -91,7 +91,7 @@ module.exports = function (req, res) {
 						email.server.send({
 							from: 'SnapCar Seguros <no-responder@snapcar.com.ar>',
 							to: req.body.email,
-							subject: 'Confirme su Registro',
+							subject: 'Confirme su registro',
 							attachment: [{
 								data: cEmailBody({
 									nombreUsuario: req.body.nombre,
