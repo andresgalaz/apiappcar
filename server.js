@@ -41,12 +41,12 @@ app.get('/bitacora', function (req, res) {
 });
 
 // Página de confirmación a la invitación
-app.get('/confirma', function (req, res) {
+app.get('/invitacion', function (req, res) {
 	var id = req.query.id;
 	require('./controllers/invitacion.js')(req, res, id);
 });
 
-app.get('/confirma', function (req, res) {
+app.get('/registro', function (req, res) {
 	var id = req.query.id;
 	require('./controllers/registro.js')(req, res, id);
 });
