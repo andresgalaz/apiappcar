@@ -36,33 +36,4 @@ module.exports = function (req, res, id, estado) {
                 { idRegistro: id, estadoRegistro: estado }
             );
         });
-
-    /*
-    new Model.Invitacion({ pInvitacion: idDecoded })
-        .fetch()
-        .then(function (data) {
-            try {
-                if (data.attributes.bRecibido === '1') {
-                    estado = 'aceptado';
-                } else {
-                    this.save({ bRecibido: '1' }, { patch: true })
-                        .then(function (data) {
-                            if (data === null) {
-                                estado = 'error';
-                            } else {
-                                estado = 'exito';
-                            }
-                        });
-                }
-            } catch (err) {
-                estado = 'error';
-                console.log(err);
-            }
-        }).then(function () {
-            res.render(
-                'confirmaInvitacion',
-                { idInvitacion: id, estadoInvitacion: estado }
-            );
-        });
-    */
 };
