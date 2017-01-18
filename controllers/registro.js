@@ -6,7 +6,6 @@ var hashId = new Hash(config.secret);
 
 module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9);
-    var estado = null;
 
 /*
     new Model.Usuario({ pUsuario: idDecoded })
@@ -35,20 +34,22 @@ module.exports = function (req, res, id) {
         });
 */
 
-    new Model.Usuario({ pUsuario: idDecoded })
-        .fetch()
+    var newUsuario = new Model.Usuario({ pUsuario: idDecoded });
+    var estado = null;
+
+    newUsuario.fetch()
         .then(function (data) {
             if (data.attributes.bConfirmado === '1') {
-                estado = 'confirmado';
+                newUsuario.estado = 'confirmado';
             } else {
                 this.save({ bConfirmado: '1' }, { patch: true })
                     .then(function (data) {
                         if (data === null) {
                             console.log('ERROR');
-                            estado = 'error';
+                            newUsuario.estado = 'error';
                         } else {
                             console.log('EXITO');
-                            estado = 'exito';
+                            newUsuario.estado = 'exito';
                         }
                     });
             }
