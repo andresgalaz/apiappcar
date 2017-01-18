@@ -73,8 +73,7 @@ module.exports = function (req, res) {
 			} else {
 				// Inserta
 				// Envía email de bienvenida
-				var hashId = new Hash(config.secret),
-					registro = 'null';
+				var hashId = new Hash(config.secret);
 
 				newUser.save()
 					.then(function (dataIns) {
@@ -88,10 +87,12 @@ module.exports = function (req, res) {
 								return res.status(200).json(usrOut);
 							});
 
-						const cEmailBody = pug.compileFile('views/emailRegistro.pug');
-						user.idRegistro = hashId.encode(10e10 + req.body.email);
+						console.log('HASH ID:', hashId);
 
-						console.log('ID REGISTRO:', user.idRegistro);
+						const cEmailBody = pug.compileFile('views/emailRegistro.pug');
+						var idRegistro = hashId.encode(10e10 + req.body.email);
+
+						console.log('ID REGISTRO:', idRegistro);
 
 						email.server.send({
 							from: 'SnapCar Seguros <no-responder@snapcar.com.ar>',
@@ -100,7 +101,7 @@ module.exports = function (req, res) {
 							attachment: [{
 								data: cEmailBody({
 									nombreUsuario: req.body.nombre,
-									idUrlRegistro: user.idRegistro,
+									idUrlRegistro: idRegistro,
 									baseUrl: req.protocol + '://' + req.headers.host
 								}),
 								alternative: true
