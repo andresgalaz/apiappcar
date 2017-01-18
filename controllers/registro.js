@@ -51,7 +51,7 @@ module.exports = function (req, res, id) {
                     });
             }
         })
-        then(function () {
+        .then(function () {
             console.log('ESTADO:', estado);
         });
 };
