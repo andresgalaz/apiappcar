@@ -83,8 +83,8 @@ module.exports = function (req, res) {
 						var user = dataIns.toJSON();
 						new Model.UsuarioVeh({ pUsuario: user.pUsuario })
 							.fetch({ withRelated: ['vehiculos'] })
-							.then(function (data) {
-								user = data.toJSON();
+							.then(function (dataSuccess) {
+								user = dataSuccess.toJSON();
 								var usrOut = Model.UsuarioVeh.salida(user);
 								usrOut.success = true;
 								return res.status(200).json(usrOut);
@@ -105,7 +105,11 @@ module.exports = function (req, res) {
 							}]
 							*/
 							attachment: [{
-								data: cEmailBody
+								data: cEmailBody({
+									nombreUsuario: req.body.nombre,
+									idRegistro: idRegistro,
+									baseUrl: req.protocol + '://' + req.headers.host
+								})
 							}]
 						});
 					});
