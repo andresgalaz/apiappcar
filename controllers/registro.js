@@ -11,9 +11,9 @@ module.exports = function (req, res, id) {
         .fetch()
         .then(function (data) {
             try {
-                this.save({ bConfirmado: '1' }, { patch: true })
-            } catch (e) {
-                console.log(e);
+                this.save({ bConfirmado: '1' }, { patch: true });
+            } catch (err) {
+                console.log(err);
             }
         })
         .then(function () {
