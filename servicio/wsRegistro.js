@@ -86,7 +86,7 @@ module.exports = function (req, res) {
 							});
 
 						const cEmailBody = pug.compileFile('views/emailRegistro.pug');
-						
+
 						var hashId = new Hash(config.secret),
 							idRegistro = hashId.encode(10e10 + req.body.email);
 
@@ -97,13 +97,12 @@ module.exports = function (req, res) {
 							attachment: [{
 								data: cEmailBody({
 									nombreUsuario: req.body.nombre,
-									idRegistro: idRegistro,
+									idUrlRegistro: idRegistro,
 									baseUrl: req.protocol + '://' + req.headers.host
 								}),
 								alternative: true
 							}]
 						}, function (err, message) { console.log(err || message); });
-						return res.status(200).json({ success: true, idRegistro: idRegistro });
 					});
 			}
 
