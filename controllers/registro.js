@@ -49,7 +49,7 @@ module.exports = function (req, res, id) {
                             estado = 'error';
                         } else {
                             console.log('EXITO');
-                            var estado = 'exito';
+                            estado = 'exito';
                         }
                     });
             }
