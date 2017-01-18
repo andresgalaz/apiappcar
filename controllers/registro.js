@@ -19,7 +19,7 @@ module.exports = function (req, res, id) {
         .then(function () {
             res.render(
                 'confirmaRegistro',
-                { idInvitacion: id, estadoInvitacion: estado }
+                { idRegistro: id, estadoRegistro: estado }
             );
         });
 
