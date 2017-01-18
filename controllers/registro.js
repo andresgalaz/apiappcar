@@ -2,7 +2,8 @@ const Hash = require('hashids');
 const Model = require('../db/model');
 const config = require('../config/main');
 
-var hashId = new Hash(config.secret);
+var hashId = new Hash(config.secret),
+    estado = null;
 
 module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9);
@@ -14,6 +15,7 @@ module.exports = function (req, res, id) {
                 this.save({ bConfirmado: '1' }, { patch: true });
             } catch (err) {
                 console.log(err);
+                estado = 'error';
             }
         })
         .then(function () {
