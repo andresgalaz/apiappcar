@@ -43,9 +43,11 @@ module.exports = function (req, res, id) {
                 this.save({ bConfirmado: '1' }, { patch: true })
                     .then(function (data) {
                         if (data === null) {
-                            this.estado = 'error';
+                            console.log('ERROR');
+                            estado = 'error';
                         } else {
-                            this.estado = 'exito';
+                            console.log('EXITO');
+                            estado = 'exito';
                         }
                     });
             }
