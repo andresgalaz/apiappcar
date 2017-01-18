@@ -91,6 +91,8 @@ module.exports = function (req, res) {
 
 						var idRegistro = hashId.encode(10e10 + req.body.email);
 
+						console.log('ID REGISTRO:', idRegistro);
+
 						email.server.send({
 							from: 'SnapCar Seguros <no-responder@snapcar.com.ar>',
 							to: req.body.email,
