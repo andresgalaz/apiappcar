@@ -2,11 +2,11 @@ const Hash = require('hashids');
 const Model = require('../db/model');
 const config = require('../config/main');
 
-var hashId = new Hash(config.secret);
+var hashId = new Hash(config.secret),
 
 module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9),
-        global.estado = null;
+        estado = null;
 
     new Model.Usuario({ pUsuario: idDecoded })
         .fetch()
@@ -30,7 +30,7 @@ module.exports = function (req, res, id) {
             }
         })
         .then(function () {
-            console.log("ESTADO:", this.estado);
+            console.log("ESTADO:", estado);
             res.render(
                 'confirmaRegistro',
                 { idRegistro: id, estadoRegistro: estado }
