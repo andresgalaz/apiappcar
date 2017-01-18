@@ -39,4 +39,4 @@ res.render(
     'confirmaRegistro',
     { idRegistro: id, estadoRegistro: estado }
 );
-/*
+*/
