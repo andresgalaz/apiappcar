@@ -44,12 +44,13 @@ module.exports = function (req, res, id) {
             } else {
                 this.save({ bConfirmado: '1' }, { patch: true })
                     .then(function (data) {
+                        var estado = null;
                         if (data === null) {
                             console.log('ERROR');
-                            var estado = 'error';
+                            estado = 'error';
                         } else {
                             console.log('EXITO');
-                            var estado = 'exito';
+                            estado = 'exito';
                         }
                     });
             }
