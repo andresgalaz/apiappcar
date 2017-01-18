@@ -92,6 +92,7 @@ module.exports = function (req, res) {
 						const cEmailBody = pug.compileFile('views/emailRegistro.pug');
 						var idRegistro = hashId.encode(req.body.email);
 
+						console.log('EMAIL:', req.body.email);
 						console.log('ID REGISTRO:', idRegistro);
 
 						email.server.send({
