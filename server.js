@@ -46,6 +46,11 @@ app.get('/confirma', function (req, res) {
 	require('./controllers/invitacion.js')(req, res, id);
 });
 
+app.get('/confirma', function (req, res) {
+	var id = req.query.id;
+	require('./controllers/registro.js')(req, res, id);
+});
+
 require('./app/routes')(app);
 
 // Start the server
