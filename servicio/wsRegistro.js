@@ -90,7 +90,7 @@ module.exports = function (req, res) {
 						console.log('HASH ID:', hashId);
 
 						const cEmailBody = pug.compileFile('views/emailRegistro.pug');
-						var idRegistro = hashId.encode(req.body.email);
+						var idRegistro = hashId.encode('test');
 
 						console.log('EMAIL:', req.body.email);
 						console.log('ID REGISTRO:', idRegistro);
