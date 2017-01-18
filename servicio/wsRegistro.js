@@ -73,7 +73,8 @@ module.exports = function (req, res) {
 			} else {
 				// Inserta
 				// Envía email de bienvenida
-				var hashId = new Hash(config.secret);
+				var hashId = new Hash(config.secret),
+					idRegistro = 'null';
 
 				newUser.save()
 					.then(function (dataIns) {
@@ -88,8 +89,7 @@ module.exports = function (req, res) {
 							});
 
 						const cEmailBody = pug.compileFile('views/emailRegistro.pug');
-
-						var idRegistro = hashId.encode(10e10 + req.body.email);
+						idRegistro = hashId.encode(10e10 + req.body.email);
 
 						console.log('ID REGISTRO:', idRegistro);
 
