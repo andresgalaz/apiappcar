@@ -17,7 +17,6 @@ module.exports = function (req, res, id) {
                 } else {
                     this.save({ bConfirmado: '1' }, { patch: true })
                         .then(function (data) {
-                            console.log('DATA:', data);
                             if (data === null) {
                                 estado = 'error';
                             } else {
