@@ -15,14 +15,18 @@ module.exports = function (req, res, id) {
         .fetch()
         .then(function (data) {
             try {
-                this.save({ bConfirmado: '1' }, { patch: true })
-                    .then(function (data) {
-                        if (data === null) {
-                            estado = false;
-                        } else {
-                            estado = true;
-                        }
-                    });
+                if (data.attributes.bConfirmado === '1') {
+                    estado = confirmado;
+                } else {
+                    this.save({ bConfirmado: '1' }, { patch: true })
+                        .then(function (data) {
+                            if (data === null) {
+                                estado = error;
+                            } else {
+                                estado = exito;
+                            }
+                        });
+                }
             } catch (err) {
                 console.log(err);
                 estado = false;
