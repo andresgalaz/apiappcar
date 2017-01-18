@@ -97,7 +97,7 @@ module.exports = function (req, res) {
 							attachment: [{
 								data: cEmailBody({
 									nombreUsuario: req.body.nombre,
-									idUrlRegistro: idRegistro,
+									idRegistro: idRegistro,
 									baseUrl: req.protocol + '://' + req.headers.host
 								}),
 								alternative: true
