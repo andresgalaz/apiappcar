@@ -7,7 +7,7 @@ var hashId = new Hash(config.secret),
 
 module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9),
-        newUsuario = new Model.Usuario({ pUsuario: idDecoded }),
+        newUsuario = new Model.Usuario({ pUsuario: idDecoded });
 
     newUsuario.fetch()
         .then(function (data) {
