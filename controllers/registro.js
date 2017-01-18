@@ -15,7 +15,7 @@ module.exports = function (req, res, id) {
                 this.save({ bConfirmado: '1' }, { patch: true });
             } catch (err) {
                 console.log(err);
-                estado = 'error';
+                estado = false;
             }
         })
         .then(function () {
