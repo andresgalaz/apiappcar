@@ -8,7 +8,7 @@ module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9);
     var estado = null;
 
-    new Model.Usuario({ pUsuario: idDecoded })
+    new Model.Usuario({ pUsuario: idDecoded }, estado)
         .fetch()
         .then(function (data) {
             try {
