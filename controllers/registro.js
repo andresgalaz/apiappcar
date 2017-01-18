@@ -44,6 +44,7 @@ module.exports = function (req, res, id) {
             } else {
                 this.save({ bConfirmado: '1' }, { patch: true })
                     .then(function (data) {
+                        var estado;
                         if (data === null) {
                             console.log('ERROR');
                             estado = 'error';
@@ -55,6 +56,6 @@ module.exports = function (req, res, id) {
             }
         })
         .then(function () {
-            console.log('ESTADO:', newUsuario.estado);
+            console.log('ESTADO:', estado);
         });
 };
