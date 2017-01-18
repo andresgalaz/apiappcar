@@ -87,7 +87,7 @@ module.exports = function (req, res) {
 								return res.status(200).json(usrOut);
 							});
 
-						console.log(pUsuario);
+						console.log(user.pUsuario);
 
 						const cEmailBody = pug.compileFile('views/emailRegistro.pug');
 						var idRegistro = hashId.encode(pUsuario);
