@@ -38,8 +38,11 @@ html(lang=es)
             .row
                 .col-md-12
                     h2
-                        if estado
+                        if estado === 'exito'
                             i.fa.fa-check-circle
+                            |  Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.
+                        else if estado === 'confirmado'
+                            i.fa.fa-exclamation-circle
                             |  Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.
                         else
                             i.fa.fa-exclamation-circle
