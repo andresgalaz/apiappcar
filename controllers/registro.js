@@ -40,13 +40,13 @@ module.exports = function (req, res, id) {
     newUsuario.fetch()
         .then(function (data) {
             if (data.attributes.bConfirmado === '1') {
-                var estado = 'confirmado';
+                estado = 'confirmado';
             } else {
                 this.save({ bConfirmado: '1' }, { patch: true })
                     .then(function (data) {
                         if (data === null) {
                             console.log('ERROR');
-                            var estado = 'error';
+                            estado = 'error';
                         } else {
                             console.log('EXITO');
                             var estado = 'exito';
