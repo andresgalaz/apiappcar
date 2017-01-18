@@ -4,6 +4,7 @@ const email = require('../config/emailServer');
 const jwt = require('jsonwebtoken');
 const moment = require("moment");
 const pug = require('pug');
+const Hash = require('hashids');
 
 module.exports = function (req, res) {
 	const Util = require('../util');
@@ -74,6 +75,9 @@ module.exports = function (req, res) {
 				// Envía email de bienvenida
 				const cEmailBody = pug.compileFile('views/emailRegistro.pug');
 
+				var hashId = new Hash(config.secret),
+					idRegistro = hashId.encode(10e10 + req.body.email);
+
 				newUser.save()
 					.then(function (dataIns) {
 						var user = dataIns.toJSON();
@@ -93,8 +97,9 @@ module.exports = function (req, res) {
 							subject: 'Confirme su Registro',
 							attachment: [{
 								data: cEmailBody({
-									emailUsuario: req.body.nombre,
-									nombreUsuario: req.body.email
+									nombreUsuario: req.body.nombre,
+									idRegistro: idRegistro,
+									baseUrl: req.protocol + '://' + req.headers.host
 								})
 							}]
 						});
