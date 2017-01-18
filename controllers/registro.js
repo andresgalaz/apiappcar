@@ -46,7 +46,7 @@ module.exports = function (req, res, id) {
                         if (data === null) {
                             estado = 'error';
                         } else {
-                            estado = 'exito'
+                            estado = 'exito';
                         }
                     });
             }
