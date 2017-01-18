@@ -46,7 +46,7 @@ module.exports = function (req, res, id) {
                     .then(function (data) {
                         if (data === null) {
                             console.log('ERROR');
-                            estado = 'error';
+                            var estado = 'error';
                         } else {
                             console.log('EXITO');
                             var estado = 'exito';
