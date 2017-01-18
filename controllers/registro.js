@@ -8,6 +8,9 @@ var hashId = new Hash(config.secret),
 module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9);
 
+    console.log(id);
+    console.log(idDecoded);
+
     new Model.Usuario({ cEmail: idDecoded })
         .fetch()
         .then(function (data) {
