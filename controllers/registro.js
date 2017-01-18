@@ -44,7 +44,6 @@ module.exports = function (req, res, id) {
             } else {
                 this.save({ bConfirmado: '1' }, { patch: true })
                     .then(function (data) {
-                        var estado = null;
                         if (data === null) {
                             console.log('ERROR');
                             estado = 'error';
