@@ -1,0 +1,68 @@
+- var fechaHoy = new Date().getFullYear();
+- var estado = estadoInvitacion;
+
+doctype html
+html(lang=es)
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        meta(name='theme-color' content='#db5945')
+        meta(name='apple-mobile-web-app-status-bar-style' content='#db5945')
+
+        title SnapCar Seguros | Invitación
+
+        link(rel='icon' type='image/png' href='/img/favicon.png')
+        link(rel='icon' sizes='192x192' href='/img/favicon-192x192.png')
+
+        link(href='//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i' rel='stylesheet')
+        link(href='//fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
+        link(href='//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet')
+        link(href='/css/bootstrap.min.css' rel='stylesheet')
+        link(href='/css/snapcar-custom.min.css' rel='stylesheet')
+    body
+        nav.navbar.navbar-snapcar
+            .container
+                .row.navbar-header
+                    .col-md-12
+                        a.navbar-brand(href='#')
+                            img.center-block(src='/img/snapcar-logo-arti.svg' width='180' title='SnapCar Seguros')
+
+        .container
+            .row
+                .col-md-12
+                    ol.breadcrumb
+                        li
+                            a(href='#') SnapCar Seguros
+                        li.active Invitación
+            .row
+                .col-md-12
+                    h2
+                        if estado === 'exito'
+                            i.fa.fa-check-circle
+                            |  Usted ha confirmado la invitación.
+                        else if estado === 'aceptado'
+                            i.fa.fa-exclamation-circle
+                            |  La invitación ya ha sido aceptada, ingrese a su cuenta.
+                        else
+                            i.fa.fa-exclamation-circle
+                            |  La invitación no es válida.
+                    p El ID de invitación es 
+                        b #{idInvitacion}
+                        | .
+
+        footer.footer
+            .container
+                .row
+                    .col-xs-8.col-md-10
+                        small.text-muted SnapCar &reg; #{fechaHoy}
+                            span.hidden-xs | Todos los derechos reservados
+                    .col-xs-2.col-md-1
+                        a.social-icons(href='#' title='Facebook')
+                            i.fa.fa-facebook-official.fa-2x
+                    .col-xs-2.col-md-1
+                        a.social-icons(href='#' title='Twitter')
+                            i.fa.fa-twitter.fa-2x
+
+        script(src='/js/jquery-3.1.1.min.js')
+        script(src='/js/bootstrap.min.js')
