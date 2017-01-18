@@ -11,7 +11,7 @@ module.exports = function (req, res, id) {
     console.log(id);
     console.log(idDecoded);
 
-    new Model.Usuario({ cEmail: idDecoded })
+    new Model.Usuario({ pUsuario: idDecoded })
         .fetch()
         .then(function (data) {
             try {
