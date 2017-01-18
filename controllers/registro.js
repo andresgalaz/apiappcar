@@ -49,7 +49,7 @@ module.exports = function (req, res, id) {
                             newUsuario.estado = 'error';
                         } else {
                             console.log('EXITO');
-                            newUsuario.estado = 'exito';
+                            var newUsuario.estado = 'exito';
                         }
                     });
             }
