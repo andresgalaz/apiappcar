@@ -39,7 +39,7 @@ module.exports = function (req, res, id) {
         .fetch()
         .then(function (data) {
             if (data.attributes.bConfirmado === '1') {
-                console.log('YA CONFIRMÓ');
+
             } else {
                 this.save({ bConfirmado: '1' }, { patch: true });
             }
