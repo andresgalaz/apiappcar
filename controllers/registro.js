@@ -9,7 +9,12 @@ module.exports = function (req, res, id) {
     var estado = null;
 
     new Model.Usuario({ pUsuario: idDecoded }, estado)
-        .fetch()
+        .fetch(function () {
+            if (data.attributes.bConfirmado === '1') {
+                estado = 'confirmado';
+            }
+        })
+        /*
         .then(function (data) {
             try {
                 if (data.attributes.bConfirmado === '1') {
@@ -29,8 +34,17 @@ module.exports = function (req, res, id) {
                 estado = 'error';
             }
         })
-        .then(function () {
+        */
+        .save({ bConfirmado: '1' }, { patch: true })
+        .then(function (data) {
+            if (data === null) {
+                estado = 'error';
+            } else {
+                estado = 'exito';
+            }          
+
             console.log("ESTADO:", estado);
+
             res.render(
                 'confirmaRegistro',
                 { idRegistro: id, estadoRegistro: estado }
