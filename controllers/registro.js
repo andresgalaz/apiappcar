@@ -12,7 +12,14 @@ module.exports = function (req, res, id) {
         .fetch()
         .then(function (data) {
             try {
-                this.save({ bConfirmado: '1' }, { patch: true });
+                this.save({ bConfirmado: '1' }, { patch: true })
+                    .then(function (data) {
+                        if (data === null) {
+                            estado = false;
+                        } else {
+                            estado = true;
+                        }
+                    });
             } catch (err) {
                 console.log(err);
                 estado = false;
