@@ -55,6 +55,6 @@ module.exports = function (req, res, id) {
             }
         })
         .then(function () {
-            console.log('ESTADO:', estado);
+            console.log('ESTADO:', newUsuario.estado);
         });
 };
