@@ -16,14 +16,14 @@ module.exports = function (req, res, id) {
         .then(function (data) {
             try {
                 if (data.attributes.bConfirmado === '1') {
-                    estado = confirmado;
+                    estado = 'confirmado';
                 } else {
                     this.save({ bConfirmado: '1' }, { patch: true })
                         .then(function (data) {
                             if (data === null) {
-                                estado = error;
+                                estado = 'error';
                             } else {
-                                estado = exito;
+                                estado = 'exito';
                             }
                         });
                 }
