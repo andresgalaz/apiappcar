@@ -18,10 +18,10 @@ module.exports = function (req, res, id) {
                     .then(function (data) {
                         if (data === null) {
                             console.log('ERROR');
-                            estado = 'error';
+                            this.estado = 'error';
                         } else {
                             console.log('EXITO');
-                            estado = 'exito';
+                            this.estado = 'exito';
                         }
                     });
             }
