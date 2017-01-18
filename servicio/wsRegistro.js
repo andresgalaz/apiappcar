@@ -89,8 +89,7 @@ module.exports = function (req, res) {
 
 						const cEmailBody = pug.compileFile('views/emailRegistro.pug');
 						//idRegistro = hashId.encode(10e10 + req.body.email);
-
-						console.log('ID REGISTRO:', idRegistro);
+						//console.log('ID REGISTRO:', idRegistro);
 
 						email.server.send({
 							from: 'SnapCar Seguros <no-responder@snapcar.com.ar>',
