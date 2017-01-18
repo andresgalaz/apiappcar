@@ -95,7 +95,6 @@ module.exports = function (req, res) {
 							from: 'SnapCar Seguros <no-responder@snapcar.com.ar>',
 							to: req.body.email,
 							subject: 'Confirme su Registro',
-							text: 'Confirmá tu Registro'
 							/*
 							attachment: [{
 								data: cEmailBody({
@@ -105,6 +104,9 @@ module.exports = function (req, res) {
 								})
 							}]
 							*/
+							attachment: [{
+								data: cEmailBody
+							}]
 						});
 					});
 			}
