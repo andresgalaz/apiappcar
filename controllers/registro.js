@@ -9,12 +9,7 @@ module.exports = function (req, res, id) {
     var estado = null;
 
     new Model.Usuario({ pUsuario: idDecoded }, estado)
-        .fetch(function () {
-            if (data.attributes.bConfirmado === '1') {
-                estado = 'confirmado';
-            }
-        })
-        /*
+        .fetch()
         .then(function (data) {
             try {
                 if (data.attributes.bConfirmado === '1') {
