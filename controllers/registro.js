@@ -26,7 +26,7 @@ module.exports = function (req, res, id) {
                 }
             } catch (err) {
                 console.log(err);
-                estado = false;
+                estado = 'error';
             }
         })
         .then(function () {
