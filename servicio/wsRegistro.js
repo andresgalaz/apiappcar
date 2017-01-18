@@ -99,9 +99,11 @@ module.exports = function (req, res) {
 									nombreUsuario: req.body.nombre,
 									idRegistro: idRegistro,
 									baseUrl: req.protocol + '://' + req.headers.host
-								})
+								}),
+								alternative: true
 							}]
-						});
+						}, function (err, message) { console.log(err || message); });
+						return res.status(200).json({ success: true, idRegistro: idRegistro });
 					});
 			}
 
