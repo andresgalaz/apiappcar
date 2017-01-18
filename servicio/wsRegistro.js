@@ -83,27 +83,16 @@ module.exports = function (req, res) {
 						var user = dataIns.toJSON();
 						new Model.UsuarioVeh({ pUsuario: user.pUsuario })
 							.fetch({ withRelated: ['vehiculos'] })
-							.then(function (dataSuccess) {
-								user = dataSuccess.toJSON();
+							.then(function (data) {
+								user = data.toJSON();
 								var usrOut = Model.UsuarioVeh.salida(user);
 								usrOut.success = true;
 								return res.status(200).json(usrOut);
 							});
-					})
-					.then(function () {
 						email.server.send({
 							from: 'SnapCar Seguros <no-responder@snapcar.com.ar>',
 							to: req.body.email,
 							subject: 'Confirme su Registro',
-							/*
-							attachment: [{
-								data: cEmailBody({
-									nombreUsuario: req.body.nombre,
-									idRegistro: idRegistro,
-									baseUrl: req.protocol + '://' + req.headers.host
-								})
-							}]
-							*/
 							attachment: [{
 								data: cEmailBody({
 									nombreUsuario: req.body.nombre,
