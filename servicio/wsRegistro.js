@@ -69,7 +69,12 @@ module.exports = function (req, res) {
 
 			if (pUsuario) {
 				// Actualiza
-				console.log('Actualiza usuario');
+				newUser
+					.save({ patch: true })
+					.then(function (data) {
+						user = data.toJSON();
+						return res.status(200).json(user);
+					});
 			} else {
 				var hashId = new Hash(config.secret);
 
