@@ -82,7 +82,9 @@ module.exports = function (req, res) {
 					}, { patch: false })
 					*/
 					.then(function (dataIns) {
-						console.log(data);
+						user = data.toJSON();
+						//return res.status(200).json(user);
+						console.log(user);
 					});
 				/*
 				newUser
