@@ -9,7 +9,8 @@ module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9),
         newUsuario = new Model.Usuario({ pUsuario: idDecoded });
 
-    newUsuario.fetch()
+    newUsuario
+        .fetch()
         .then(function (data) {
             if (data.attributes.bConfirmado === '1') {
                 estado = 'confirmado';
