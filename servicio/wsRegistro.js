@@ -70,6 +70,7 @@ module.exports = function (req, res) {
 			if (pUsuario) {
 				new Model.Usuario({ pUsuario: pUsuario })
 					.fetch()
+					/*
 					.save({
 						cEmail: req.body.email,
 						cPassword: req.body.password,
@@ -79,6 +80,7 @@ module.exports = function (req, res) {
 						dNacimiento: req.body.fechaNacimiento,
 						bConfirmado: '0'
 					}, { patch: false })
+					*/
 					.then(function (dataIns) {
 						console.log(data);
 					});
