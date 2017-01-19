@@ -40,7 +40,7 @@ app.get('/bitacora', function (req, res) {
 	res.sendfile('server_' + config.ambiente + '.log');
 });
 
-// Página de confirmación a la invitación
+// Página de confirmación de invitación
 app.get('/invitacion', function (req, res) {
 	var id = req.query.id;
 	require('./controllers/invitacion.js')(req, res, id);

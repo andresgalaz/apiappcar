@@ -14,7 +14,7 @@ module.exports = function(req,res){
 		if (data !== null ) {
 			// Almacena nueva contraseña y envía email
 			
-
+			
 			res.status(201).json({ success: true, message: 'Correo electrónico enviado' });
 		} else {
 			// No existe y se crea el usuario
