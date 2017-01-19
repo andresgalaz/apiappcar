@@ -19,8 +19,7 @@ module.exports = function (req, res, id) {
         .fetch()
         .then(function (data) {
             if (data.attributes.bConfirmado === '1') {
-                //estado = 'confirmado';
-                estado = 'confirmado'
+                estado = 'confirmado';
                 template(estado);
             } else {
                 this.save({ bConfirmado: '1' }, { patch: true })
@@ -32,7 +31,6 @@ module.exports = function (req, res, id) {
                             console.log('EXITO');
                             estado = 'exito';
                         }
-                        //
                         template(estado);
                     });
             }
