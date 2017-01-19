@@ -4,7 +4,7 @@ const config = require('../config/main');
 
 var hashId = new Hash(config.secret);
 
-module.exports = function (req, res, id, estado) {
+module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9),
         newInvitacion = new Model.Invitacion({ pInvitacion: idDecoded }),
         template = function (estado) {
