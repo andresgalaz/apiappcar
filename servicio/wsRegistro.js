@@ -57,10 +57,18 @@ module.exports = function (req, res) {
 				return res.status(400).json({ success: false, code: 1350, message: 'Fecha de nacimiento incorrecta.' });
 			}
 
-			var newUser = new Model.Usuario();
+			var newUser = new Model.Usuario({
+				cEmail: req.body.email,
+				cPassword: req.body.password,
+				cNombre: req.body.nombre,
+				nDni: req.body.dni,
+				cSexo: req.body.sexo,
+				dNacimiento: req.body.fechaNacimiento,
+				bConfirmado: '0'
+			});
 
 			if (pUsuario) {
-				newUser({ pUsuario: pUsuario })
+				new Model.Usuario({ pUsuario: pUsuario })
 					.save({
 						cEmail: req.body.email,
 						cPassword: req.body.password,
@@ -78,15 +86,7 @@ module.exports = function (req, res) {
 				var hashId = new Hash(config.secret);
 
 				newUser
-					.save({
-						cEmail: req.body.email,
-						cPassword: req.body.password,
-						cNombre: req.body.nombre,
-						nDni: req.body.dni,
-						cSexo: req.body.sexo,
-						dNacimiento: req.body.fechaNacimiento,
-						bConfirmado: '0'
-					})
+					.save()
 					.then(function (dataIns) {
 						var user = dataIns.toJSON();
 						new Model.UsuarioVeh({ pUsuario: user.pUsuario })
