@@ -15,7 +15,7 @@ module.exports = function (req, res) {
 		if (data !== null) {
 			// Almacena nueva contraseña y envía email
 			var newPassword = parseInt(Math.random()*10e6);
-			//req.body.password = config.encripta(req.body.password);
+			//req.body.password = config.encripta(newPassword);
 
 			res.status(201).json({ success: true, message: 'Correo electrónico enviado' });
 		} else {
