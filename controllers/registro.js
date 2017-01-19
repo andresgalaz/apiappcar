@@ -3,11 +3,12 @@ const Model = require('../db/model');
 const config = require('../config/main');
 
 var hashId = new Hash(config.secret),
-    estado = null;
+    
 
 module.exports = function (req, res, id) {
     var idDecoded = String(hashId.decode(id)).slice(9),
-        newUsuario = new Model.Usuario({ pUsuario: idDecoded });
+        newUsuario = new Model.Usuario({ pUsuario: idDecoded }),
+        estado = null;
 
     newUsuario
         .fetch()
