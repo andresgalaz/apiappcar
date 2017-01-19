@@ -68,7 +68,6 @@ module.exports = function (req, res) {
 			});
 
 			if (pUsuario) {
-				// Actualiza
 				newUser
 					.save({ patch: true })
 					.then(function (data) {
