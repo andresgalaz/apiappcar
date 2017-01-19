@@ -25,6 +25,10 @@ module.exports = function(req,res){
   				return res.status(401).json({ success: false, code:1130, message: 'Usuario no existe'});
 			} else {
 				user = data.toJSON();
+				// Valida si confirmo email
+				if (user.bConfirmado == undefined || user.bConfirmado != '1') {
+					return res.status(401).json({ success: false, code:1132, message: 'Usuario no ha confirmado email'});
+				}
 				// Acepta token de Google o Facebook, sino password
 				if( req.body.google || req.body.facebook || req.body.password ==  user.cPassword ) {
         			// Create token if the password matched and no error was thrown
