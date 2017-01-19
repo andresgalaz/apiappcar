@@ -64,8 +64,8 @@ module.exports = function (req, res) {
 					cNombre: req.body.nombre,
 					nDni: req.body.dni,
 					cSexo: req.body.sexo,
-					dNacimiento: req.body.fechaNacimiento,
-					bConfirmado: '0'
+					dNacimiento: req.body.fechaNacimiento/*,
+					bConfirmado: '0'/*
 				});
 			};
 
