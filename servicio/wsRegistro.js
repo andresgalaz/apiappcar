@@ -57,8 +57,21 @@ module.exports = function (req, res) {
 				return res.status(400).json({ success: false, code: 1350, message: 'Fecha de nacimiento incorrecta.' });
 			}
 
-/*
-			var newUser = new Model.Usuario({
+			/*
+						var newUser = new Model.Usuario({
+							cEmail: req.body.email,
+							cPassword: req.body.password,
+							cNombre: req.body.nombre,
+							nDni: req.body.dni,
+							cSexo: req.body.sexo,
+							dNacimiento: req.body.fechaNacimiento,
+							bConfirmado: '0'
+						});
+			*/
+
+			var newUser = new Model.Usuario();
+
+			newUser.add([
 				cEmail: req.body.email,
 				cPassword: req.body.password,
 				cNombre: req.body.nombre,
@@ -66,10 +79,7 @@ module.exports = function (req, res) {
 				cSexo: req.body.sexo,
 				dNacimiento: req.body.fechaNacimiento,
 				bConfirmado: '0'
-			});
-*/
-
-			var newUser = new Model.Usuario();
+			]);
 
 			if (pUsuario) {
 				new Model.Usuario({ pUsuario: pUsuario })
