@@ -69,18 +69,16 @@ module.exports = function (req, res) {
 
 			if (pUsuario) {
 				new Model.Usuario({ pUsuario: pUsuario })
-					.fetch()
-					/*
+					//.fetch()
 					.save({
-						cEmail: req.body.email,
+						cEmail: req.body.email/*,
 						cPassword: req.body.password,
 						cNombre: req.body.nombre,
 						nDni: req.body.dni,
 						cSexo: req.body.sexo,
 						dNacimiento: req.body.fechaNacimiento,
-						bConfirmado: '0'
+						bConfirmado: '0'*/
 					}, { patch: false })
-					*/
 					.then(function (data) {
 						user = data.toJSON();
 						return res.status(200).json(user);
