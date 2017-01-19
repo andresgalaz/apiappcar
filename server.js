@@ -52,12 +52,6 @@ app.get('/registro', function (req, res) {
 	require('./controllers/registro.js')(req, res, id);
 });
 
-// Página de recupero de contraseña
-app.get('/recuperar', function (req, res) {
-	var id = req.query.id;
-	require('./controllers/recuperarPassword.js')(req, res, id);
-});
-
 require('./app/routes')(app);
 
 // Start the server
