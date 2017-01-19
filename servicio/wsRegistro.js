@@ -79,7 +79,10 @@ module.exports = function (req, res) {
 						dNacimiento: req.body.fechaNacimiento,
 						bConfirmado: '0'
 					}, { patch: false })*/
-					.save({ cEmail: req.body.email })
+					.save({ 
+						cEmail: req.body.email,
+						cPassword: req.body.password
+					})
 					.then(function (data) {
 						user = data.toJSON();
 						return res.status(200).json(user);
