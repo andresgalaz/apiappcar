@@ -82,9 +82,7 @@ module.exports = function (req, res) {
 			if (pUsuario) {
 				newUser
 					.fetch({ pUsuario: pUsuario })
-					.then(function () {
-						this.save({ patch: true });
-					})
+					.save({ patch: true })
 					.then(function (data) {
 						user = data.toJSON();
 						return res.status(200).json(user);
