@@ -91,7 +91,8 @@ module.exports = function (req, res) {
 			} else {
 				var hashId = new Hash(config.secret);
 
-				newUser('0').save()
+				newUser('0')
+					.save()
 					.then(function (dataIns) {
 						var user = dataIns.toJSON();
 						new Model.UsuarioVeh({ pUsuario: user.pUsuario })
