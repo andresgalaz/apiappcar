@@ -1,6 +1,7 @@
 //const User = require('../app/models/user');
 const Model = require('../db/model');
 const moment = require("moment");
+const Hash = require('hashids');
 
 module.exports = function (req, res) {
 
@@ -14,6 +15,7 @@ module.exports = function (req, res) {
 		if (data !== null) {
 			// Almacena nueva contraseña y envía email
 			var nuevoPassword = parseInt(Math.random()*10e6);
+
 
 			res.status(201).json({ success: true, message: 'Correo electrónico enviado' });
 		} else {
