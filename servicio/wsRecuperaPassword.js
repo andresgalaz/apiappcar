@@ -21,7 +21,6 @@ module.exports = function (req, res) {
 				.then(function () {
 					//
 					const cEmailBody = pug.compileFile('views/emailRegistro.pug');
-					var idRegistro = hashId.encode(10e10 + user.pUsuario);
 
 					email.server.send({
 						from: 'SnapCar Seguros <no-responder@snapcar.com.ar>',
@@ -29,7 +28,7 @@ module.exports = function (req, res) {
 						subject: 'Nueva contraseña',
 						attachment: [{
 							data: cEmailBody({
-								idRegistro: idRegistro,
+
 								baseUrl: req.protocol + '://' + req.headers.host
 							}),
 							alternative: true
