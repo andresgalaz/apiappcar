@@ -68,6 +68,21 @@ module.exports = function (req, res) {
 			});
 
 			if (pUsuario) {
+				new Model.Usuario({ pUsuario: pUsuario })
+					.fetch()
+					.save({
+						cEmail: req.body.email,
+						cPassword: req.body.password,
+						cNombre: req.body.nombre,
+						nDni: req.body.dni,
+						cSexo: req.body.sexo,
+						dNacimiento: req.body.fechaNacimiento,
+						bConfirmado: '0'
+					})
+					.then(function (dataIns) {
+						console.log(data);
+					});
+				/*
 				newUser
 					.fetch({ pUsuario: pUsuario })
 					.save({ patch: true })
@@ -75,6 +90,7 @@ module.exports = function (req, res) {
 						user = data.toJSON();
 						return res.status(200).json(user);
 					});
+				*/
 			} else {
 				var hashId = new Hash(config.secret);
 
