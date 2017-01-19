@@ -14,12 +14,29 @@ module.exports = function (req, res) {
 	new Model.Usuario({ cEmail: req.body.email }).fetch().then(function (data) {
 		if (data !== null) {
 			// Almacena nueva contraseña y envía email
-			var newPassword = parseInt(Math.random()*10e6);
+			var newPassword = parseInt(Math.random() * 10e6);
 			//req.body.password = config.encripta(newPassword);
 
 			this.save({ cPassword: newPassword })
 				.then(function () {
+					//
+					const cEmailBody = pug.compileFile('views/emailRegistro.pug');
+					var idRegistro = hashId.encode(10e10 + user.pUsuario);
 
+					email.server.send({
+						from: 'SnapCar Seguros <no-responder@snapcar.com.ar>',
+						to: req.body.email,
+						subject: 'Confirme su registro',
+						attachment: [{
+							data: cEmailBody({
+								nombreUsuario: req.body.nombre,
+								idRegistro: idRegistro,
+								baseUrl: req.protocol + '://' + req.headers.host
+							}),
+							alternative: true
+						}]
+					}, function (err, message) { console.log(err || message); });
+					//
 				});
 
 			res.status(201).json({ success: true, message: 'Correo electrónico enviado' });
