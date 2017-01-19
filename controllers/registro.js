@@ -2,8 +2,7 @@ const Hash = require('hashids');
 const Model = require('../db/model');
 const config = require('../config/main');
 
-var hashId = new Hash(config.secret),
-	estado = null;
+var hashId = new Hash(config.secret);
 
 module.exports = function (req, res, id) {
 	var idDecoded = String(hashId.decode(id)).slice(9),
