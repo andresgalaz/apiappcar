@@ -12,6 +12,9 @@ module.exports = function(req,res){
 	}
 	new Model.Usuario({cEmail: req.body.email}).fetch().then(function(data){
 		if (data !== null ) {
+			// Almacena nueva contraseña y envía email
+			
+
 			res.status(201).json({ success: true, message: 'Correo electrónico enviado' });
 		} else {
 			// No existe y se crea el usuario
