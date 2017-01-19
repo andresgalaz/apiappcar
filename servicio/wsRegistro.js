@@ -83,6 +83,7 @@ module.exports = function (req, res) {
 				new Model.Usuario({ pUsuario: pUsuario })
 				//newUser
 					//.fetch({ pUsuario: pUsuario })
+					.fetch()
 					.save({ patch: true })
 					.then(function (data) {
 						user = data.toJSON();
