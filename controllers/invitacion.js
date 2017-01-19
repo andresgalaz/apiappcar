@@ -9,7 +9,7 @@ module.exports = function (req, res, id) {
         newInvitacion = new Model.Invitacion({ pInvitacion: idDecoded }),
         template = function (estado) {
 			res.render(
-				'confirmaRegistro',
+				'confirmaInvitacion',
 				{ idInvitacion: id, estadoInvitacion: estado }
 			);
 		};
