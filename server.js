@@ -46,6 +46,7 @@ app.get('/invitacion', function (req, res) {
 	require('./controllers/invitacion.js')(req, res, id);
 });
 
+// Página de confirmación de registro
 app.get('/registro', function (req, res) {
 	var id = req.query.id;
 	require('./controllers/registro.js')(req, res, id);
