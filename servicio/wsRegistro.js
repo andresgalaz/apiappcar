@@ -82,7 +82,7 @@ module.exports = function (req, res) {
 			*/
 
 			if (pUsuario) {
-				newUser('1')
+				newUser()
 					.save({ method: 'update' })
 					.then(function (data) {
 						user = data.toJSON();
@@ -91,7 +91,7 @@ module.exports = function (req, res) {
 			} else {
 				var hashId = new Hash(config.secret);
 
-				newUser('0')
+				newUser()
 					.save()
 					.then(function (dataIns) {
 						var user = dataIns.toJSON();
