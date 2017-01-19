@@ -82,6 +82,7 @@ module.exports = function (req, res) {
 			*/
 
 			if (pUsuario) {
+				console.log('Usuario:', pUsuario);
 				newUser()
 					.fetch({ pUsuario: pUsuario })
 					.save({ patch: true })
