@@ -69,16 +69,6 @@ module.exports = function (req, res) {
 
 			if (pUsuario) {
 				new Model.Usuario({ pUsuario: pUsuario })
-					/*
-					.save({
-						cEmail: req.body.email,
-						cPassword: req.body.password,
-						cNombre: req.body.nombre,
-						nDni: req.body.dni,
-						cSexo: req.body.sexo,
-						dNacimiento: req.body.fechaNacimiento,
-						bConfirmado: '0'
-					}, { patch: false })*/
 					.save({
 						cEmail: req.body.email,
 						cPassword: req.body.password,
