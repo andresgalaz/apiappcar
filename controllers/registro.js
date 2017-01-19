@@ -22,11 +22,11 @@ module.exports = function (req, res, id) {
                             console.log('EXITO');
                             estado = 'exito';
                         }
+                    })
+                    .then(function () {
+                        console.log('ESTADO:', estado);
                     });
             }
-        })
-        .then(function () {
-            console.log('ESTADO:', estado);
         });
 };
 
