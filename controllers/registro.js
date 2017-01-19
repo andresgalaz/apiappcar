@@ -18,21 +18,23 @@ module.exports = function (req, res, id) {
     newUsuario
         .fetch()
         .then(function (data) {
-            if (data.attributes.bConfirmado === '1') {
-                estado = 'confirmado';
-                template(estado);
-            } else {
-                this.save({ bConfirmado: '1' }, { patch: true })
-                    .then(function (data) {
-                        if (data === null) {
-                            console.log('ERROR');
-                            estado = 'error';
-                        } else {
-                            console.log('EXITO');
-                            estado = 'exito';
-                        }
-                        template(estado);
-                    });
+            try {
+                if (data.attributes.bConfirmado === '1') {
+                    estado = 'confirmado';
+                    template(estado);
+                } else {
+                    this.save({ bConfirmado: '1' }, { patch: true })
+                        .then(function (data) {
+                            if (data === null) {
+                                estado = 'error';
+                            } else {
+                                estado = 'exito';
+                            }
+                            template(estado);
+                        });
+                }
+             } catch (err) {
+                template('error');
             }
         });
 };
