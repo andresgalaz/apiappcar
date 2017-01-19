@@ -20,7 +20,7 @@ module.exports = function (req, res) {
 			this.save({ cPassword: encodePassword })
 				.then(function () {
 					//
-					const cEmailBody = pug.compileFile('views/emailRecuperaPassword');
+					const cEmailBody = pug.compileFile('views/emailRecuperaPassword.pug');
 
 					email.server.send({
 						from: 'SnapCar Seguros <no-responder@snapcar.com.ar>',
@@ -28,7 +28,7 @@ module.exports = function (req, res) {
 						subject: 'Nueva contraseña',
 						attachment: [{
 							data: cEmailBody({
-
+								newPassword: newPassword,
 								baseUrl: req.protocol + '://' + req.headers.host
 							}),
 							alternative: true
