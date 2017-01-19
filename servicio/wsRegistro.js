@@ -69,7 +69,7 @@ module.exports = function (req, res) {
 
 			if (pUsuario) {
 				new Model.Usuario({ pUsuario: pUsuario })
-					//.fetch()
+					.fetch()
 					/*
 					.save({
 						cEmail: req.body.email,
