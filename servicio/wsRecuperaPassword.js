@@ -18,6 +18,9 @@ module.exports = function (req, res) {
 			//req.body.password = config.encripta(newPassword);
 
 			this.save({ cPassword: newPassword })
+				.then(function () {
+
+				});
 
 			res.status(201).json({ success: true, message: 'Correo electrónico enviado' });
 		} else {
