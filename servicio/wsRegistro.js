@@ -83,7 +83,7 @@ module.exports = function (req, res) {
 
 			if (pUsuario) {
 				newUser('1')
-					.save({ method: true })
+					.save({ method: 'update' })
 					.then(function (data) {
 						user = data.toJSON();
 						return res.status(200).json(user);
