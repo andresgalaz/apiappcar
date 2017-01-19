@@ -82,15 +82,6 @@ module.exports = function (req, res) {
 						user = data.toJSON();
 						return res.status(200).json(user);
 					});
-				/*
-				newUser
-					.fetch()
-					.save({ patch: true })
-					.then(function (data) {
-						user = data.toJSON();
-						return res.status(200).json(user);
-					});
-				*/
 			} else {
 				var hashId = new Hash(config.secret);
 
