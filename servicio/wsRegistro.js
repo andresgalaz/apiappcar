@@ -60,7 +60,7 @@ module.exports = function (req, res) {
 			var newUser = new Model.Usuario();
 
 			if (pUsuario) {
-				new Model.Usuario({ pUsuario: pUsuario })
+				newUser({ pUsuario: pUsuario })
 					.save({
 						cEmail: req.body.email,
 						cPassword: req.body.password,
