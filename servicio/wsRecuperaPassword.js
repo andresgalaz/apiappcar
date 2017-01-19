@@ -17,7 +17,7 @@ module.exports = function (req, res) {
 			var newPassword = parseInt(Math.random() * 10e6);
 			var encodePassword = config.encripta(newPassword);
 
-			this.save({ cPassword: newPassword })
+			this.save({ cPassword: encodePassword })
 				.then(function () {
 					//
 					const cEmailBody = pug.compileFile('views/emailRegistro.pug');
