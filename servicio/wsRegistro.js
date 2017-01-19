@@ -80,7 +80,7 @@ module.exports = function (req, res) {
 			*/
 
 			if (pUsuario) {
-				console.log(newUser);
+				console.log('Usuario:', newUser);
 				newUser.fetch({ pUsuario: pUsuario })
 					.save({ patch: true })
 					.then(function (data) {
