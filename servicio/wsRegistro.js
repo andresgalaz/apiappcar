@@ -58,7 +58,7 @@ module.exports = function (req, res) {
 			}
 
 			var newUser = function () {
-				return new Model.Usuario({
+				new Model.Usuario({
 					cEmail: req.body.email,
 					cPassword: req.body.password,
 					cNombre: req.body.nombre,
@@ -83,7 +83,6 @@ module.exports = function (req, res) {
 
 			if (pUsuario) {
 				newUser()
-					.fetch()
 					.save({ patch: true })
 					.then(function (data) {
 						user = data.toJSON();
