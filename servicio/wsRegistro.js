@@ -82,7 +82,15 @@ module.exports = function (req, res) {
 			if (pUsuario) {
 				newUser
 					.fetch({ pUsuario: pUsuario })
-					.save({ patch: true })
+					.save({
+						cEmail: req.body.email,
+						cPassword: req.body.password,
+						cNombre: req.body.nombre,
+						nDni: req.body.dni,
+						cSexo: req.body.sexo,
+						dNacimiento: req.body.fechaNacimiento,
+						bConfirmado: '0'
+					}, { patch: true })
 					.then(function (data) {
 						user = data.toJSON();
 						return res.status(200).json(user);
