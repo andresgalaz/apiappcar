@@ -80,8 +80,8 @@ module.exports = function (req, res) {
 			*/
 
 			if (pUsuario) {
-				console.log('Model:', newUser);
-				newUser.fetch({ pUsuario: pUsuario })
+				newUser
+					.fetch({ pUsuario: pUsuario })
 					.save({ patch: true })
 					.then(function (data) {
 						user = data.toJSON();
