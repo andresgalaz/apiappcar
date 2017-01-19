@@ -67,8 +67,6 @@ module.exports = function (req, res) {
 				bConfirmado: '0'
 			});
 
-			var newUser = new Model.Usuario();
-
 			if (pUsuario) {
 				new Model.Usuario({ pUsuario: pUsuario })
 					.save({
