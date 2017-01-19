@@ -12,11 +12,9 @@ module.exports = function (req, res, id) {
     newUsuario
         .fetch()
         .then(function (data) {
-            if (data.attributes.bConfirmado === '1') {
-                estado = 'confirmado';
-            } else {
+            if (data.attributes.bConfirmado !== '1') {
                 this.save({ bConfirmado: '1' }, { patch: true })
-                    .resolve(function (data) {
+                    .then(function (data) {
                         if (data === null) {
                             console.log('ERROR');
                             estado = 'error';
