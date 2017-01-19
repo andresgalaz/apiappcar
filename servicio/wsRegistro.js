@@ -80,7 +80,7 @@ module.exports = function (req, res) {
 			*/
 
 			if (pUsuario) {
-				new Model.Invitacion({ pUsuario: pUsuario })
+				new Model.Usuario({ pUsuario: pUsuario })
 				//newUser
 					//.fetch({ pUsuario: pUsuario })
 					.save({ patch: true })
