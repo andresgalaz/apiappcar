@@ -33,7 +33,8 @@ module.exports = function (req, res, id) {
                             template(estado);
                         });
                 }
-             } catch (err) {
+            } catch (err) {
+                console.log(err);
                 template('error');
             }
         });
