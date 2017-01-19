@@ -36,10 +36,3 @@ module.exports = function (req, res, id) {
 			}
 		});
 };
-
-/*
-res.render(
-    'confirmaRegistro',
-    { idRegistro: id, estadoRegistro: estado }
-);
-*/
