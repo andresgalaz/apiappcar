@@ -20,7 +20,8 @@ module.exports = function (req, res, id) {
         .then(function (data) {
             if (data.attributes.bConfirmado === '1') {
                 //estado = 'confirmado';
-                template(confirmado);
+                estado = 'confirmado'
+                template(estado);
             } else {
                 this.save({ bConfirmado: '1' }, { patch: true })
                     .then(function (data) {
