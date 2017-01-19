@@ -20,7 +20,7 @@ module.exports = function (req, res) {
 			this.save({ cPassword: encodePassword })
 				.then(function () {
 					//
-					const cEmailBody = pug.compileFile('views/emailRegistro.pug');
+					const cEmailBody = pug.compileFile('views/emailRecuperaPassword');
 
 					email.server.send({
 						from: 'SnapCar Seguros <no-responder@snapcar.com.ar>',
