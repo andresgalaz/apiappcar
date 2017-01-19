@@ -80,8 +80,7 @@ module.exports = function (req, res) {
 			*/
 
 			if (pUsuario) {
-				newUser()
-					.fetch({ pUsuario: pUsuario })
+				newUser.fetch({ pUsuario: pUsuario })
 					.save({ patch: true })
 					.then(function (data) {
 						user = data.toJSON();
@@ -90,8 +89,7 @@ module.exports = function (req, res) {
 			} else {
 				var hashId = new Hash(config.secret);
 
-				newUser()
-					.save()
+				newUser.save()
 					.then(function (dataIns) {
 						var user = dataIns.toJSON();
 						new Model.UsuarioVeh({ pUsuario: user.pUsuario })
