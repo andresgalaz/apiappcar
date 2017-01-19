@@ -81,7 +81,12 @@ module.exports = function (req, res) {
 					}, { patch: false })*/
 					.save({ 
 						cEmail: req.body.email,
-						cPassword: req.body.password
+						cPassword: req.body.password,
+						cNombre: req.body.nombre,
+						nDni: req.body.dni,
+						cSexo: req.body.sexo,
+						dNacimiento: req.body.fechaNacimiento,
+						bConfirmado: '0'
 					})
 					.then(function (data) {
 						user = data.toJSON();
