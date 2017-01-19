@@ -67,18 +67,6 @@ module.exports = function (req, res) {
 				bConfirmado: '0'
 			});
 
-			/*
-			var newUser = new Model.Usuario({
-				cEmail: req.body.email,
-				cPassword: req.body.password,
-				cNombre: req.body.nombre,
-				nDni: req.body.dni,
-				cSexo: req.body.sexo,
-				dNacimiento: req.body.fechaNacimiento,
-				bConfirmado: '0'
-			});
-			*/
-
 			if (pUsuario) {
 				newUser
 					.fetch({ pUsuario: pUsuario })
