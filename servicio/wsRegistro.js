@@ -105,7 +105,7 @@ module.exports = function (req, res) {
 							subject: 'Confirme su registro',
 							attachment: [{
 								data: cEmailBody({
-									nombreUsuario: req.body.nombre.split('').[0],
+									nombreUsuario: req.body.nombre.split('')[0],
 									idRegistro: idRegistro,
 									baseUrl: req.protocol + '://' + req.headers.host
 								}),
