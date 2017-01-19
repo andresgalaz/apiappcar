@@ -64,8 +64,8 @@ module.exports = function (req, res) {
 					cNombre: req.body.nombre,
 					nDni: req.body.dni,
 					cSexo: req.body.sexo,
-					dNacimiento: req.body.fechaNacimiento/*,
-					bConfirmado: '0'/*
+					dNacimiento: req.body.fechaNacimiento,
+					bConfirmado: '0'
 				});
 			};
 
@@ -83,8 +83,7 @@ module.exports = function (req, res) {
 
 			if (pUsuario) {
 				newUser()
-					.fetch()
-					.save({ patch: true })
+					.save()
 					.then(function (data) {
 						user = data.toJSON();
 						return res.status(200).json(user);
