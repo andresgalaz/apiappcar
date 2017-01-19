@@ -19,22 +19,18 @@ module.exports = function (req, res, id, estado) {
         .then(function (data) {
             try {
                 if (data.attributes.bRecibido === '1') {
-                    //estado = 'aceptado';
                     template('aceptado');
                 } else {
                     this.save({ bRecibido: '1' }, { patch: true })
                         .then(function (data) {
                             if (data === null) {
-                                //estado = 'error';
                                 template('error');
                             } else {
-                                //estado = 'exito';
                                 template('exito');
                             }
                         });
                 }
             } catch (err) {
-                //estado = 'error';
                 console.log(err);
                 template('error');
             }
