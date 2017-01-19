@@ -19,7 +19,7 @@ module.exports = function (req, res, id) {
 		.then(function (data) {
 			try {
 				if (data.attributes.bConfirmado === '1') {
-					template(estado);
+					template('confirmado');
 				} else {
 					this.save({ bConfirmado: '1' }, { patch: true })
 						.then(function (data) {
