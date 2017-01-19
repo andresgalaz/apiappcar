@@ -69,6 +69,7 @@ module.exports = function (req, res) {
 				});
 			};
 
+/*
 			var newUser = new Model.Usuario({
 				cEmail: req.body.email,
 				cPassword: req.body.password,
@@ -78,6 +79,7 @@ module.exports = function (req, res) {
 				dNacimiento: req.body.fechaNacimiento,
 				bConfirmado: '0'
 			});
+*/
 
 			if (pUsuario) {
 				newUser
