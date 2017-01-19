@@ -91,7 +91,6 @@ module.exports = function (req, res) {
 					.then(function (data) {
 						user = data.toJSON();
 						return res.status(200).json(user);
-						console.log(user);
 					});
 				/*
 				newUser
