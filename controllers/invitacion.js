@@ -10,7 +10,7 @@ module.exports = function (req, res, id, estado) {
         template = function (estado) {
 			res.render(
 				'confirmaRegistro',
-				{ idRegistro: id, estadoRegistro: estado }
+				{ idRegistro: id, estadoInvitacion: estado }
 			);
 		};
 
