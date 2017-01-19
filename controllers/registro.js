@@ -20,16 +20,13 @@ module.exports = function (req, res, id) {
 		.then(function (data) {
 			try {
 				if (data.attributes.bConfirmado === '1') {
-					estado = 'confirmado';
 					template(estado);
 				} else {
 					this.save({ bConfirmado: '1' }, { patch: true })
 						.then(function (data) {
 							if (data === null) {
-								//estado = 'error';
 								template('error');
 							} else {
-								//estado = 'exito';
 								template('exito');
 							}
 						});
