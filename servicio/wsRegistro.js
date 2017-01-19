@@ -70,15 +70,17 @@ module.exports = function (req, res) {
 			if (pUsuario) {
 				new Model.Usuario({ pUsuario: pUsuario })
 					//.fetch()
+					/*
 					.save({
-						cEmail: req.body.email/*,
+						cEmail: req.body.email,
 						cPassword: req.body.password,
 						cNombre: req.body.nombre,
 						nDni: req.body.dni,
 						cSexo: req.body.sexo,
 						dNacimiento: req.body.fechaNacimiento,
-						bConfirmado: '0'*/
-					}, { patch: false })
+						bConfirmado: '0'
+					}, { patch: false })*/
+					.save({ cEmail: 'test@test.com' })
 					.then(function (data) {
 						user = data.toJSON();
 						return res.status(200).json(user);
