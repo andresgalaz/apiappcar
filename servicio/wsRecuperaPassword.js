@@ -17,6 +17,8 @@ module.exports = function (req, res) {
 			var newPassword = parseInt(Math.random()*10e6);
 			//req.body.password = config.encripta(newPassword);
 
+			this.save({ cPassword: newPassword })
+
 			res.status(201).json({ success: true, message: 'Correo electrónico enviado' });
 		} else {
 			// No existe y se crea el usuario
