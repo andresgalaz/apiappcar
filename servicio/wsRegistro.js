@@ -81,7 +81,7 @@ module.exports = function (req, res) {
 						bConfirmado: '0'
 					}, { patch: false })
 					*/
-					.then(function (dataIns) {
+					.then(function (data) {
 						user = data.toJSON();
 						//return res.status(200).json(user);
 						console.log(user);
