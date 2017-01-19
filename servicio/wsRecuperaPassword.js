@@ -14,7 +14,7 @@ module.exports = function (req, res) {
 	new Model.Usuario({ cEmail: req.body.email }).fetch().then(function (data) {
 		if (data !== null) {
 			// Almacena nueva contraseña y envía email
-			var nuevoPassword = parseInt(Math.random()*10e6);
+			var newPassword = parseInt(Math.random()*10e6);
 			//req.body.password = config.encripta(req.body.password);
 
 			res.status(201).json({ success: true, message: 'Correo electrónico enviado' });
