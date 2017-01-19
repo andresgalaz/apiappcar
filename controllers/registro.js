@@ -12,7 +12,9 @@ module.exports = function (req, res, id) {
     newUsuario
         .fetch()
         .then(function (data) {
-            if (data.attributes.bConfirmado !== '1') {
+            if (data.attributes.bConfirmado === '1') {
+                estado = 'confirmado';
+            } else {
                 this.save({ bConfirmado: '1' }, { patch: true })
                     .then(function (data) {
                         if (data === null) {
@@ -22,11 +24,11 @@ module.exports = function (req, res, id) {
                             console.log('EXITO');
                             estado = 'exito';
                         }
-                    })
-                    .then(function () {
-                        console.log('ESTADO:', estado);
                     });
             }
+        })
+        .then(function () {
+            console.log('ESTADO:', estado);
         });
 };
 
