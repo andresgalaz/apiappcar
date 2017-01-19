@@ -85,7 +85,15 @@ module.exports = function (req, res) {
 			} else {
 				var hashId = new Hash(config.secret);
 
-				newUser
+				new Model.Usuario({
+					cEmail: req.body.email,
+					cPassword: req.body.password,
+					cNombre: req.body.nombre,
+					nDni: req.body.dni,
+					cSexo: req.body.sexo,
+					dNacimiento: req.body.fechaNacimiento,
+					bConfirmado: '0'
+				})
 					.save()
 					.then(function (dataIns) {
 						var user = dataIns.toJSON();
