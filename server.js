@@ -52,6 +52,8 @@ app.get('/registro', function (req, res) {
 	require('./controllers/registro.js')(req, res, id);
 });
 
+// Página de recupero de contraseña
+
 require('./app/routes')(app);
 
 // Start the server
