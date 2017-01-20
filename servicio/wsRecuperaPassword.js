@@ -24,24 +24,24 @@ module.exports = function (req, res) {
 				this.where({ cEmail: req.body.email })
 					.save({ cPassword: nuevoPassword }, { method: 'update' }, { patch: true })
 					.then(function (data) {
-						console.log('DATA:', data);
+						email.server.send({
+							from: 'SnapCar Seguros <no-responder@snapcar.com.ar>',
+							to: req.body.email,
+							subject: 'Nueva contraseña',
+							attachment: [{
+								data: cEmailBody({
+									nuevoPassword: nuevoPassword,
+									baseUrl: req.protocol + '://' + req.headers.host
+								}),
+								alternative: true
+							}]
+						}, function (err, message) { console.log(err || message); });
 					});
 			} else {
 				console.log('ERROR');
 			}
 		});
 
-
-	/*
-			.where({ cEmail: req.body.email })
-			.save({ cPassword: nuevoPassword }, { method: 'update' }, { patch: true })
-			.NoRowsUpdatedError(function () {
-				console.log('DATA:', data);
-			})
-			.then(function (data) {
-				console.log('DATA:', data);
-			});
-	*/
 	/*
 	new Model.Usuario({ cEmail: req.body.email }).fetch().then(function (data) {
 		if (data !== null) {
