@@ -18,7 +18,7 @@ module.exports = function (req, res) {
 		//encodePassword = config.encripta(nuevoPassword);
 
 	new Model.Usuario({ cEmail: req.body.email })
-		.save({ cPassword: encodePassword }, { patch: true })
+		.save({ cPassword: nuevoPassword }, { patch: true })
 		.then(function (data) {
 			console.log('DATA:', data);
 		});
