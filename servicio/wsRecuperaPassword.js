@@ -17,11 +17,10 @@ module.exports = function (req, res) {
 	var nuevoPassword = String(parseInt(Math.random() * 10e6));
 		//encodePassword = config.encripta(nuevoPassword);
 
-	console.log('EMAIL:', req.body.email);
-
 	new Model.Usuario({ cEmail: req.body.email })
 		//.save({ cPassword: nuevoPassword }, { patch: true })
-		.fetch(function (data) {
+		.fetch()
+		.then(function (data) {
 			console.log('DATA:', data);
 		});
 
