@@ -14,7 +14,7 @@ module.exports = function (req, res) {
 		return res.status(400).json({ success: false, code: 1210, message: 'Falta email.' });
 	}
 
-	var nuevoPassword = parseInt(Math.random() * 10e6);
+	var nuevoPassword = String(parseInt(Math.random() * 10e6));
 		//encodePassword = config.encripta(nuevoPassword);
 
 	new Model.Usuario({ cEmail: req.body.email })
