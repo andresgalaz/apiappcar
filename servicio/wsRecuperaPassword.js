@@ -40,6 +40,7 @@ module.exports = function (req, res) {
 							}]
 						}, function (err, message) { console.log(err || message); });
 					});
+					res.status(201).json({ success: true, message: 'Correo electrónico enviado' });
 			} else {
 				res.status(400).json({ success: false, code: 1220, message: 'Cuenta no existe' });
 			}
