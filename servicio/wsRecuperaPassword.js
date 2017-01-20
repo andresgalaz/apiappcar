@@ -16,7 +16,7 @@ module.exports = function (req, res) {
 		if (data !== null) {
 			// Almacena nueva contraseña y envía email
 			var nuevoPassword = parseInt(Math.random() * 10e6);
-			var encodePassword = config.encripta(newPassword);
+			var encodePassword = config.encripta(nuevoPassword);
 
 			this.save({ cPassword: encodePassword }, { patch: false })
 				.then(function () {
