@@ -17,7 +17,8 @@ module.exports = function (req, res) {
 	var nuevoPassword = String(parseInt(Math.random() * 10e6));
 		//encodePassword = config.encripta(nuevoPassword);
 
-	new Model.Usuario({ cEmail: req.body.email })
+	new Model.Usuario()
+		.where({ cEmail: req.body.email })
 		.save({ cPassword: nuevoPassword }, { patch: true })
 		.then(function () {
 			console.log('DATA:', data);
