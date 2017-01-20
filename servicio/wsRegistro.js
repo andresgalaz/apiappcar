@@ -67,7 +67,7 @@ module.exports = function (req, res) {
 						cSexo: req.body.sexo,
 						dNacimiento: req.body.fechaNacimiento,
 						bConfirmado: '0'
-					}, { patch: false })
+					}, {method: 'update'}, { patch: true })
 					.then(function (data) {
 						user = data.toJSON();
 						return res.status(200).json(user);
