@@ -35,7 +35,7 @@ module.exports = function (req, res) {
 							subject: 'Nueva contraseña',
 							attachment: [{
 								data: cEmailBody({
-									nuevoPassword: nuevoPassword,
+									nuevoPassword: tempPassword,
 									baseUrl: req.protocol + '://' + req.headers.host
 								}),
 								alternative: true
