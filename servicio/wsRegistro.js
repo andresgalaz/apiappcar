@@ -58,7 +58,8 @@ module.exports = function (req, res) {
 			}
 
 			if (pUsuario) {
-				new Model.Usuario({ pUsuario: pUsuario })
+				new Model.Usuario()
+					.where({ pUsuario: pUsuario })
 					.save({
 						cEmail: req.body.email,
 						cPassword: req.body.password,
