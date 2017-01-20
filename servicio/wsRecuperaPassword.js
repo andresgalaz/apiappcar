@@ -9,9 +9,18 @@ module.exports = function (req, res) {
 	// Registra nuevos usuarios o usuarios existentes en dispositivos nuevos
 	console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
 	console.log(req.body);
+
 	if (!req.body.email) {
 		return res.status(400).json({ success: false, code: 1210, message: 'Falta email.' });
 	}
+
+	new Model.Usuario({ cEmail: req.body.email })
+		.fetch(function (data) {
+				console.log('DATA:', data);
+			}
+		);
+
+	/*
 	new Model.Usuario({ cEmail: req.body.email }).fetch().then(function (data) {
 		if (data !== null) {
 			// Almacena nueva contraseña y envía email
@@ -44,5 +53,5 @@ module.exports = function (req, res) {
 			// No existe y se crea el usuario
 			res.status(400).json({ success: false, code: 1220, message: 'Cuenta no existe' });
 		}
-	});
+	});*/
 };
