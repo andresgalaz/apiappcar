@@ -2,6 +2,7 @@
 const config = require('../config/main');
 const Model = require('../db/model');
 const moment = require("moment");
+const pug = require('pug');
 
 module.exports = function (req, res) {
 
