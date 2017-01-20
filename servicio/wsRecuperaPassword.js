@@ -15,11 +15,11 @@ module.exports = function (req, res) {
 	}
 
 	var nuevoPassword = String(parseInt(Math.random() * 10e6));
-		//encodePassword = config.encripta(nuevoPassword);
+	//encodePassword = config.encripta(nuevoPassword);
 
 	new Model.Usuario()
 		.where({ cEmail: req.body.email })
-		.save({ cPassword: nuevoPassword }, {method: 'update'}, { patch: true })
+		.save({ cPassword: nuevoPassword }, { method: 'update' }, { patch: true })
 		.then(function (data) {
 			console.log('DATA:', data);
 		});
