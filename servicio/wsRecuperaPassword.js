@@ -17,9 +17,8 @@ module.exports = function (req, res) {
 			var nuevoPassword = parseInt(Math.random() * 10e6);
 			var encodePassword = config.encripta(newPassword);
 
-			this.save({ cPassword: encodePassword })
+			this.save({ cPassword: encodePassword }, { patch: false })
 				.then(function () {
-					//
 					const cEmailBody = pug.compileFile('views/emailRecuperaPassword.pug');
 
 					email.server.send({
@@ -34,7 +33,6 @@ module.exports = function (req, res) {
 							alternative: true
 						}]
 					}, function (err, message) { console.log(err || message); });
-					//
 				});
 
 			res.status(201).json({ success: true, message: 'Correo electrónico enviado' });
