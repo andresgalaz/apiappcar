@@ -15,10 +15,10 @@ module.exports = function (req, res) {
 	}
 
 	new Model.Usuario({ cEmail: req.body.email })
-		.fetch(function (data) {
-				console.log('DATA:', data);
-			}
-		);
+		.fetch()
+		.then(function (data) {
+			console.log('DATA:', data);
+		});
 
 	/*
 	new Model.Usuario({ cEmail: req.body.email }).fetch().then(function (data) {
