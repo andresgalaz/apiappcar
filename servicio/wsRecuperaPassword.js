@@ -15,7 +15,7 @@ module.exports = function (req, res) {
 	}
 
 	new Model.Usuario({ cEmail: req.body.email })
-		.fetch()
+		.save({ cPassword: encodePassword }, { patch: true })
 		.then(function (data) {
 			console.log('DATA:', data);
 		});
