@@ -19,7 +19,7 @@ module.exports = function (req, res) {
 
 	new Model.Usuario()
 		.where({ cEmail: req.body.email })
-		.save({ cPassword: nuevoPassword }, { patch: true })
+		.save({ cPassword: nuevoPassword }, {method: 'update'}, { patch: true })
 		.then(function (data) {
 			console.log('DATA:', data);
 		});
