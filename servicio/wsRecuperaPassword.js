@@ -17,6 +17,7 @@ module.exports = function (req, res) {
 	}
 
 	var nuevoPassword = String(parseInt(Math.random() * 10e6)),
+		hashId = new Hash(config.secret),
 		encodedPassword = config.encripta(nuevoPassword);
 
 	const cEmailBody = pug.compileFile('views/emailRecuperaPassword.pug');
