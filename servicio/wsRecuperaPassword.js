@@ -2,6 +2,7 @@
 const config = require('../config/main');
 const Model = require('../db/model');
 const email = require('../config/emailServer');
+const Hash = require('hashids');
 const moment = require("moment");
 const pug = require('pug');
 
