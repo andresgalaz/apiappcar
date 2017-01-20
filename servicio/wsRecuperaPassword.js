@@ -17,13 +17,31 @@ module.exports = function (req, res) {
 	var nuevoPassword = String(parseInt(Math.random() * 10e6));
 	//encodePassword = config.encripta(nuevoPassword);
 
-	new Model.Usuario()
-		.where({ cEmail: req.body.email })
-		.save({ cPassword: nuevoPassword }, { method: 'update' }, { patch: true })
+	new Model.Usuario({ cEmail: req.body.email })
+		.fetch()
 		.then(function (data) {
-			console.log('DATA:', data);
+			if (data !== null) {
+				this.where({ cEmail: req.body.email })
+					.save({ cPassword: nuevoPassword }, { method: 'update' }, { patch: true })
+					.then(function (data) {
+						console.log('DATA:', data);
+					});
+			} else {
+
+			}
 		});
 
+
+	/*
+			.where({ cEmail: req.body.email })
+			.save({ cPassword: nuevoPassword }, { method: 'update' }, { patch: true })
+			.NoRowsUpdatedError(function () {
+				console.log('DATA:', data);
+			})
+			.then(function (data) {
+				console.log('DATA:', data);
+			});
+	*/
 	/*
 	new Model.Usuario({ cEmail: req.body.email }).fetch().then(function (data) {
 		if (data !== null) {
