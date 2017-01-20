@@ -14,15 +14,15 @@ module.exports = function (req, res) {
 		return res.status(400).json({ success: false, code: 1210, message: 'Falta email.' });
 	}
 
-	var nuevoPassword = String(parseInt(Math.random() * 10e6));
-	//encodePassword = config.encripta(nuevoPassword);
+	var nuevoPassword = String(parseInt(Math.random() * 10e6)),
+		encodedPassword = config.encripta(nuevoPassword);
 
 	new Model.Usuario({ cEmail: req.body.email })
 		.fetch()
 		.then(function (data) {
 			if (data !== null) {
 				this.where({ cEmail: req.body.email })
-					.save({ cPassword: nuevoPassword }, { method: 'update' }, { patch: true })
+					.save({ cPassword: encodedPassword }, { method: 'update' }, { patch: true })
 					.then(function (data) {
 						email.server.send({
 							from: 'SnapCar Seguros <no-responder@snapcar.com.ar>',
@@ -47,12 +47,12 @@ module.exports = function (req, res) {
 		if (data !== null) {
 			// Almacena nueva contraseña y envía email
 			var nuevoPassword = parseInt(Math.random() * 10e6);
-			var encodePassword = config.encripta(nuevoPassword);
+			var encodedPassword = config.encripta(nuevoPassword);
 
 			console.log('NUEVO PASS', nuevoPassword);
-			console.log('NUEVO PASS ENCRIPTADO', encodePassword);
+			console.log('NUEVO PASS ENCRIPTADO', encodedPassword);
 
-			this.save({ cPassword: encodePassword }, { patch: false })
+			this.save({ cPassword: encodedPassword }, { patch: false })
 				.then(function () {
 					const cEmailBody = pug.compileFile('views/emailRecuperaPassword.pug');
 
