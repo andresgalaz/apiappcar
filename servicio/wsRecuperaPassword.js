@@ -1,6 +1,7 @@
 //const User = require('../app/models/user');
 const config = require('../config/main');
 const Model = require('../db/model');
+const email = require('../config/emailServer');
 const moment = require("moment");
 const pug = require('pug');
 
