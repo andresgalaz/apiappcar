@@ -16,8 +16,8 @@ module.exports = function (req, res) {
 		return res.status(400).json({ success: false, code: 1210, message: 'Falta email.' });
 	}
 
-	var nuevoPassword = String(parseInt(Math.random() * 10e6)),
-		hashId = new Hash(config.secret),
+	var hashId = new Hash(config.secret),
+		tempPassword = hashId.encode(parseInt(Math.random() * 10e6)),
 		encodedPassword = config.encripta(nuevoPassword);
 
 	const cEmailBody = pug.compileFile('views/emailRecuperaPassword.pug');
