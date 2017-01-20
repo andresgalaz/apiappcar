@@ -18,6 +18,9 @@ module.exports = function (req, res) {
 			var nuevoPassword = parseInt(Math.random() * 10e6);
 			var encodePassword = config.encripta(nuevoPassword);
 
+			console.log('NUEVO PASS', nuevoPassword);
+			console.log('NUEVO PASS ENCRIPTADO', encodePassword);
+
 			this.save({ cPassword: encodePassword }, { patch: false })
 				.then(function () {
 					const cEmailBody = pug.compileFile('views/emailRecuperaPassword.pug');
