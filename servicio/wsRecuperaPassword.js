@@ -18,6 +18,8 @@ module.exports = function (req, res) {
 	var nuevoPassword = String(parseInt(Math.random() * 10e6)),
 		encodedPassword = config.encripta(nuevoPassword);
 
+	const cEmailBody = pug.compileFile('views/emailRecuperaPassword.pug');
+
 	new Model.Usuario({ cEmail: req.body.email })
 		.fetch()
 		.then(function (data) {
