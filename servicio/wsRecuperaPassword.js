@@ -21,7 +21,7 @@ module.exports = function (req, res) {
 
 	new Model.Usuario({ cEmail: req.body.email })
 		//.save({ cPassword: nuevoPassword }, { patch: true })
-		.then(function (data) {
+		.fetch(function (data) {
 			console.log('DATA:', data);
 		});
 
