@@ -36,7 +36,7 @@ module.exports = function (req, res) {
 							attachment: [{
 								data: cEmailBody({
 									nuevoPassword: tempPassword,
-									textoPreview: 'Solicitaste restablecer la contraseña para tu cuenta.'
+									textoPreview: 'Solicitaste restablecer la contraseña para tu cuenta.',
 									baseUrl: req.protocol + '://' + req.headers.host
 								}),
 								alternative: true
