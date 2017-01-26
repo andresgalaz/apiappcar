@@ -66,34 +66,19 @@ module.exports = function (req, res) {
 						// Template
 						const cEmailBody = pug.compileFile('views/emailInvitacion.pug');
 
-						/*
-						var cEmailBody = [];
-						cEmailBody.push( '<html>' );
-						cEmailBody.push( '<h1>Invitación SnapCar</h1>' );
-						cEmailBody.push( '<p>Usted ha sido invitado como conductor adicional por '+ req.user.cNombre +'</p>' );
-						cEmailBody.push( '<p><b>Email Usuario</b> ' + req.user.cEmail + '</p>' );
-						cEmailBody.push( '<p><b>Email Invitado</b> ' + req.body.emailInvitado + '</p>' );
-						cEmailBody.push( '<a href="https://api.appcar.com.ar/confirma?id='+invita.idInvitacion+'">' );
-						cEmailBody.push( 'Acepta' );
-						cEmailBody.push( '</a>' );
-						cEmailBody.push( '</html>' );
-						*/
-
 						// Envía correo al usuario invitado
 						email.server.send({
-							from: "soporte <soporte@appcar.com.ar>",
-							// to:      "Andres Galaz <andres.galaz@gmail.com>", //, another <another@your-email.com>",
-							// cc:      "else <else@your-email.com>",
-							to: req.body.emailInvitado, //, another <another@your-email.com>",
-							subject: "Invitación Snapcar",
+							//from: "SnapCar Seguros <soporte@appcar.com.ar>",
+							from: "SnapCar Seguros <no-responder@snapcar.com.ar>",
+							to: req.body.emailInvitado,
+							subject: "Invitación",
 							attachment: [{
-								//data : cEmailBody.join(''),
 								data: cEmailBody({
 									nombreUsuario: req.user.cNombre,
 									emailUsuario: req.user.cEmail,
 									emailInvitado: req.body.emailInvitado,
 									idInvitacion: invita.idInvitacion,
-									baseUrl: 'http://' + req.headers.host
+									baseUrl: req.protocol + '://' + req.headers.host
 								}),
 								alternative: true
 							}]

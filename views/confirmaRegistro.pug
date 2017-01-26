@@ -1,5 +1,5 @@
 - var fechaHoy = new Date().getFullYear();
-- var estado = estadoInvitacion;
+- var estado = estadoRegistro;
 
 doctype html
 html(lang=es)
@@ -10,7 +10,7 @@ html(lang=es)
         meta(name='theme-color' content='#db5945')
         meta(name='apple-mobile-web-app-status-bar-style' content='#db5945')
 
-        title Invitación | SnapCar Seguros
+        title Registro | SnapCar Seguros
 
         link(rel='icon' type='image/png' href='/img/favicon.png')
         link(rel='icon' sizes='192x192' href='/img/favicon-192x192.png')
@@ -34,21 +34,21 @@ html(lang=es)
                     ol.breadcrumb
                         li
                             a(href='#') SnapCar Seguros
-                        li.active Invitación
+                        li.active Registro
             .row
                 .col-md-12
                     h2
                         if estado === 'exito'
                             i.fa.fa-check-circle
-                            |  Confirmaste la invitación.
-                        else if estado === 'aceptado'
+                            |  Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.
+                        else if estado === 'confirmado'
                             i.fa.fa-exclamation-circle
-                            |  Ya aceptaste la invitación. Ingresá a tu cuenta.
+                            |  Ya confirmaste tu email. Ingresá a tu cuenta.
                         else
                             i.fa.fa-exclamation-circle
-                            |  La invitación no es válida.
-                    p Tu ID de invitación es 
-                        b #{idInvitacion}
+                            |  Error al validar tu email.
+                    p Tu ID de registro es 
+                        b #{idRegistro}
                         | .
 
         footer.footer

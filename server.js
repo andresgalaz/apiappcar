@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
+const pug = require('pug');
 const config = require('./config/main');
 
 var app = express();
@@ -39,11 +40,16 @@ app.get('/bitacora', function (req, res) {
 	res.sendfile('server_' + config.ambiente + '.log');
 });
 
-// Página de confirmación a la invitación
-app.get('/confirma', function (req, res) {
- 	var id = req.param('id');
-	// var id = req.params.id;
+// Página de confirmación de invitación
+app.get('/invitacion', function (req, res) {
+	var id = req.query.id;
 	require('./controllers/invitacion.js')(req, res, id);
+});
+
+// Página de confirmación de registro
+app.get('/registro', function (req, res) {
+	var id = req.query.id;
+	require('./controllers/registro.js')(req, res, id);
 });
 
 require('./app/routes')(app);
