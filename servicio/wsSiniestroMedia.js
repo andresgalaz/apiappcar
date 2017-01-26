@@ -37,6 +37,9 @@ module.exports = function(req,res){
 			return res.status(400).json({ success: false, code: 2314, message: 'Falta tipo.' });
 		}
 
+		req.file.originalname = req.file.originalname.replace(/\?/g,'#');
+		req.body.tipo = req.body.tipo.replace(/\?/g,'#');
+		
 		new Model.Siniestro({pSiniestro: req.body.idSiniestro, fUsuario: req.user.pUsuario}).fetch().then(function(data){
 			try {
 				if( data === null){
