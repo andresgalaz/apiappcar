@@ -1,0 +1,2 @@
+velocidadMaxima=3
+otros=false

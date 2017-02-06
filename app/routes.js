@@ -38,7 +38,9 @@ module.exports = function(app) {
   	apiRoutes.post	('/wsAuditoria'				, agvJwt, require('../servicio/wsAuditoria'				));
   	apiRoutes.post	('/wsCambioPassword'		, agvJwt, require('../servicio/wsCambioPassword'		));
   	apiRoutes.post	('/wsEventosViaje'			, agvJwt, require('../servicio/wsEventosViaje'			));
+  	apiRoutes.post	('/wsFirmware'				, agvJwt, require('../servicio/wsFirmware'				));
   	apiRoutes.post	('/wsInvitacion'			, agvJwt, require('../servicio/wsInvitacion'			));
+  	apiRoutes.post	('/wsParametros'			, agvJwt, require('../servicio/wsParametros'			));
   	apiRoutes.post	('/wsReToken'				, agvJwt, require('../servicio/wsReToken'				));
   	apiRoutes.post	('/wsScore'					, agvJwt, require('../servicio/wsScore'					));
   	apiRoutes.post	('/wsScoreVehiculo'			, agvJwt, require('../servicio/wsScoreVehiculo'			));
