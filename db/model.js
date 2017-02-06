@@ -15,9 +15,9 @@ var veh = scoreDB.Model.extend({
     }
 });
 veh.validaTpDispositivo = function(nTp){
-	if( nTp != 1 && nTp != 2 )
-		return false;
-	return true;
+	if( nTp >= 1 && nTp <= 3 )
+		return true;
+	return false;
 };
 veh.salida = function(v){
 	return {
