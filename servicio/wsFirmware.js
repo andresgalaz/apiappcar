@@ -9,11 +9,10 @@ module.exports = function(req,res){
 	// Registra nuevos usuarios o usuarios existentes en dispositivos nuevos
 	console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
 	console.log('req.user:',req.user);
-	console.log('req:',req);
 	var oOut = {
-		version : 102,
+		version : 104,
 //		url :  req.protocol + '://' + req.headers.host + '/VCNV500102_BIN.SFB'
-		url :  'https://api.appcar.com.ar/VCNV500102_BIN.SFB'
+		url :  'https://api.appcar.com.ar/VCNV500104_BIN.SFB'
 	};
 	return res.status(200).json( oOut );
 };
