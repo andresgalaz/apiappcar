@@ -122,10 +122,17 @@ var auditoria = scoreDB.Model.extend({
 	idAttribute: 'pAuditoria'
 });
 
+// Transferencia de datos entre APP y Virloc
+var inicioTrans = scoreDB.Model.extend({
+	tableName: 'tInicioTransferencia',
+	idAttribute: 'pInicioTransferencia'
+});
+
 module.exports = {
 	AppEstado: appEstado,
 	Auditoria: auditoria,
 	Cuenta: cta,
+	InicioTransferencia: inicioTrans,
 	Usuario: usr,
 	UsuarioVeh: usrVeh,
 	Vehiculo: veh,

@@ -9,6 +9,10 @@ module.exports = function (req, res) {
 	// Devuelve la url de los parámetros para el VIRLOC
 	console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
 	console.log('req.user:', req.user);
+	console.log(req.body);
+	if(!req.body.idVehiculo) {
+		return res.status(400).json({ success: false, code: 2810, message: 'Falta id. de vehículo.' });
+	}
 	var oOut = {
 		version: 2,
 		params: [
