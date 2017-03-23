@@ -39,6 +39,7 @@ module.exports = function(app) {
   	apiRoutes.post	('/wsCambioPassword'		, agvJwt, require('../servicio/wsCambioPassword'		));
   	apiRoutes.post	('/wsEventosViaje'			, agvJwt, require('../servicio/wsEventosViaje'			));
   	apiRoutes.post	('/wsFirmware'				, agvJwt, require('../servicio/wsFirmware'				));
+  	apiRoutes.post	('/wsInicioTransferencia'	, agvJwt, require('../servicio/wsInicioTransferencia'	));
   	apiRoutes.post	('/wsInvitacion'			, agvJwt, require('../servicio/wsInvitacion'			));
   	apiRoutes.post	('/wsParametros'			, agvJwt, require('../servicio/wsParametros'			));
   	apiRoutes.post	('/wsReToken'				, agvJwt, require('../servicio/wsReToken'				));
@@ -54,6 +55,8 @@ module.exports = function(app) {
 	apiRoutes.post	('/wsVehiculoDelBluetooth'	, agvJwt, require('../servicio/wsVehiculoDelBluetooth'	));
 	apiRoutes.post	('/wsVehiculoDesconectado'	, agvJwt, require('../servicio/wsVehiculoDesconectado'	));
   	apiRoutes.delete('/wsVehiculo'				, agvJwt, require('../servicio/wsVehiculoDel'			));
+	// Servicios sin autenticación de TOKEN
+	apiRoutes.post	('/wsCalculaDescuento'		, require('../servicio/wsCalculaDescuento'	));
 
 	// Set url for API group routes
 	app.use('/', apiRoutes);
