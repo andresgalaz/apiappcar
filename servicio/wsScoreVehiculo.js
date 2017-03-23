@@ -41,12 +41,15 @@ module.exports = function(req, res) {
         .where("tInicio", ">=", req.body.fechaInicio)
         .andWhere("tInicio", "<=", req.body.fechaFin);
     var qVeh = db.scoreDB.knex("vVehiculo")
-        .select("fUsuarioTitular as idTitular", "cUsuarioTitular as titular", "fUsuario as idConductor", "cUsuario as conductor", "fVehiculo as idVehiculo", "cPatente as patente", "nKms as kms", "nScore as score", "nDescuento as descuento")
+        .distinct("fUsuarioTitular as idTitular", "cUsuarioTitular as titular", "fVehiculo as idVehiculo", "cPatente as patente", "nKms as kms", "nScore as score", "nDescuento as descuento")
+        .select()
         // Trunca el dia de la fecha y lo pne en 01 para tomar solo el periodo
         .where("dPeriodo", "=", req.body.fechaInicio.substr(0, 8) + '01');
     var qConductor = db.scoreDB.knex("vScoreMesConductor")
         .select("fUsuario as idConductor", "cUsuario as conductor", "fVehiculo as idVehiculo", "nKms as kms", "nScore as score")
-        .where("fUsuarioTitular", req.user.pUsuario)
+        .where(function() {
+            this.where('fUsuarioTitular', req.user.pUsuario).orWhere('fUsuario', req.user.pUsuario)
+        })
         // Trunca el dia de la fecha y lo pne en 01 para tomar solo el periodo
         .andWhere("dPeriodo", "=", req.body.fechaInicio.substr(0, 8) + '01');
     var qViaje = db.scoreDB.knex("vViaje")
@@ -179,8 +182,7 @@ module.exports = function(req, res) {
                                         }
                                         var nVehFound = -1;
                                         for (var nVeh = 0; nVeh < arrVeh.length; nVeh++) {
-                                            if (arrVeh[nVeh].idVehiculo == viaje.idVehiculo &&
-                                                arrVeh[nVeh].idConductor == viaje.idConductor) {
+                                            if (arrVeh[nVeh].idVehiculo == viaje.idVehiculo) {
                                                 nVehFound = nVeh;
                                                 break;
                                             }

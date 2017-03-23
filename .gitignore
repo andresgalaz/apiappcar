@@ -1,6 +1,6 @@
 *server*.log*
 .project
-.settings/**
-node_modules/**
-assets/less/
+.settings/*
+node_modules/*
+assets/less/*
 Gruntfile.js
