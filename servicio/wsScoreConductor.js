@@ -43,7 +43,7 @@ module.exports = function(req,res){
 		.select	(	"fUsuario as idConductor"	,	"cUsuario as conductor"
 				,	db.scoreDB.knex.raw('sum(nScore * nKms) as scoreKm'))
 		.sum	(	"nKms as kms"				)
-		.where		("fUsuarioTitular"		,	req.user.pUsuario)
+		.where	( function() { this.where('fUsuarioTitular', req.user.pUsuario).orWhere('fUsuario', req.user.pUsuario) })
 		.andWhere	("dPeriodo"	,	">="	,	req.body.fechaInicio)
 		.andWhere	("dPeriodo"	,	"<="	,	req.body.fechaFin);
 	var qVeh = db.scoreDB.knex("vConductorVehiculo")
