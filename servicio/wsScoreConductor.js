@@ -78,9 +78,15 @@ module.exports = function(req,res){
 			qViaje.andWhere		("fUsuarioTitular", req.user.pUsuario);
 		};
 	} else {
-		qIdViaje.andWhere	("fUsuarioTitular"	, req.user.pUsuario);
-		qVeh.andWhere		("fUsuarioTitular"	, req.user.pUsuario);
-		qViaje.andWhere		("fUsuarioTitular"	, req.user.pUsuario);
+        qIdViaje.andWhere(function() {
+            this.where('fUsuarioTitular', req.user.pUsuario).orWhere('fUsuario', req.user.pUsuario)
+        });
+        qVeh.andWhere(function() {
+            this.where('fUsuarioTitular', req.user.pUsuario).orWhere('fUsuario', req.user.pUsuario)
+        });
+        qViaje.andWhere(function() {
+            this.where('fUsuarioTitular', req.user.pUsuario).orWhere('fUsuario', req.user.pUsuario)
+        });
 	}
 
 	if( req.body.idVehiculo !== undefined ){
