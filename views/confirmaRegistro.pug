@@ -10,7 +10,7 @@ html(lang=es)
         meta(name='theme-color' content='#db5945')
         meta(name='apple-mobile-web-app-status-bar-style' content='#db5945')
 
-        title Registro | SnapCar Seguros
+        title Registro | SnapCar
 
         link(rel='icon' type='image/png' href='/img/favicon.png')
         link(rel='icon' sizes='192x192' href='/img/favicon-192x192.png')
@@ -26,14 +26,14 @@ html(lang=es)
                 .row.navbar-header
                     .col-md-12
                         a.navbar-brand(href='#')
-                            img.center-block(src='/img/snapcar-logo-arti.svg' width='180' title='SnapCar Seguros')
+                            img.center-block(src='/img/snapcar-logo-arti.svg' width='180' title='SnapCar')
 
         .container
             .row
                 .col-md-12
                     ol.breadcrumb
                         li
-                            a(href='#') SnapCar Seguros
+                            a(href='#') SnapCar
                         li.active Registro
             .row
                 .col-md-12
@@ -64,5 +64,71 @@ html(lang=es)
                         a.social-icons(href='#' title='Twitter')
                             i.fa.fa-twitter.fa-2x
 
+        .modal.fade#modalLegales(tabindex='-1' role='dialog')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        h4.modal-title Política de Privacidad y Términos y Condiciones
+                    .modal-body
+                        p.bg-info Antes de comenzar a utilizar el servicio usted debe aceptar nuestra b Política de Privacidad y nuestros b Términos y Condiciones
+                        .panel-group#accordion(
+                            role='tablist'
+                            aria-multiselectable='true'
+                        )
+                            //- Política de Privacidad
+                            .panel.panel-default
+                                .panel-heading(
+                                    role='tab'
+                                    id='privacidadHeading'
+                                )
+                                    h4.panel-title
+                                        a(
+                                            role='button'
+                                            data-toggle='collapse'
+                                            data-parent='#accordion'
+                                            aria-expanded='true'
+                                            aria-controls='collapsePrivacidad'
+                                            href='#collapsePrivacidad'
+                                        ) Política de Privacidad
+                                .panel-collapse.collapse.in#collapsePrivacidad(
+                                    role="tabpanel"
+                                    aria-labelledby="privacidadHeading"
+                                )
+                                    .panel-body
+                                        iframe(src="http://snapcar.com.ar/docs/politicaPrivacidad.html")
+                            //- Términos y Condiciones
+                            .panel.panel-default
+                                .panel-heading(
+                                    role='tab'
+                                    id='condicionesHeading'
+                                )
+                                    h4.panel-title
+                                        a(
+                                            role='button'
+                                            data-toggle='collapse'
+                                            data-parent='#accordion'
+                                            aria-expanded='true'
+                                            aria-controls='collapseCondiciones'
+                                            href='#collapseCondiciones'
+                                        ) Términos y Condiciones
+                                .panel-collapse.collapse.in#collapseCondiciones(
+                                    role="tabpanel"
+                                    aria-labelledby="condicionesHeading"
+                                )
+                                    .panel-body
+                                        iframe(src="http://snapcar.com.ar/docs/terminosYCondiciones.html")
+                    .modal-footer
+                        button.btn.btn-default(
+                                                type='button'
+                                                data-dismiss="modal"
+                                                disabled="disabled"
+                                                ) No Acepto
+                        button.btn.btn-default(
+                                                type='button'
+                                                data-dismiss="modal"
+                                                disabled="disabled"
+                                                ) Acepto
+
         script(src='/js/jquery-3.1.1.min.js')
         script(src='/js/bootstrap.min.js')
+        script(src='/js/custom.js')
