@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var politicasPrivacidad = false,
+    var politicasPrivacidad = true,
         terminosCondiciones = false;
 
     $('#modalLegales').modal({
