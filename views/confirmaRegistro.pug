@@ -44,6 +44,9 @@ html(lang=es)
                         else if estado === 'confirmado'
                             i.fa.fa-exclamation-circle
                             |  Ya confirmaste tu email. Ingresá a tu cuenta.
+                        else if estado === 'declinado'
+                            i.fa.fa-exclamation-circle
+                            | Para poder utilizar SnapCar debes aceptar nuestros términos y condiciones y nuestra política de privacidad.
                         else
                             i.fa.fa-exclamation-circle
                             |  Error al validar tu email.
