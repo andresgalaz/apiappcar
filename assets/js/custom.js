@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    var politicasPrivacidad = false,
+        terminosCondiciones = false;
+
     $('#modalLegales').modal({
         backdrop: 'static',
         keyboard: false
