@@ -97,11 +97,11 @@ html(lang=es)
                                             href='#collapsePrivacidad'
                                         ) Política de Privacidad
                                 .panel-collapse.collapse.in#collapsePrivacidad(
-                                    role="tabpanel"
-                                    aria-labelledby="privacidadHeading"
+                                    role='tabpanel'
+                                    aria-labelledby='privacidadHeading'
                                 )
                                     .panel-body
-                                        iframe(src="http://snapcar.com.ar/docs/politicaPrivacidad.html")
+                                        iframe(src='http://snapcar.com.ar/docs/politicaPrivacidad.html')
                             //- Términos y Condiciones
                             .panel.panel-default
                                 .panel-heading(
@@ -118,22 +118,22 @@ html(lang=es)
                                             href='#collapseCondiciones'
                                         ) Términos y Condiciones
                                 .panel-collapse.collapse#collapseCondiciones(
-                                    role="tabpanel"
-                                    aria-labelledby="condicionesHeading"
+                                    role='tabpanel'
+                                    aria-labelledby='condicionesHeading'
                                 )
                                     .panel-body
-                                        iframe(src="http://snapcar.com.ar/docs/terminosYCondiciones.html")
+                                        iframe(src='http://snapcar.com.ar/docs/terminosYCondiciones.html')
                     .modal-footer
-                        form(method="post" action="/registro/confirma")
+                        form(method='post' action='/registro/confirma')
                             input(
-                                type="hidden"
-                                name="confirma"
-                                value="1"
+                                type='hidden'
+                                name='confirma'
+                                value='1'
                                 )
                             button.btn.btn-default(
                                                     type='button'
-                                                    data-dismiss="modal"
-                                                    disabled="disabled"
+                                                    data-dismiss='modal'
+                                                    disabled='disabled'
                                                     ) No Acepto
                             //
                                 button.btn.btn-primary(
@@ -141,7 +141,11 @@ html(lang=es)
                                                         data-dismiss="modal"
                                                         disabled="disabled"
                                                         ) Acepto
-                            input.btn.btn-primary(type='submit' data-dismiss="modal" disabled="disabled") Acepto
+                            input.btn.btn-primary(
+                                type='submit'
+                                data-dismiss="modal"
+                                disabled="disabled"
+                                ) Acepto
 
         script(src='/js/jquery-3.1.1.min.js')
         script(src='/js/bootstrap.min.js')
