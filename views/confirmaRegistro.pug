@@ -124,16 +124,28 @@ html(lang=es)
                                     .panel-body
                                         iframe(src="http://snapcar.com.ar/docs/terminosYCondiciones.html")
                     .modal-footer
-                        button.btn.btn-default(
-                                                type='button'
-                                                data-dismiss="modal"
-                                                disabled="disabled"
-                                                ) No Acepto
-                        button.btn.btn-primary(
-                                                type='button'
-                                                data-dismiss="modal"
-                                                disabled="disabled"
-                                                ) Acepto
+                        form(method="post" action="/registro/confirma")
+                            input(
+                                type="hidden"
+                                name="confirma"
+                                value="1"
+                                )
+                            button.btn.btn-default(
+                                                    type='button'
+                                                    data-dismiss="modal"
+                                                    disabled="disabled"
+                                                    ) No Acepto
+                            //
+                                button.btn.btn-primary(
+                                                        type='button'
+                                                        data-dismiss="modal"
+                                                        disabled="disabled"
+                                                        ) Acepto
+                            button.btn.btn-primary(
+                                                    type='submit'
+                                                    data-dismiss="modal"
+                                                    disabled="disabled"
+                                                    ) Acepto
 
         script(src='/js/jquery-3.1.1.min.js')
         script(src='/js/bootstrap.min.js')

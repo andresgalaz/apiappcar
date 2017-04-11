@@ -65,6 +65,11 @@ app.get('/registro', function (req, res) {
 	require('./controllers/registro.js')(req, res, id);
 });
 
+// Nuevo
+app.post('/registro/confirma', function (req, res) {
+  require('./controllers/confirmaRegistro.js')(req, res, id);
+});
+
 require('./app/routes')(app);
 
 // Start the server
