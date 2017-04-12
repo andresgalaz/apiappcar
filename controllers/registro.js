@@ -4,6 +4,9 @@ const config = require('../config/main');
 
 var hashId = new Hash(config.secret);
 
+
+
+/*
 module.exports = function (req, res, id) {
 	var idDecoded = String(hashId.decode(id)).slice(9),
 		newUsuario = new Model.Usuario({ pUsuario: idDecoded }),
@@ -21,7 +24,6 @@ module.exports = function (req, res, id) {
 				if (data.attributes.bConfirmado === '1') {
 					template('confirmado');
 				} else {
-					/* Modificar */
 					this.save({ bConfirmado: '1' }, { patch: true })
 						.then(function (data) {
 							if (data === null) {
@@ -36,5 +38,6 @@ module.exports = function (req, res, id) {
 				template('error');
 			}
 		});
+*/
 
 };
