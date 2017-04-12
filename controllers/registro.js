@@ -45,6 +45,5 @@ module.exports = function (req, res, id) {
 				template('error');
 			}
 		});
-*/
-
 };
+*/
