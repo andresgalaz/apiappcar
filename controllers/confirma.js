@@ -29,11 +29,12 @@ module.exports = function (req, res) {
                     template('error');
                 }
             });
-            */
+        */
     } else {
         res.sendStatus(400);
 
         // Reenvía email de confirmación
+        /*
         const cEmailBody = pug.compileFile('views/emailRegistro.pug');
 
         email.server.send({
@@ -49,6 +50,7 @@ module.exports = function (req, res) {
                 alternative: true
             }]
         }, function (err, message) { console.log(err || message); });
+        */
     }
 
     /*
