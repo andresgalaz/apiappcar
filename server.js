@@ -67,7 +67,7 @@ app.get('/registro', function (req, res) {
 
 // Nuevo
 app.get('/confirma', function (req, res) {
-  res.json({ body: req.body });
+  res.json({ body: 'Test' });
 });
 
 require('./app/routes')(app);
