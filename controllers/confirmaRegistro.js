@@ -6,4 +6,6 @@ module.exports = function (req, res) {
     var confirmaRegistro = function (req, res) {
         console.log(req.body);
     };
+
+    confirmaRegistro(req, res)
 };
