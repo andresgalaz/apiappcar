@@ -10,7 +10,7 @@ module.exports = function (req, res, status, email) {
     } else {
         res.sendStatus(400);
 
-        /* Reenvía email de confirmación */
+        // Reenvía email de confirmación
         const cEmailBody = pug.compileFile('views/emailRegistro.pug');
 
         email.server.send({
