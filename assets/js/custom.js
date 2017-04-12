@@ -26,7 +26,7 @@ $(document).ready(function () {
     $('.modal-footer button').last().click(function () {
         $.ajax({
             type: 'POST',
-            data: '{ "Estado": "1" }',
+            data: '{ "estado": "1" }',
             url: '/registro/confirma/'
         });
     });
@@ -34,7 +34,7 @@ $(document).ready(function () {
     $('.modal-footer button').first().click(function () {
         $.ajax({
             type: 'POST',
-            data: '{ "Estado": "0" }',
+            data: '{ "estado": "0" }',
             url: '/registro/confirma/'
         });
     });
