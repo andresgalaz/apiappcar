@@ -3,7 +3,7 @@ const Model = require('../db/model');
 const config = require('../config/main');
 const email = require('../config/emailServer');
 
-module.exports = function (req, res, status) {
+module.exports = function (req, res) {
 
     /*
     if (status == '1') {
