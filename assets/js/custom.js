@@ -27,7 +27,10 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             data: $.param({ estado: "1" }),
-            url: '/registro/confirma/'
+            url: '/registro/confirma/',
+            success: function () {
+                $('#estado').text('Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.');
+            }
         });
     });
 
@@ -35,7 +38,10 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             data: $.param({ estado: "0" }),
-            url: '/registro/confirma/'
+            url: '/registro/confirma/',
+            success: function () {
+                $('#estado').text('Para poder utilizar SnapCar debes aceptar nuestros términos y condiciones y nuestra política de privacidad.');
+            }
         });
     });
 
