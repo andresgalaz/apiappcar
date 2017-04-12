@@ -23,15 +23,26 @@ $(document).ready(function () {
         }
     }
 
-    $('.modal-footer button').click(function () {
+    $('.modal-footer button').last().click(function () {
         $.ajax({
-            url: '/registro/confirma',
+            url: '/registro/confirma/?status=1',
             statusCode: {
-                404: function () {
-                    console.log('Error al actualizar los datos.');
+                200: function () {
+                    console.log('Actualizar estado');
                 }
             }
-        })
+        });
+    });
+
+    $('.modal-footer button').first().click(function () {
+        $.ajax({
+            url: '/registro/confirma/?status=0',
+            statusCode: {
+                404: function () {
+                    console.log('No actualizar estado');
+                }
+            }
+        });
     });
 
 });
