@@ -19,7 +19,12 @@ $(document).ready(function () {
 
     function chequeaEstado() {
         if (terminosCondiciones && politicasPrivacidad) {
-            $('.modal-footer input[type=submit]').removeAttr('disabled');
+            $('.modal-footer button').removeAttr('disabled');
         }
     }
+
+    $('.modal-footer button').click(function () {
+        $("form").submit();
+    });
+
 });
