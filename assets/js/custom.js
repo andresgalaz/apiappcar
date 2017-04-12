@@ -24,6 +24,7 @@ $(document).ready(function () {
     }
 
     $('.modal-footer button').click(function () {
+        console.log('Formulario Enviado');
         $("form").submit();
     });
 
