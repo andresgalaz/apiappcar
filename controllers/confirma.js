@@ -4,7 +4,7 @@ const config = require('../config/main');
 const email = require('../config/emailServer');
 
 module.exports = function (req, res) {
-
+    console.log(req.body);
     /*
     if (status == '1') {
         res.sendStatus(200);
