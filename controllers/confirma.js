@@ -5,6 +5,12 @@ const email = require('../config/emailServer');
 
 module.exports = function (req, res) {
     console.log(req.body);
+
+    if (req.body.estado) {
+
+    }
+
+
     /*
     if (status == '1') {
         res.sendStatus(200);

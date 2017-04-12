@@ -27,25 +27,15 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             data: '{ "Estado": "1" }',
-            url: '/registro/confirma/',
-            statusCode: {
-                200: function () {
-                    console.log('Actualizar estado');
-                }
-            }
+            url: '/registro/confirma/'
         });
     });
 
     $('.modal-footer button').first().click(function () {
         $.ajax({
             type: 'POST',
-            data: '{ "Estado:": "0" }',
-            url: '/registro/confirma/',
-            statusCode: {
-                404: function () {
-                    console.log('No actualizar estado');
-                }
-            }
+            data: '{ "Estado": "0" }',
+            url: '/registro/confirma/'
         });
     });
 
