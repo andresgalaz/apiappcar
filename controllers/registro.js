@@ -6,7 +6,7 @@ var hashId = new Hash(config.secret);
 
 module.exports = function (req, res, id) {
 	var idDecoded = String(hashId.decode(id)).slice(9),
-		newUsuario = new Model.Usuario({ pUsuario: idDecoded }),
+
 		template = function (estado) {
 			res.render(
 				'confirmaRegistro'

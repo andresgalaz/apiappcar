@@ -14,7 +14,6 @@ module.exports = function (req, res) {
                     if (data.attributes.bConfirmado === '1') {
                         template('confirmado');
                     } else {
-                        /* Modificar */
                         this.save({ bConfirmado: '1' }, { patch: true })
                             .then(function (data) {
                                 if (data === null) {
