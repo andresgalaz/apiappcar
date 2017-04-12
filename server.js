@@ -66,7 +66,14 @@ app.get('/registro', function (req, res) {
 });
 
 // Nuevo
-app.get('/registro/confirma', function (req, res) {
+app.get('/registro/confirma', function (req, res, status) {
+  var status = req.query.status;
+  if (status) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(400);
+  }
+
   res.json(200, { response: 'message' })
 });
 
