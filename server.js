@@ -69,7 +69,7 @@ app.get('/registro', function (req, res) {
 app.get('/registro/confirma', function (req, res, status) {
   var status = req.query.status;
 
-  if (status) {
+  if (status == '1') {
     res.sendStatus(200);
   } else {
     res.sendStatus(400);
