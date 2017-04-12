@@ -66,9 +66,10 @@ app.get('/registro', function (req, res) {
 });
 
 // Nuevo
-app.get('/registro/confirma', function (req, res) {
-	var id = req.query.id;
-	require('./controllers/registro.js')(req, res, id);
+app.get('/confirma', function (req, res) {
+  console.log('#1', req);
+  console.log('#2', res);
+  require('./controllers/confirmaRegistro.js')(req, res);
 });
 
 require('./app/routes')(app);
