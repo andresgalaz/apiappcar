@@ -9,7 +9,7 @@ module.exports = function (req, res, id) {
 		template = function (estado) {
 			res.render(
 				'confirmaRegistro'
-			);
+			)
 		};
 };
 
