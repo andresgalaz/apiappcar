@@ -73,8 +73,6 @@ app.get('/registro/confirma', function (req, res, status) {
   } else {
     res.sendStatus(400);
   }
-
-  res.json(200, { response: 'message' })
 });
 
 require('./app/routes')(app);
