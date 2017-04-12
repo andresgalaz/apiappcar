@@ -69,7 +69,6 @@ app.get('/registro', function (req, res) {
 app.get('/registro/confirma', function (req, res) {
   console.log('#1', req);
   console.log('#2', res);
-
   require('./controllers/confirmaRegistro.js')(req, res);
 });
 

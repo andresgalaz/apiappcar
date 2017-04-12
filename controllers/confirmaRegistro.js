@@ -7,5 +7,5 @@ module.exports = function (req, res) {
         console.log(req.body);
     };
 
-    confirmaRegistro(req, res)
+    confirmaRegistro(req, res);
 };
