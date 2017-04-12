@@ -5,6 +5,7 @@ const email = require('../config/emailServer');
 
 module.exports = function (req, res, status) {
 
+    /*
     if (status == '1') {
         res.sendStatus(200);
     } else {
@@ -27,4 +28,5 @@ module.exports = function (req, res, status) {
             }]
         }, function (err, message) { console.log(err || message); });
     }
+    */
 };
