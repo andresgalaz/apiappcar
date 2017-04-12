@@ -5,6 +5,7 @@ const email = require('../config/emailServer');
 
 module.exports = function (req, res) {
     if (req.body.estado) {
+        /*
         var newUsuario = new Model.Usuario({ pUsuario: idDecoded });
 
         newUsuario
@@ -28,6 +29,7 @@ module.exports = function (req, res) {
                     template('error');
                 }
             });
+            */
     } else {
         res.sendStatus(400);
 
