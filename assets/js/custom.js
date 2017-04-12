@@ -24,8 +24,14 @@ $(document).ready(function () {
     }
 
     $('.modal-footer button').click(function () {
-        console.log('Formulario Enviado');
-        $("form").submit();
+        $.ajax({
+            url: '/registro/confirma',
+            statusCode: {
+                404: function () {
+                    console.log('Error al actualizar los datos.');
+                }
+            }
+        })
     });
 
 });
