@@ -25,7 +25,9 @@ $(document).ready(function () {
 
     $('.modal-footer button').last().click(function () {
         $.ajax({
-            url: '/registro/confirma/?status=1',
+            type: 'POST',
+            data: '{ "Estado": "1" }',
+            url: '/registro/confirma/',
             statusCode: {
                 200: function () {
                     console.log('Actualizar estado');
@@ -36,7 +38,9 @@ $(document).ready(function () {
 
     $('.modal-footer button').first().click(function () {
         $.ajax({
-            url: '/registro/confirma/?status=0',
+            type: 'POST',
+            data: '{ "Estado:": "0" }',
+            url: '/registro/confirma/',
             statusCode: {
                 404: function () {
                     console.log('No actualizar estado');

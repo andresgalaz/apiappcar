@@ -67,7 +67,7 @@ app.get('/registro', function (req, res) {
 
 // Nuevo
 app.post('/registro/confirma', function (req, res) {
-  require('./controllers/confirma.js')(req, res, status);
+  require('./controllers/confirma.js')(req, res);
 });
 
 require('./app/routes')(app);
