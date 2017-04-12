@@ -2,7 +2,7 @@ const Hash = require('hashids');
 const Model = require('../db/model');
 const config = require('../config/main');
 
-module.exports = function (req, res, status) {
+module.exports = function (req, res, status, email) {
 
     if (status == '1') {
         res.sendStatus(200);
