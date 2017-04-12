@@ -5,6 +5,7 @@ const config = require('../config/main');
 module.exports = function (req, res) {
     var confirmaRegistro = function (req, res) {
         console.log(req.body);
+        return req.body;
     };
 
     confirmaRegistro(req, res);
