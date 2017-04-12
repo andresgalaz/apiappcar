@@ -1,6 +1,7 @@
 const Hash = require('hashids');
 const Model = require('../db/model');
 const config = require('../config/main');
+const email = require('../config/emailServer');
 
 module.exports = function (req, res, status, email) {
 
@@ -10,6 +11,8 @@ module.exports = function (req, res, status, email) {
         res.sendStatus(400);
 
         /* Reenvía email de confirmación */
+        const cEmailBody = pug.compileFile('views/emailRegistro.pug');
+
         email.server.send({
             from: 'SnapCar <no-responder@snapcar.com.ar>',
             to: req.body.email,
@@ -24,5 +27,4 @@ module.exports = function (req, res, status, email) {
             }]
         }, function (err, message) { console.log(err || message); });
     }
-
 };
