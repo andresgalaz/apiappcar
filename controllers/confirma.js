@@ -5,7 +5,7 @@ const email = require('../config/emailServer');
 
 module.exports = function (req, res, id) {
     if (req.body.estado) {
-        console.log(id);
+        return(req.body.estado);
         /*
         var newUsuario = new Model.Usuario({ pUsuario: idDecoded });
 
