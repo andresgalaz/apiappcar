@@ -27,6 +27,10 @@ $(document).ready(function () {
         }
     }
 
+    // Obtener ID de la URL
+    var urlParams = new URLSearchParams(window.location.search),
+        id = urlParams.get('id');
+
     $('.modal-footer button').last().click(function () {
         $.ajax({
             type: 'POST',
