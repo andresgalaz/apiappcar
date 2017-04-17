@@ -3,9 +3,9 @@ const Model = require('../db/model');
 const config = require('../config/main');
 const email = require('../config/emailServer');
 
-module.exports = function (req, res, id) {
-    if (req.body.estado) {
-        return(req.body.estado);
+module.exports = function (req, res) {
+    if (req.body) {
+        return(req.body);
         /*
         var newUsuario = new Model.Usuario({ pUsuario: idDecoded });
 
