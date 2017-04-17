@@ -4,7 +4,11 @@ const config = require('../config/main');
 const email = require('../config/emailServer');
 
 module.exports = function (req, res) {
-    return(req);
+    if (req.body.id && req.body.estado) {
+        return res.status(200).json(req.body.id);
+    } else {
+        return res.status(401).json({ success: false, message: 'No se encontró id o estado.' });
+    }
     /*    
     if (req.body) {
         return(req.body);
