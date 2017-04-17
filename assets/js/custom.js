@@ -59,6 +59,6 @@ $(document).ready(function () {
         });
     } else {
         // $('#modalLegales').modal('hide')
-        $('#estado').text('Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.');
+        $('#estado').text('Tu ID de registro es incorrecto, volvé a intentarlo nuevamente.');
     }
 });
