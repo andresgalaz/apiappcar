@@ -4,6 +4,7 @@ const config = require('../config/main');
 const email = require('../config/emailServer');
 
 module.exports = function (req, res) {
+    console.log(req);
     if (req.body.id && req.body.estado) {
         return res.status(200).json(req.body.id);
     } else {

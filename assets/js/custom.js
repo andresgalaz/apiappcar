@@ -31,7 +31,7 @@ $(document).ready(function () {
 
     $('.modal-footer button').last().click(function () {
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             data: $.param({ estado: '1', id: idRegistro }),
             url: '/registro/confirma/',
             success: function () {
@@ -42,7 +42,7 @@ $(document).ready(function () {
 
     $('.modal-footer button').first().click(function () {
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             data: $.param({ estado: '0', id: idRegistro }),
             url: '/registro/confirma/',
             success: function () {
