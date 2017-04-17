@@ -6,12 +6,12 @@ var hashId = new Hash(config.secret);
 
 module.exports = function (req, res, id) {
 	var idDecoded = String(hashId.decode(id)).slice(9),
-		template = function (estado) {
+		template = function () {
 			res.render(
 				'confirmaRegistro'
 			)
 		};
-		template(confirmado);
+		template();
 };
 
 /*
