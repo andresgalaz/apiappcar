@@ -3,10 +3,12 @@ const Model = require('../db/model');
 const config = require('../config/main');
 const email = require('../config/emailServer');
 
-module.exports = function (req, res) {
+module.exports = function (req, res, estado, id) {
+    return(estado + id);
+    /*    
     if (req.body) {
         return(req.body);
-        /*
+        
         var newUsuario = new Model.Usuario({ pUsuario: idDecoded });
 
         newUsuario
@@ -30,10 +32,10 @@ module.exports = function (req, res) {
                     template('error');
                 }
             });
-        */
+        
     } else {
         res.sendStatus(400);
-
+*/
         // Reenvía email de confirmación
         /*
         const cEmailBody = pug.compileFile('views/emailRegistro.pug');
@@ -51,9 +53,9 @@ module.exports = function (req, res) {
                 alternative: true
             }]
         }, function (err, message) { console.log(err || message); });
-        */
+        
     }
-
+    */
     /*
     if (status == '1') {
         res.sendStatus(200);
