@@ -67,9 +67,7 @@ app.get('/registro', function (req, res) {
 
 // Nuevo
 app.get('/registro/confirma', function (req, res) {
-  var id = req.body.estado,
-      estado = req.body.id;
-  require('./controllers/confirma.js')(req, res, id, estado);
+  require('./controllers/confirma.js')(req, res);
 });
 
 require('./app/routes')(app);
