@@ -1,17 +1,8 @@
-(function () {
-    console.log('Test');
-});
-
 $(document).ready(function () {
     var politicasPrivacidad = true,
         terminosCondiciones = false,
         urlParams = new URLSearchParams(window.location.search),
         idRegistro = urlParams.get('id');
-
-    $('#modalLegales').modal({
-        backdrop: 'static',
-        keyboard: false
-    });
 
     $('#accordion').find('a').first().on('click', function () {
         politicasPrivacidad = true;
@@ -29,36 +20,34 @@ $(document).ready(function () {
         }
     }
 
-    $('#modalLegales').on('show.bs.modal', function () {
-        if (!idRegistro) {
-            $('#modalLegales').modal('hide');
-        }
-    });
-
     if (idRegistro) {
-        $('.modal-footer button').last().click(function () {
-            $.ajax({
-                type: 'POST',
-                data: $.param({ estado: '1', id: idRegistro }),
-                url: '/registro/confirma/',
-                success: function () {
-                    $('#estado').text('Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.');
-                }
-            });
-        });
-
-        $('.modal-footer button').first().click(function () {
-            $.ajax({
-                type: 'POST',
-                data: $.param({ estado: '0', id: idRegistro }),
-                url: '/registro/confirma/',
-                success: function () {
-                    $('#estado').text('Para poder utilizar SnapCar debes aceptar nuestros términos y condiciones y nuestra política de privacidad.');
-                }
-            });
-        });
+        $('#modalLegales').modal({
+            backdrop: 'static',
+            keyboard: false
+        }); 
     } else {
-        // $('#modalLegales').modal('hide')
         $('#estado').text('Tu ID de registro es incorrecto, volvé a intentarlo nuevamente.');
     }
+
+    $('.modal-footer button').last().click(function () {
+        $.ajax({
+            type: 'POST',
+            data: $.param({ estado: '1', id: idRegistro }),
+            url: '/registro/confirma/',
+            success: function () {
+                $('#estado').text('Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.');
+            }
+        });
+    });
+
+    $('.modal-footer button').first().click(function () {
+        $.ajax({
+            type: 'POST',
+            data: $.param({ estado: '0', id: idRegistro }),
+            url: '/registro/confirma/',
+            success: function () {
+                $('#estado').text('Para poder utilizar SnapCar debes aceptar nuestros términos y condiciones y nuestra política de privacidad.');
+            }
+        });
+    });
 });
