@@ -3,8 +3,8 @@ const Model = require('../db/model');
 const config = require('../config/main');
 const email = require('../config/emailServer');
 
-module.exports = function (req, res, estado, id) {
-    return(estado + id);
+module.exports = function (req, res) {
+    return(req);
     /*    
     if (req.body) {
         return(req.body);
