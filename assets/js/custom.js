@@ -29,6 +29,12 @@ $(document).ready(function () {
         }
     }
 
+    $('#modalLegales').on('show.bs.modal', function () {
+        if (idRegistro) {
+            $('#modalLegales').modal('hide');
+        }
+    });
+
     if (idRegistro) {
         $('.modal-footer button').last().click(function () {
             $.ajax({
@@ -52,7 +58,7 @@ $(document).ready(function () {
             });
         });
     } else {
-        $('#modalLegales').modal('hide')
+        // $('#modalLegales').modal('hide')
         $('#estado').text('Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.');
     }
 });
