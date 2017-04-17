@@ -1,3 +1,7 @@
+(function() {
+    console.log('Test');
+});
+
 $(document).ready(function () {
     var politicasPrivacidad = true,
         terminosCondiciones = false;
