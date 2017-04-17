@@ -11,7 +11,7 @@ module.exports = function (req, res, id) {
 				'confirmaRegistro'
 			)
 		};
-		templete(confirmado);
+		template(confirmado);
 };
 
 /*
