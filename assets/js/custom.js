@@ -30,7 +30,7 @@ $(document).ready(function () {
     }
 
     $('#modalLegales').on('show.bs.modal', function () {
-        if (idRegistro) {
+        if (!idRegistro) {
             $('#modalLegales').modal('hide');
         }
     });
