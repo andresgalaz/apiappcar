@@ -1,5 +1,3 @@
-loading = $('#loading-wrap').hide();
-
 $(document)
     .ajaxStart(function () {
         loading.show();
