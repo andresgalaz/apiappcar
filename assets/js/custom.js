@@ -2,7 +2,9 @@ $(document).ready(function () {
     var politicasPrivacidad = true,
         terminosCondiciones = false,
         urlParams = new URLSearchParams(window.location.search),
-        idRegistro = urlParams.get('id');
+        idRegistro = urlParams.get('id'),
+        emailRegistro = urlParams.get('email'),
+        nombreRegistro = urlParams.get('nombre');
 
     $('#accordion').find('a').first().on('click', function () {
         politicasPrivacidad = true;
@@ -20,7 +22,7 @@ $(document).ready(function () {
         }
     }
 
-    if (idRegistro) {
+    if (idRegistro && emailRegistro) {
         $('#modalLegales').modal({
             backdrop: 'static',
             keyboard: false
@@ -31,22 +33,24 @@ $(document).ready(function () {
 
     $('.modal-footer button').last().click(function () {
         $.ajax({
-            type: 'GET',
-            data: $.param({ estado: '1', id: idRegistro }),
+            type: 'POST',
+            data: $.param({ acepta: '1', id: idRegistro, email: emailRegistro }),
             url: '/registro/confirma/',
-            success: function () {
-                $('#estado').text('Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.');
+            success: function (data) {
+                console.log('DATA', data);
+                // $('#estado').text('Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.');
             }
         });
     });
 
     $('.modal-footer button').first().click(function () {
         $.ajax({
-            type: 'GET',
-            data: $.param({ estado: '0', id: idRegistro }),
+            type: 'POST',
+            data: $.param({ acepta: '0', id: idRegistro, email: emailRegistro }),
             url: '/registro/confirma/',
-            success: function () {
-                $('#estado').text('Para poder utilizar SnapCar debes aceptar nuestros términos y condiciones y nuestra política de privacidad.');
+            success: function (data) {
+                console.log('DATA', data);
+                // $('#estado').text('Para poder utilizar SnapCar debes aceptar nuestros términos y condiciones y nuestra política de privacidad.');
             }
         });
     });
