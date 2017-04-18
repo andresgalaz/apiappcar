@@ -36,18 +36,17 @@ module.exports = function (req, res) {
         return res.status(200).json(mensaje);
     } else {
         var email = req.body.email,
-            nombre = req.body.nombre,
-            newUsuario = new Model.Usuario({ pUsuario: idDecoded });
+            nombre = req.body.nombre;
 
         const cEmailBody = pug.compileFile('views/emailRegistro.pug');
 
         email.server.send({
             from: 'SnapCar <no-responder@snapcar.com.ar>',
-            to: emailDecoded,
+            to: req.body.email,
             subject: 'Confirme su registro',
             attachment: [{
                 data: cEmailBody({
-                    nombreUsuario: nombreDecoded,
+                    nombreUsuario: req.body.nombre,
                     idRegistro: req.body.id,
                     baseUrl: req.protocol + '://' + req.headers.host
                 }),
