@@ -46,7 +46,7 @@ $(document).ready(function () {
             success: function (data) {
                 if (data === 'confirmado') {
                     $('#estado').text(mensajeConfirmado);
-                } else {
+                } else if (data === 'no confirmado') {
                     $('#modalLegales').modal({
                         backdrop: 'static',
                         keyboard: false
