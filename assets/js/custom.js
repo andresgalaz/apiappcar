@@ -1,4 +1,4 @@
-loading = $('#loading-wrap').show();
+loading = $('#loading-wrap').hide();
 
 $(document)
     .ajaxStart(function () {
@@ -38,12 +38,14 @@ $(document).ready(function () {
     });
 
     if (idRegistro && emailRegistro) {
+        loading.show();
         $('#modalLegales').modal({
             backdrop: 'static',
             keyboard: false
         });
     } else {
         $('#estado').text('Tu ID de registro es incorrecto, volvé a intentarlo nuevamente.');
+        loading.hide();
     }
 
     $('.modal-footer button').last().click(function () {
