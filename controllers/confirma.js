@@ -54,6 +54,7 @@ module.exports = function (req, res) {
             }]
         }, function (err, message) { console.log(err || message); });
 
-        return res.status(401).json({ success: false, message: 'No se encontró id o estado.' });
+        mensaje = 'no confirma'
+        return res.status(200).json(mensaje);
     }
 };

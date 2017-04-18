@@ -1,10 +1,30 @@
+$(document)
+    .ajaxStart(function () {
+        loading.show();
+    })
+    .ajaxStop(function () {
+        loading.hide();
+    });
+
 $(document).ready(function () {
+
+    // Variables de inicialización
     var politicasPrivacidad = true,
         terminosCondiciones = false,
         urlParams = new URLSearchParams(window.location.search),
         idRegistro = urlParams.get('id'),
         emailRegistro = urlParams.get('email'),
-        nombreRegistro = urlParams.get('nombre');
+        nombreRegistro = urlParams.get('nombre'),
+        mensajeExito = 'Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.',
+        mensajeError = 'No fue posible confirmar tu registro. Intentalo nuevamente.',
+        mensajeDeclina = 'Para poder utilizar SnapCar debes aceptar nuestros términos y condiciones y nuestra política de privacidad.',
+        loading = $('#loading').hide();
+
+    function chequeaEstado() {
+        if (terminosCondiciones && politicasPrivacidad) {
+            $('.modal-footer button').removeAttr('disabled');
+        }
+    }
 
     $('#accordion').find('a').first().on('click', function () {
         politicasPrivacidad = true;
@@ -16,17 +36,11 @@ $(document).ready(function () {
         chequeaEstado();
     });
 
-    function chequeaEstado() {
-        if (terminosCondiciones && politicasPrivacidad) {
-            $('.modal-footer button').removeAttr('disabled');
-        }
-    }
-
     if (idRegistro && emailRegistro) {
         $('#modalLegales').modal({
             backdrop: 'static',
             keyboard: false
-        }); 
+        });
     } else {
         $('#estado').text('Tu ID de registro es incorrecto, volvé a intentarlo nuevamente.');
     }
@@ -37,8 +51,11 @@ $(document).ready(function () {
             data: $.param({ acepta: '1', id: idRegistro }),
             url: '/registro/confirma/',
             success: function (data) {
-                console.log('DATA:', data);
-                // $('#estado').text('Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.');
+                if (data === 'exito') {
+                    $('#estado').text(mensajeExito);
+                } else {
+                    $('#estado').text(mensajeError);
+                }
             }
         });
     });
@@ -47,11 +64,8 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             data: $.param({ acepta: '0', id: idRegistro, email: emailRegistro, nombre: nombreRegistro }),
-            url: '/registro/confirma/',
-            success: function (data) {
-                console.log('DATA:', data);
-                // $('#estado').text('Para poder utilizar SnapCar debes aceptar nuestros términos y condiciones y nuestra política de privacidad.');
-            }
+            url: '/registro/confirma/'
         });
+        $('#estado').text(mensajeDeclina);
     });
 });
