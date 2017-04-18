@@ -19,6 +19,7 @@ module.exports = function (req, res) {
                 try {
                     if (data.attributes.bConfirmado === '1') {
                         mensaje = 'confirmado';
+                        return res.status(200).json(mensaje);
                     } else {
                         this.save({ bConfirmado: '1' }, { patch: true })
                             .then(function (data) {
