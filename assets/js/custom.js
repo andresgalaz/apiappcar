@@ -19,7 +19,8 @@ $(document).ready(function () {
         nombreRegistro = urlParams.get('nombre'),
         mensajeExito = 'Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.',
         mensajeError = 'No fue posible confirmar tu registro. Intentalo nuevamente.',
-        mensajeDeclina = 'Para poder utilizar SnapCar debes aceptar nuestros términos y condiciones y nuestra política de privacidad.';
+        mensajeDeclina = 'Para poder utilizar SnapCar debes aceptar nuestros términos y condiciones y nuestra política de privacidad.',
+        mensajeConfirmado = 'Ya confirmaste tu email. Ingresá a tu cuenta.'
 
     function chequeaEstado() {
         if (terminosCondiciones && politicasPrivacidad) {
@@ -56,8 +57,8 @@ $(document).ready(function () {
             success: function (data) {
                 if (data === 'exito') {
                     $('#estado').text(mensajeExito);
-                } else {
-                    $('#estado').text(mensajeError);
+                } else if (data === 'confirmado') {
+                    $('#estado').text(mensajeConfirmado);
                 }
             }
         });
