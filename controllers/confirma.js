@@ -2,6 +2,7 @@ const Hash = require('hashids');
 const Model = require('../db/model');
 const config = require('../config/main');
 const email = require('../config/emailServer');
+const pug = require('pug');
 
 module.exports = function (req, res) {
     if (req.body.id && req.body.acepta === '1') {
