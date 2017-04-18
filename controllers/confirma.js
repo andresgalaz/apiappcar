@@ -7,7 +7,6 @@ var hashId = new Hash(config.secret);
 
 module.exports = function (req, res) {
     var id = req.body.id,
-        
         idDecoded = String(hashId.decode(id)).slice(9),
         mensaje = '';
 
