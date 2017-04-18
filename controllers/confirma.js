@@ -6,11 +6,11 @@ const email = require('../config/emailServer');
 module.exports = function (req, res) {
     if (req.body.id && req.body.acepta === '1') {
 
-    var hashId = new Hash(config.secret);
-        id = req.body.id,
-        idDecoded = String(hashId.decode(id)).slice(9),
-        newUsuario = new Model.Usuario({ pUsuario: idDecoded }),
-        mensaje = '';
+        var hashId = new Hash(config.secret);
+            id = req.body.id,
+            idDecoded = String(hashId.decode(id)).slice(9),
+            newUsuario = new Model.Usuario({ pUsuario: idDecoded }),
+            mensaje = '';
 
         newUsuario
             .fetch()
@@ -23,18 +23,19 @@ module.exports = function (req, res) {
                             .then(function (data) {
                                 if (data === null) {
                                     mensaje = 'error';
+                                    return res.status(200).json(mensaje);
                                 } else {
                                     mensaje = 'exito';
+                                    return res.status(200).json(mensaje);
                                 }
                             });
                     }
                 } catch (err) {
                     console.log(err);
                     mensaje = 'error';
+                    return res.status(400).json(mensaje);
                 }
             });
-
-        return res.status(200).json(mensaje);
     } else {
         const cEmailBody = pug.compileFile('views/emailRegistro.pug');
 

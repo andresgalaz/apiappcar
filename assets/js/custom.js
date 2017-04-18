@@ -37,7 +37,7 @@ $(document).ready(function () {
             data: $.param({ acepta: '1', id: idRegistro }),
             url: '/registro/confirma/',
             success: function (data) {
-                console.log('DATA', data);
+                console.log('DATA:', data);
                 // $('#estado').text('Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.');
             }
         });
@@ -49,7 +49,7 @@ $(document).ready(function () {
             data: $.param({ acepta: '0', id: idRegistro, email: emailRegistro, nombre: nombreRegistro }),
             url: '/registro/confirma/',
             success: function (data) {
-                console.log('DATA', data);
+                console.log('DATA:', data);
                 // $('#estado').text('Para poder utilizar SnapCar debes aceptar nuestros términos y condiciones y nuestra política de privacidad.');
             }
         });
