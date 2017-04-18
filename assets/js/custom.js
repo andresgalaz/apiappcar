@@ -18,7 +18,7 @@ $(document).ready(function () {
         mensajeExito = 'Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.',
         mensajeError = 'No fue posible confirmar tu registro. Intentalo nuevamente.',
         mensajeDeclina = 'Para poder utilizar SnapCar debes aceptar nuestros términos y condiciones y nuestra política de privacidad.',
-        loading = $('#loading').hide();
+        loading = $('#loading-wrap').show();
 
     function chequeaEstado() {
         if (terminosCondiciones && politicasPrivacidad) {
