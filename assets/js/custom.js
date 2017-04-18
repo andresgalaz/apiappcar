@@ -34,7 +34,7 @@ $(document).ready(function () {
     $('.modal-footer button').last().click(function () {
         $.ajax({
             type: 'POST',
-            data: $.param({ acepta: '1', id: idRegistro, email: emailRegistro }),
+            data: $.param({ acepta: '1', id: idRegistro }),
             url: '/registro/confirma/',
             success: function (data) {
                 console.log('DATA', data);
@@ -46,7 +46,7 @@ $(document).ready(function () {
     $('.modal-footer button').first().click(function () {
         $.ajax({
             type: 'POST',
-            data: $.param({ acepta: '0', id: idRegistro, email: emailRegistro }),
+            data: $.param({ acepta: '0', id: idRegistro, email: emailRegistro, nombre: nombreRegistro }),
             url: '/registro/confirma/',
             success: function (data) {
                 console.log('DATA', data);
