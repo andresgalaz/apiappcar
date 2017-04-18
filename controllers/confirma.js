@@ -7,8 +7,7 @@ var hashId = new Hash(config.secret);
 
 module.exports = function (req, res) {
     var id = req.body.id,
-        email = req.body.email,
-        nombre = req.body.nombre,
+        
         idDecoded = String(hashId.decode(id)).slice(9),
         mensaje = '';
 
@@ -37,7 +36,9 @@ module.exports = function (req, res) {
 
         return res.status(200).json(mensaje);
     } else {
-        var emailDecoded = String(hashId.decode(email)).slice(9),
+        var email = req.body.email,
+            nombre = req.body.nombre,
+            emailDecoded = String(hashId.decode(email)).slice(9),
             nombreDecoded = String(hashId.decode(nombre)).slice(9),
             newUsuario = new Model.Usuario({ pUsuario: idDecoded });
 
