@@ -5,14 +5,29 @@ const email = require('../config/emailServer');
 const pug = require('pug');
 
 module.exports = function (req, res) {
-    if (req.body.id && req.body.acepta === '1') {
+    var hashId = new Hash(config.secret),
+        id = req.body.id,
+        idDecoded = String(hashId.decode(id)).slice(9),
+        newUsuario = new Model.Usuario({ pUsuario: idDecoded }),
+        mensaje = '';
 
-        var hashId = new Hash(config.secret);
-            id = req.body.id,
-            idDecoded = String(hashId.decode(id)).slice(9),
-            newUsuario = new Model.Usuario({ pUsuario: idDecoded }),
-            mensaje = '';
-
+    if (req.body.id && req.body.acepta === '2') {
+        newUsuario
+            .fetch()
+            .then(function (data) {
+                try {
+                    if (data.attributes.bConfirmado === '1') {
+                        mensaje = 'confirmado';
+                        return res.status(200).json(mensaje);
+                    }
+                } catch (err) {
+                    console.log(err);
+                    mensaje = 'error';
+                    return res.status(400).json(mensaje);
+                }
+            });
+    }
+    else if (req.body.id && req.body.acepta === '1') {
         newUsuario
             .fetch()
             .then(function (data) {
@@ -25,11 +40,10 @@ module.exports = function (req, res) {
                             .then(function (data) {
                                 if (data === null) {
                                     mensaje = 'error';
-                                    return res.status(200).json(mensaje);
                                 } else {
                                     mensaje = 'exito';
-                                    return res.status(200).json(mensaje);
                                 }
+                                return res.status(200).json(mensaje);
                             });
                     }
                 } catch (err) {

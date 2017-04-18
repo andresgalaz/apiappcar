@@ -39,10 +39,20 @@ $(document).ready(function () {
     });
 
     if (idRegistro && emailRegistro) {
-        loading.show();
-        $('#modalLegales').modal({
-            backdrop: 'static',
-            keyboard: false
+        $.ajax({
+            type: 'POST',
+            data: $.param({ acepta: '2', id: idRegistro }),
+            url: '/registro/confirma/',
+            success: function (data) {
+                if (data === 'confirmado') {
+                    $('#estado').text(mensajeConfirmado);
+                } else {
+                    $('#modalLegales').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                }
+            }
         });
     } else {
         $('#estado').text('Tu ID de registro es incorrecto, volvé a intentarlo nuevamente.');
