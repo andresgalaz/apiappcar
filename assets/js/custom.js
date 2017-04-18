@@ -1,3 +1,5 @@
+loading = $('#loading-wrap');
+
 $(document)
     .ajaxStart(function () {
         loading.show();
