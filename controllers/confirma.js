@@ -45,6 +45,7 @@ module.exports = function (req, res) {
                 data: cEmailBody({
                     nombreUsuario: req.body.nombre,
                     idRegistro: req.body.id,
+                    emailRegistro: req.body.email,
                     baseUrl: req.protocol + '://' + req.headers.host
                 }),
                 alternative: true
