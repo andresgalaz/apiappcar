@@ -99,9 +99,7 @@ module.exports = function (req, res) {
 
 						const cEmailBody = pug.compileFile('views/emailRegistro.pug');
 
-						var idRegistro = hashId.encode(10e10 + user.pUsuario),
-							emailEncoded = hashId.encode(10e10 + req.body.cEmail),
-							nombreEncoded = hashId.encode(10e10 + req.body.nombre.split(' ')[0]);
+						var idRegistro = hashId.encode(10e10 + user.pUsuario);
 
 						email.server.send({
 							from: 'SnapCar <no-responder@snapcar.com.ar>',
@@ -111,8 +109,7 @@ module.exports = function (req, res) {
 								data: cEmailBody({
 									nombreUsuario: req.body.nombre.split(' ')[0],
 									idRegistro: idRegistro,
-									nombreRegistro: nombreEncoded,
-									emailRegistro: emailEncoded,
+									emailRegistro: req.body.email,
 									baseUrl: req.protocol + '://' + req.headers.host
 								}),
 								alternative: true
