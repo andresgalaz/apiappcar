@@ -1,5 +1,4 @@
 - var fechaHoy = new Date().getFullYear();
-- var estado = estadoRegistro;
 
 doctype html
 html(lang=es)
@@ -38,19 +37,6 @@ html(lang=es)
             .row
                 .col-md-12
                     h2#estado
-                        //-
-                            if estado === 'exito'
-                                i.fa.fa-check-circle
-                                |  Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.
-                            else if estado === 'confirmado'
-                                i.fa.fa-exclamation-circle
-                                |  Ya confirmaste tu email. Ingresá a tu cuenta.
-                            else if estado === 'declinado'
-                                i.fa.fa-exclamation-circle
-                                | Para poder utilizar SnapCar debes aceptar nuestros términos y condiciones y nuestra política de privacidad.
-                            else
-                                i.fa.fa-exclamation-circle
-                                |  Error al validar tu email.
                     p Tu ID de registro es 
                         b #{idRegistro}
                         | .
