@@ -9,6 +9,7 @@ module.exports = function (req, res) {
     var hashId = new Hash(config.secret);
         id = req.body.id,
         idDecoded = String(hashId.decode(id)).slice(9),
+        newUsuario = new Model.Usuario({ pUsuario: idDecoded }),
         mensaje = '';
 
         newUsuario
