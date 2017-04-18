@@ -1,3 +1,5 @@
+loading = $('#loading-wrap').show();
+
 $(document)
     .ajaxStart(function () {
         loading.show();
@@ -17,8 +19,7 @@ $(document).ready(function () {
         nombreRegistro = urlParams.get('nombre'),
         mensajeExito = 'Gracias por confirmar tu email. Ahora podés ingresar a tu cuenta.',
         mensajeError = 'No fue posible confirmar tu registro. Intentalo nuevamente.',
-        mensajeDeclina = 'Para poder utilizar SnapCar debes aceptar nuestros términos y condiciones y nuestra política de privacidad.',
-        loading = $('#loading-wrap').show();
+        mensajeDeclina = 'Para poder utilizar SnapCar debes aceptar nuestros términos y condiciones y nuestra política de privacidad.';
 
     function chequeaEstado() {
         if (terminosCondiciones && politicasPrivacidad) {
