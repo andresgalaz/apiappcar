@@ -44,9 +44,9 @@ $(document).ready(function () {
             data: $.param({ acepta: '2', id: idRegistro }),
             url: '/registro/confirma/',
             success: function (data) {
-                if (data === 'confirmado') {
+                if (data.message === 'confirmado') {
                     $('#estado').text(mensajeConfirmado);
-                } else if (data === 'no confirmado') {
+                } else if (data.message === 'no confirmado') {
                     $('#modalLegales').modal({
                         backdrop: 'static',
                         keyboard: false
@@ -65,9 +65,9 @@ $(document).ready(function () {
             data: $.param({ acepta: '1', id: idRegistro }),
             url: '/registro/confirma/',
             success: function (data) {
-                if (data === 'exito') {
+                if (data.message === 'exito') {
                     $('#estado').text(mensajeExito);
-                } else if (data === 'confirmado') {
+                } else if (data.message === 'confirmado') {
                     $('#estado').text(mensajeConfirmado);
                 }
             }

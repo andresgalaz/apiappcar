@@ -21,11 +21,11 @@ module.exports = function (req, res) {
                     } else {
                         mensaje = 'no confirmado';
                     }
-                    return res.status(200).json(mensaje);
+                    return res.status(200).json({ message: mensaje });
                 } catch (err) {
                     console.log(err);
                     mensaje = 'error';
-                    return res.status(400).json(mensaje);
+                    return res.status(400).json({ message: mensaje });
                 }
             });
     }
@@ -36,7 +36,7 @@ module.exports = function (req, res) {
                 try {
                     if (data.attributes.bConfirmado === '1') {
                         mensaje = 'confirmado';
-                        return res.status(200).json(mensaje);
+                        return res.status(200).json({ message: mensaje });
                     } else {
                         this.save({ bConfirmado: '1' }, { patch: true })
                             .then(function (data) {
@@ -45,13 +45,13 @@ module.exports = function (req, res) {
                                 } else {
                                     mensaje = 'exito';
                                 }
-                                return res.status(200).json(mensaje);
+                                return res.status(200).json({ message: mensaje });
                             });
                     }
                 } catch (err) {
                     console.log(err);
                     mensaje = 'error';
-                    return res.status(400).json(mensaje);
+                    return res.status(400).json({ message: mensaje });
                 }
             });
     } else {
@@ -73,6 +73,6 @@ module.exports = function (req, res) {
         }, function (err, message) { console.log(err || message); });
 
         mensaje = 'no confirma'
-        return res.status(200).json(mensaje);
+        return res.status(200).json({ message: mensaje });
     }
 };
