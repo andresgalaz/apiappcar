@@ -37,8 +37,6 @@ module.exports = function (req, res) {
     } else {
         var email = req.body.email,
             nombre = req.body.nombre,
-            emailDecoded = String(hashId.decode(email)).slice(9),
-            nombreDecoded = String(hashId.decode(nombre)).slice(9),
             newUsuario = new Model.Usuario({ pUsuario: idDecoded });
 
         const cEmailBody = pug.compileFile('views/emailRegistro.pug');
