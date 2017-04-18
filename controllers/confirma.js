@@ -3,12 +3,11 @@ const Model = require('../db/model');
 const config = require('../config/main');
 const email = require('../config/emailServer');
 
-var hashId = new Hash(config.secret);
-
 module.exports = function (req, res) {
     if (req.body.id && req.body.acepta === '1') {
 
-    var id = req.body.id,
+    var hashId = new Hash(config.secret);
+        id = req.body.id,
         idDecoded = String(hashId.decode(id)).slice(9),
         mensaje = '';
 
