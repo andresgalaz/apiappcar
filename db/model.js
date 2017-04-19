@@ -104,7 +104,6 @@ var siniestro = scoreDB.Model.extend({
 	tableName: 'tSiniestro',
 	idAttribute: 'pSiniestro'
 });
-
 var sinArchivo = scoreDB.Model.extend({
 	tableName: 'tSiniestroArchivo',
 	idAttribute: 'pArchivo'

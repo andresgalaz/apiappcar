@@ -14,9 +14,8 @@ module.exports = function(req,res){
 		return res.status(400).json({ success: false, code: 2910, message: 'Falta id. de vehículo.' });
 	}
 	var oOut = {
-		version : 108,
-//		url :  req.protocol + '://' + req.headers.host + '/VCNV500102_BIN.SFB'
-		url :  'https://api.appcar.com.ar/VCNV500108_BIN.SFB'
+		version : 110,
+		url :  'https://api.appcar.com.ar/VCNV500110_BIN.SFB'
 	};
 	return res.status(200).json( oOut );
 };
