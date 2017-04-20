@@ -1,8 +1,9 @@
-*server*.log*
-.project
-.settings/*
-node_modules/*
-assets/less/*
-gruntfile.js
-.vscode
 **/*.js-
+*.log*
+*server
+.project
+.settings/
+.vscode
+assets/less/
+gruntfile.js
+node_modules/
