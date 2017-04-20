@@ -113,7 +113,9 @@ module.exports = function (req, res) {
 					})
 					.then(function (data) {
 						user = data.toJSON();
-						return res.status(200).json(user);
+						user.success = false;
+						user.message ='Se le ha enviado un mail. Cofirme el mail para ingresar';
+						return res.status(400).json(user);
 					});
 			} else {
 				var hashId = new Hash(config.secret);
@@ -139,8 +141,9 @@ module.exports = function (req, res) {
 							.then(function (data) {
 								user = data.toJSON();
 								var usrOut = Model.UsuarioVeh.salida(user);
-								usrOut.success = true;
-								return res.status(200).json(usrOut);
+								usrOut.success = false;
+								usrOut.message ='Se le ha enviado un mail. Cofirme el mail para ingresar';
+								return res.status(400).json(usrOut);
 							});
 
 						const cEmailBody = pug.compileFile('views/emailRegistro.pug');
