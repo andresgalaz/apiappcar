@@ -66,7 +66,8 @@ module.exports = function (req, res) {
                     nombreUsuario: req.body.nombre,
                     idRegistro: req.body.id,
                     emailRegistro: req.body.email,
-                    baseUrl: req.protocol + '://' + req.headers.host
+                    // baseUrl: req.protocol + '://' + req.headers.host
+ 		    baseUrl: 'https://api.appcar.com.ar'
                 }),
                 alternative: true
             }]

@@ -78,7 +78,8 @@ module.exports = function (req, res) {
 									emailUsuario: req.user.cEmail,
 									emailInvitado: req.body.emailInvitado,
 									idInvitacion: invita.idInvitacion,
-									baseUrl: req.protocol + '://' + req.headers.host
+									// baseUrl: req.protocol + '://' + req.headers.host
+									baseUrl: 'https://api.appcar.com.ar'
 								}),
 								alternative: true
 							}]

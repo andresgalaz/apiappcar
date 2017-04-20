@@ -36,7 +36,8 @@ module.exports = function (req, res) {
 							attachment: [{
 								data: cEmailBody({
 									nuevoPassword: tempPassword,
-									baseUrl: req.protocol + '://' + req.headers.host
+ 									// baseUrl: req.protocol + '://' + req.headers.host
+                                                                        baseUrl: 'https://api.appcar.com.ar'
 								}),
 								alternative: true
 							}]
@@ -69,7 +70,8 @@ module.exports = function (req, res) {
 						attachment: [{
 							data: cEmailBody({
 								nuevoPassword: nuevoPassword,
-								baseUrl: req.protocol + '://' + req.headers.host
+								// baseUrl: req.protocol + '://' + req.headers.host
+                                                                baseUrl: 'https://api.appcar.com.ar'
 							}),
 							alternative: true
 						}]
