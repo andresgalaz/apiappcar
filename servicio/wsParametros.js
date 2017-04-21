@@ -15,6 +15,7 @@ module.exports = function (req, res) {
 	}
 	var oOut = {
 		version: 3,
+		umbral: 300,
 		params: [
 			  '>VS16,14,3600<'
 			, '>VS16,16,60<'
