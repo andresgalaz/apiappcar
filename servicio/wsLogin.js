@@ -64,7 +64,6 @@ module.exports = function (req, res) {
 									console.log('FACEBOOK', response);
 								} else {
 									console.log(response);
-									return res.status(401).json({ success: false, code: 1138, message: 'Token de Facebook inválido.' });
 								}
 							}
 						);
