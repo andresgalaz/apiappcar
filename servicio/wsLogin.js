@@ -34,23 +34,22 @@ module.exports = function (req, res) {
 				if (req.body.google || req.body.facebook || req.body.password == user.cPassword || req.body.password == config.encripta('^m7GByVYG*sv2Q4XutC4')) {
 					// Validar token de Google
 					if (req.body.google) {
-						try {
-							var clientId = '752485347754-c9bp4j0u7o5rvs13o5hek35a1td40d3h.apps.googleusercontent.com';
-							var auth = new GoogleAuth;
-							var client = new auth.OAuth2(clientId, '', '');
+						var clientId = '752485347754-c9bp4j0u7o5rvs13o5hek35a1td40d3h.apps.googleusercontent.com';
+						var auth = new GoogleAuth;
+						var client = new auth.OAuth2(clientId, '', '');
 
-							client.verifyIdToken(
-								req.body.google,
-								clientId,
-								function (e, login) {
+						client.verifyIdToken(
+							req.body.google,
+							clientId,
+							function (e, login) {
+								if (login) {
 									var payload = login.getPayload();
 									var userid = payload['sub'];
+								} else {
+									return res.status(401).json({ success: false, code: 1136, message: 'Token de Google inválido.' });
 								}
-							);
-						} catch (e) {
-							console.log('Error:', err);
-							return res.status(401).json({ success: false, code: 1136, message: 'ID de token inválido.' });
-						}
+							}
+						);
 					}
 
 					// Create token if the password matched and no error was thrown
