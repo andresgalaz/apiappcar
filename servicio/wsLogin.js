@@ -44,8 +44,8 @@ module.exports = function (req, res) {
 								var payload = login.getPayload();
 								var userid = payload['sub'];
 
-								console.log(payload);
-								console.log(userid);
+								console.log('PAYLOAD:', payload);
+								console.log('USERID:', userid);
 							});	
 					}
 
