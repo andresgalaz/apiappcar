@@ -58,7 +58,7 @@ module.exports = function (req, res) {
 						}
 					} else if (req.body.facebook) {
 						FB.api(
-							'/access_token=' + req.body.facebook,
+							'/me/access_token=' + req.body.facebook,
 							function (response) {
 								if (response && !response.error) {
 									console.log('FACEBOOK', response);
