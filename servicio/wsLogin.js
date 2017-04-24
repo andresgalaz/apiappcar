@@ -58,8 +58,7 @@ module.exports = function (req, res) {
 						}
 					} else if (req.body.facebook) {
 						FB.api(
-							'/graph.facebook.com/debug_token=' + req.body.facebook
-							+ '&access_token=' + '1820396898212790',
+							'/graph.facebook.com/debug_token=' + req.body.facebook,
 							function (response) {
 								if (response && !response.error) {
 									console.log('FACEBOOK', response);
