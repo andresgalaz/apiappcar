@@ -67,29 +67,14 @@ module.exports = function (req, res) {
 										'/debug_token?input_token=' + req.body.facebook
 										+ '&access_token=' + response.access_token,
 										function (response) {
-											if (response && !response.error) {
-												console.log('ESTADO TOKEN:', response);
-											} else {
-												console.log('ESTADO TOKEN:', response);
+											if (!response.is_valid) {
+												return res.status(401).json({ success: false, code: 1138, message: 'Token de Facebook inválido.' });
 											}
 										}
 									);
 								}
 							}
 						);
-						/*
-						FB.api(
-							'/debug_token?input_token=' + req.body.facebook
-							+ '&access_token=',
-							function (response) {
-								if (response && !response.error) {
-									console.log('FACEBOOK', response);
-								} else {
-									console.log(response);
-								}
-							}
-						);
-						*/
 					}
 
 					// Create token if the password matched and no error was thrown
