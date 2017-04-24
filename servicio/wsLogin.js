@@ -46,6 +46,10 @@ module.exports = function (req, res) {
 								function (e, login) {
 									var payload = login.getPayload();
 									var userid = payload['sub'];
+
+									if (payload.email !== req.body.email) {
+										return res.status(401).json({ success: false, code: 1134, message: 'Token de Google inválido.' });
+									}
 								}
 							);
 						} catch (e) {
