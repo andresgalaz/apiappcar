@@ -38,15 +38,19 @@ module.exports = function (req, res) {
 						var auth = new GoogleAuth;
 						var client = new auth.OAuth2(clientId, '', '');
 
-						client.verifyIdToken(
-							req.body.google,
-							clientId,
-							function (e, login) {
-								var payload = login.getPayload();
-								var userid = payload['sub'];
-								console.log(e);
-							}
-						);
+						try { 
+							client.verifyIdToken(
+								req.body.google,
+								clientId,
+								function (e, login) {
+									var payload = login.getPayload();
+									var userid = payload['sub'];
+								}
+							);
+						} catch (e) {
+							console.log(e);
+							return res.status(401).json({ success: false, code: 1136, message: 'Token de Google inválido.' });
+						} 
 					}
 
 					// Create token if the password matched and no error was thrown
