@@ -46,6 +46,8 @@ module.exports = function (req, res) {
 								function (e, login) {
 									var payload = login.getPayload();
 									var userid = payload['sub'];
+
+									console.log('PAYLOAD:', payload);
 								}
 							);
 						} catch (e) {
@@ -60,6 +62,7 @@ module.exports = function (req, res) {
 									console.log(response);
 								} else {
 									console.log(response);
+									return res.status(401).json({ success: false, code: 1138, message: 'Token de Facebook inválido.' });
 								}
 							}
 						);
