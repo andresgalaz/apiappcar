@@ -42,10 +42,12 @@ module.exports = function (req, res) {
 							req.body.google,
 							clientId,
 							function (e, login) {
-									var payload = login.getPayload();
-									var userid = payload['sub'];
+								var payload = login.getPayload();
+								var userid = payload['sub'];
 							}
-						);
+						).then(function () {
+							console.log(payload);
+						});
 					}
 
 					// Create token if the password matched and no error was thrown
