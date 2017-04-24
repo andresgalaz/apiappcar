@@ -42,12 +42,8 @@ module.exports = function (req, res) {
 							req.body.google,
 							clientId,
 							function (e, login) {
-								if (login) {
 									var payload = login.getPayload();
 									var userid = payload['sub'];
-								} else {
-									return res.status(401).json({ success: false, code: 1136, message: 'Token de Google inválido.' });
-								}
 							}
 						);
 					}
