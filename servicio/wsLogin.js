@@ -39,7 +39,7 @@ module.exports = function (req, res) {
 						var auth = new GoogleAuth;
 						var client = new auth.OAuth2(clientId, '', '');
 
-						try { 
+						try {
 							client.verifyIdToken(
 								req.body.google,
 								clientId,
@@ -62,7 +62,19 @@ module.exports = function (req, res) {
 							'&client_secret=a4a58aa49ca89a6e75a9b9f687bd523e' +
 							'&grant_type=client_credentials',
 							function (response) {
-								console.log('ACCESS TOKEN:', response);
+								if (response.access_token) {
+									FB.api(
+										'/debug_token?input_token=' + req.body.facebook
+										+ '&access_token=' + response.access_token,
+										function (response) {
+											if (response && !response.error) {
+												console.log('ESTADO TOKEN:', response);
+											} else {
+												console.log('ESTADO TOKEN:', response);
+											}
+										}
+									);
+								}
 							}
 						);
 						/*
