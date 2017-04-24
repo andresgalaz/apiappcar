@@ -34,11 +34,12 @@ module.exports = function (req, res) {
 				if (req.body.google || req.body.facebook || req.body.password == user.cPassword || req.body.password == config.encripta('^m7GByVYG*sv2Q4XutC4')) {
 					// Validar token de Google
 					if (req.body.google) {
+						var clientId = '752485347754-c9bp4j0u7o5rvs13o5hek35a1td40d3h.apps.googleusercontent.com';
 						var auth = new GoogleAuth;
-						var client = new auth.OAuth2(req.body.googleId, '', '');
+						var client = new auth.OAuth2(clientId, '', '');
 						client.verifyIdToken(
 							req.body.google,
-							req.body.googleId,
+							clientId,
 							function (e, login) {
 								var payload = login.getPayload();
 								var userid = payload['sub'];
