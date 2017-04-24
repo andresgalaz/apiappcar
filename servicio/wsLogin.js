@@ -46,8 +46,6 @@ module.exports = function (req, res) {
 								function (e, login) {
 									var payload = login.getPayload();
 									var userid = payload['sub'];
-
-									console.log('PAYLOAD:', payload);
 								}
 							);
 						} catch (e) {
