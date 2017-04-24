@@ -3,6 +3,7 @@ const config = require('../config/main');
 const jwt = require('jsonwebtoken');
 const moment = require("moment");
 const GoogleAuth = require('google-auth-library');
+const FB = require('fb');
 
 module.exports = function (req, res) {
 	const Util = require('../util');
@@ -50,7 +51,18 @@ module.exports = function (req, res) {
 						} catch (e) {
 							console.log(e);
 							return res.status(401).json({ success: false, code: 1136, message: 'Token de Google inválido.' });
-						} 
+						}
+					} else if (req.body.facebook) {
+						FB.api(
+							'/debug_token?input_token=' + req.body.facebook,
+							function (response) {
+								if (response && !response.error) {
+									console.log(response);
+								} else {
+									console.log(response);
+								}
+							}
+						);
 					}
 
 					// Create token if the password matched and no error was thrown
