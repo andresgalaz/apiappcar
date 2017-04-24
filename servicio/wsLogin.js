@@ -44,10 +44,9 @@ module.exports = function (req, res) {
 							function (e, login) {
 								var payload = login.getPayload();
 								var userid = payload['sub'];
+								console.log(e);
 							}
-						).then(function () {
-							console.log(payload);
-						});
+						);
 					}
 
 					// Create token if the password matched and no error was thrown
