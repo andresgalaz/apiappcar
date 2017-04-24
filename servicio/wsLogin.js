@@ -41,11 +41,12 @@ module.exports = function (req, res) {
 							req.body.google,
 							clientId,
 							function (e, login) {
-								try {
-									var payload = login.getPayload();
+								var payload = login.getPayload();
+
+								if (payload) {
 									var userid = payload['sub'];
-								} catch (err) {
-									return res.status(401).json({ success: false, code: 1136, message: 'Token inválido.' });
+								} else {
+									return res.status(401).json({ success: false, code: 1136, message: 'ID de token inválido.' });
 								}
 							}
 						);
