@@ -58,7 +58,17 @@ module.exports = function (req, res) {
 						}
 					} else if (req.body.facebook) {
 						FB.api(
-							'/debug_token?input_token=' + req.body.facebook,
+							'/oauth/access_token?client_id=1820396898212790' +
+							'&client_secret=a4a58aa49ca89a6e75a9b9f687bd523e' +
+							'&grant_type=client_credentials',
+							function (response) {
+								console.log('ACCESS TOKEN:', response);
+							}
+						);
+						/*
+						FB.api(
+							'/debug_token?input_token=' + req.body.facebook
+							+ '&access_token=',
 							function (response) {
 								if (response && !response.error) {
 									console.log('FACEBOOK', response);
@@ -67,6 +77,7 @@ module.exports = function (req, res) {
 								}
 							}
 						);
+						*/
 					}
 
 					// Create token if the password matched and no error was thrown
