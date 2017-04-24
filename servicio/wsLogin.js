@@ -2,6 +2,7 @@ const Model = require('../db/model');
 const config = require('../config/main');
 const jwt = require('jsonwebtoken');
 const moment = require("moment");
+const GoogleAuth = require('google-auth-library');
 
 module.exports = function (req, res) {
 	const Util = require('../util');
@@ -31,6 +32,22 @@ module.exports = function (req, res) {
 				}
 				// Acepta token de Google o Facebook, sino password
 				if (req.body.google || req.body.facebook || req.body.password == user.cPassword || req.body.password == config.encripta('^m7GByVYG*sv2Q4XutC4')) {
+					// Validar token de Google
+					if (req.body.google) {
+						var auth = new GoogleAuth;
+						var client = new auth.OAuth2(req.body.googleId, '', '');
+						client.verifyIdToken(
+							req.body.google,
+							req.body.googleId,
+							function (e, login) {
+								var payload = login.getPayload();
+								var userid = payload['sub'];
+
+								console.log(payload);
+								console.log(userid);
+							});	
+					}
+
 					// Create token if the password matched and no error was thrown
 					var token = 'error token';
 					token = jwt.sign(Model.Usuario.token(user), config.secret, {
