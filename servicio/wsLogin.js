@@ -41,12 +41,14 @@ module.exports = function (req, res) {
 							req.body.google,
 							clientId,
 							function (e, login) {
-								var payload = login.getPayload();
-								var userid = payload['sub'];
-
-								console.log('PAYLOAD:', payload);
-								console.log('USERID:', userid);
-							});	
+								try {
+									var payload = login.getPayload();
+									var userid = payload['sub'];
+								} catch (err) {
+									return res.status(401).json({ success: false, code: 1136, message: 'Token inválido.' });
+								}
+							}
+						);
 					}
 
 					// Create token if the password matched and no error was thrown
