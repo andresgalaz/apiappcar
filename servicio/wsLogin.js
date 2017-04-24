@@ -58,10 +58,11 @@ module.exports = function (req, res) {
 						}
 					} else if (req.body.facebook) {
 						FB.api(
-							'/me?access_token=' + req.body.facebook,
+							'/graph.facebook.com/debug_token=' + req.body.facebook
+							+ '&access_token=' + '1820396898212790',
 							function (response) {
 								if (response && !response.error) {
-									console.log(response);
+									console.log('FACEBOOK', response);
 								} else {
 									console.log(response);
 									return res.status(401).json({ success: false, code: 1138, message: 'Token de Facebook inválido.' });
