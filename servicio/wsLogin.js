@@ -65,16 +65,16 @@ module.exports = function (req, res) {
 								grant_type: 'client_credentials'
 							},
 							function (response) {
-								console.log('RESPONSE:', response.access_token);
-
 								if (response) {
 									FB.api('/debug_token', 'get',
 									{
 										input_token: response.access_token,
 										access_token: req.body.facebook
 									},
-									function (responseDebug) {
-										console.log('RESPONSE #2:', responseDebug);
+									function (response) {
+										if (!response.is_valid) {
+											return res.status(401).json({ success: false, code: 1138, message: 'Token de Facebook inválido.' });
+										}
 									})
 								}
 							});
