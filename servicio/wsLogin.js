@@ -78,41 +78,7 @@ module.exports = function (req, res) {
 									})
 								}
 							});
-						/*
-						FB.api(
-							'/debug_token?input_token=' + req.body.facebook,
-								function (response) {
-									if (response && !response.error) {
-										console.log('FACEBOOK LOGIN:', response);
-									} else {
-										console.log('FACEBOOK LOGIN ERROR:', response);
-									}
-								}
-						);
-						*/
 					}
-					
-					/*else if (req.body.facebook) {
-						FB.api(
-							'/oauth/access_token?client_id=1820396898212790' +
-							'&client_secret=a4a58aa49ca89a6e75a9b9f687bd523e' +
-							'&grant_type=client_credentials',
-							function (response) {
-								console.log(response);
-								if (response.access_token) {
-									FB.api(
-										'/debug_token?input_token=' + req.body.facebook
-										+ '&access_token=' + response.access_token,
-										function (response) {
-											if (!response.is_valid) {
-												return res.status(401).json({ success: false, code: 1138, message: 'Token de Facebook inválido.' });
-											}
-										}
-									);
-								}
-							}
-						);
-					}*/
 
 					// Create token if the password matched and no error was thrown
 					var token = 'error token';
