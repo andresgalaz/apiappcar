@@ -72,8 +72,8 @@ module.exports = function (req, res) {
 									{
 										input_token: response.access_token
 									},
-									function (response) {
-										console.log('RESPONSE #2:', response);
+									function (responseDebug) {
+										console.log('RESPONSE #2:', responseDebug);
 									})
 								}
 							});
