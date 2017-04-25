@@ -60,8 +60,8 @@ module.exports = function (req, res) {
 					if (req.body.facebook) {
 						FB.api('/oauth/access_token', 'get',
 							{
-								client_id: '',
-								client_secret: '',
+								client_id: '1820396898212790',
+								client_secret: 'a4a58aa49ca89a6e75a9b9f687bd523e',
 								grant_type: 'client_credentials'
 							},
 							function (response) {
