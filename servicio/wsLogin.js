@@ -58,9 +58,7 @@ module.exports = function (req, res) {
 						}
 					}
 					if (req.body.facebook) {
-						FB.api(
-							'/oauth/access_token',
-							'get',
+						FB.api('/oauth/access_token', 'get',
 							{
 								client_id: '',
 								client_secret: '',
