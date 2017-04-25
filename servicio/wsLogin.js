@@ -66,6 +66,14 @@ module.exports = function (req, res) {
 							},
 							function (response) {
 								console.log('RESPONSE:', response.access_token);
+
+								if (response) {
+									FB.api('/debug_token', 'get',
+									{
+										input_token: response.access_token
+									},
+									params, callback)
+								}
 							});
 						/*
 						FB.api(
