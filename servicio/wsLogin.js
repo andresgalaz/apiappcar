@@ -65,7 +65,7 @@ module.exports = function (req, res) {
 								grant_type: 'client_credentials'
 							},
 							function (response) {
-								console.log('RESPONSE:', response);
+								console.log('RESPONSE:', response.access_token);
 							});
 						/*
 						FB.api(
