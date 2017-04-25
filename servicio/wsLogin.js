@@ -56,14 +56,13 @@ module.exports = function (req, res) {
 							console.log(e);
 							return res.status(401).json({ success: false, code: 1136, message: 'Token de Google inválido.' });
 						}
-					} else if (req.body.facebook) {
+					} /*else if (req.body.facebook) {
 						FB.api(
 							'/oauth/access_token?client_id=1820396898212790' +
 							'&client_secret=a4a58aa49ca89a6e75a9b9f687bd523e' +
 							'&grant_type=client_credentials',
 							function (response) {
 								console.log(response);
-								/*
 								if (response.access_token) {
 									FB.api(
 										'/debug_token?input_token=' + req.body.facebook
@@ -75,10 +74,9 @@ module.exports = function (req, res) {
 										}
 									);
 								}
-								*/
 							}
 						);
-					}
+					}*/
 
 					// Create token if the password matched and no error was thrown
 					var token = 'error token';
