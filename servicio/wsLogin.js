@@ -63,6 +63,8 @@ module.exports = function (req, res) {
 								function (response) {
 									if (response && !response.error) {
 										console.log('FACEBOOK LOGIN:', response);
+									} else {
+										console.log('FACEBOOK LOGIN ERROR:', response);
 									}
 								}
 						);
