@@ -31,7 +31,7 @@ module.exports = function (req, res) {
                 user = data.toJSON();
 
 				/**
-				 * Si no confirmó términos y condiciones y póliticas de privacidad muestra error 1132.
+				 * Si no confirmó términos y condiciones y póliticas de privacidad muestra error.
 				*/
                 if (user.bConfirmado == undefined || user.bConfirmado != '1') {
                     return res.status(401).json({ success: false, code: 1132, message: 'Usuario no ha confirmado email' });
