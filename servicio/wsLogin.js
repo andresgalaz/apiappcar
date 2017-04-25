@@ -56,7 +56,8 @@ module.exports = function (req, res) {
 							console.log(e);
 							return res.status(401).json({ success: false, code: 1136, message: 'Token de Google inválido.' });
 						}
-					} else if (req.body.facebook) {
+					}
+					if (req.body.facebook) {
 						FB.api(
 							'/debug_token?input_token=' + req.body.facebook,
 								function (response) {
