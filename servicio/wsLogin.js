@@ -63,6 +63,7 @@ module.exports = function (req, res) {
 							'&grant_type=client_credentials',
 							function (response) {
 								console.log(response);
+								/*
 								if (response.access_token) {
 									FB.api(
 										'/debug_token?input_token=' + req.body.facebook
@@ -74,6 +75,7 @@ module.exports = function (req, res) {
 										}
 									);
 								}
+								*/
 							}
 						);
 					}
