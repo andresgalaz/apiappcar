@@ -82,10 +82,10 @@ module.exports = function (req, res) {
                                         },
                                         function (response) {
 											console.log(response);
-                                            if (!response.data.is_valid) {
-                                                return res.status(401).json({ success: false, code: 1138, message: 'Token de Facebook inválido.' });
+                                            if (response.data) {
+                                                generaToken(user);
                                             } else {
-                                                 generaToken(user);
+												return res.status(401).json({ success: false, code: 1138, message: 'Token de Facebook inválido.' });
                                             }
                                         })
                                 }
