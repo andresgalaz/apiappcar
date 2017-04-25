@@ -6,11 +6,14 @@ const GoogleAuth = require('google-auth-library');
 const FB = require('fb');
 
 module.exports = function (req, res) {
-
-	// Registra nuevos usuarios o usuarios existentes en dispositivos nuevos
+	/**
+	 * Registra nuevos usuarios o usuarios existentes en dispositivos nuevos
+	 */
 	console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
 
-	// La password se encripta antes de desplegar en la bitácora
+	/**
+	 * La password se encripta antes de desplegar en la bitácora
+	 */
     req.body.password = config.encripta(req.body.password);
 
     if (!req.body.email) {
