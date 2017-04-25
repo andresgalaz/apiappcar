@@ -61,7 +61,7 @@ module.exports = function (req, res) {
 							'/debug_token?input_token=' + req.body.facebook,
 								function (response) {
 									if (response && !response.error) {
-									/* handle the result */
+										console.log('FACEBOOK LOGIN:', response);
 									}
 								}
 						);
