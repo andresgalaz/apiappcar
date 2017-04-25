@@ -72,7 +72,9 @@ module.exports = function (req, res) {
 									{
 										input_token: response.access_token
 									},
-									params, callback)
+									function (response) {
+										console.log('RESPONSE #2:', response);
+									})
 								}
 							});
 						/*
