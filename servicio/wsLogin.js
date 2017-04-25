@@ -70,7 +70,8 @@ module.exports = function (req, res) {
 								if (response) {
 									FB.api('/debug_token', 'get',
 									{
-										input_token: response.access_token
+										input_token: response.access_token,
+										access_token: req.body.facebook
 									},
 									function (responseDebug) {
 										console.log('RESPONSE #2:', responseDebug);
