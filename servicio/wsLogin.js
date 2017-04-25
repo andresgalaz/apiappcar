@@ -56,7 +56,18 @@ module.exports = function (req, res) {
 							console.log(e);
 							return res.status(401).json({ success: false, code: 1136, message: 'Token de Google inválido.' });
 						}
-					} /*else if (req.body.facebook) {
+					} else if (req.body.facebook) {
+						FB.api(
+							'/debug_token?input_token=' + req.body.facebook,
+								function (response) {
+									if (response && !response.error) {
+									/* handle the result */
+									}
+								}
+						);
+					}
+					
+					/*else if (req.body.facebook) {
 						FB.api(
 							'/oauth/access_token?client_id=1820396898212790' +
 							'&client_secret=a4a58aa49ca89a6e75a9b9f687bd523e' +
