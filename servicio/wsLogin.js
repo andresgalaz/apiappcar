@@ -106,7 +106,7 @@ module.exports = function (req, res) {
     });
 
 	/**
-	 * Genera token con la data recibida en @param
+	 * Genera token con la información recibida en @param
 	 * @param {*} user 
 	 */
     var generaToken = function (user) {
