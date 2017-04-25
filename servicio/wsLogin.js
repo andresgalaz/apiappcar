@@ -35,25 +35,37 @@ module.exports = function (req, res) {
                         var auth = new GoogleAuth;
                         var client = new auth.OAuth2(clientId, '', '');
 
-                        try {
+                        //try {
                             client.verifyIdToken(
                                 req.body.google,
                                 clientId,
                                 function (e, login) {
-                                    var payload = login.getPayload();
+									if (login) {
+										var payload = login.getPayload();
+
+										if (payload.email !== req.body.email) {
+                                        	return res.status(401).json({ success: false, code: 1134, message: 'Token de Google inválido.' });
+                                    	} else {
+                                        	generaToken(user);
+                                    	}
+									} else {
+										console.log(e);
+                            			return res.status(401).json({ success: false, code: 1136, message: 'Token de Google inválido.' });
+									}
+                                    // var payload = login.getPayload();
                                     // var userid = payload['sub'];
 
-                                    if (payload.email !== req.body.email) {
-                                        return res.status(401).json({ success: false, code: 1134, message: 'Token de Google inválido.' });
-                                    } else {
-                                        generaToken(user);
-                                    }
+                                    //if (payload.email !== req.body.email) {
+                                    //    return res.status(401).json({ success: false, code: 1134, message: 'Token de Google inválido.' });
+                                    //} else {
+                                    //    generaToken(user);
+                                    //}
                                 }
                             );
-                        } catch (e) {
-                            console.log(e);
-                            return res.status(401).json({ success: false, code: 1136, message: 'Token de Google inválido.' });
-                        }
+                        //} catch (e) {
+                        //    console.log(e);
+                        //    return res.status(401).json({ success: false, code: 1136, message: 'Token de Google inválido.' });
+                        //}
                     } else if (req.body.facebook) {
                         FB.api('/oauth/access_token', 'get',
                             {
