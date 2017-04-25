@@ -59,6 +59,18 @@ module.exports = function (req, res) {
 					}
 					if (req.body.facebook) {
 						FB.api(
+							'/oauth/access_token',
+							'get',
+							{
+								client_id: '',
+								client_secret: '',
+								grant_type: 'client_credentials'
+							},
+							function (response) {
+								console.log('RESPONSE:', response);
+							});
+						/*
+						FB.api(
 							'/debug_token?input_token=' + req.body.facebook,
 								function (response) {
 									if (response && !response.error) {
@@ -68,6 +80,7 @@ module.exports = function (req, res) {
 									}
 								}
 						);
+						*/
 					}
 					
 					/*else if (req.body.facebook) {
