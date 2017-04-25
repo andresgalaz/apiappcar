@@ -62,6 +62,7 @@ module.exports = function (req, res) {
 							'&client_secret=a4a58aa49ca89a6e75a9b9f687bd523e' +
 							'&grant_type=client_credentials',
 							function (response) {
+								console.log(response);
 								if (response.access_token) {
 									FB.api(
 										'/debug_token?input_token=' + req.body.facebook
