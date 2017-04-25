@@ -1,9 +1,10 @@
-**/*.js-
-*.log*
-*server
+.eslintrc.json
 .project
 .settings/
 .vscode
+*.log*
+**/*.js-
+*server
 assets/less/
 gruntfile.js
 node_modules/
