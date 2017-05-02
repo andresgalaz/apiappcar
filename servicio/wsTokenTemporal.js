@@ -13,14 +13,14 @@ module.exports = function(req, res) {
         try {
             var user = data;
             if (user === null) {
-                return res.status(401).json({ success: false, code: 1510, message: 'Usuario no existe' });
+                return res.status(401).json({ success: false, code: 3210, message: 'Usuario no existe' });
             } else {
                 user = data.toJSON();
                 return res.status(200).json(token.genera(user, 60));
             }
         } catch (e) {
             console.log(e);
-            return res.status(401).json({ success: false, code: 1520, message: 'Error inesperado.' });
+            return res.status(401).json({ success: false, code: 3220, message: 'Error inesperado.' });
         }
     });
 };
