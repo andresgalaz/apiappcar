@@ -11,10 +11,11 @@ module.exports = function (req, res) {
 		return res.status(400).json({ success: false, code: 2810, message: 'Falta id. de vehículo.' });
 	}
 	var oOut = {
-		version: 5,
+		version: 6,
 		umbral: 300,
 		params: [
-			  '>VS16,14,3600<'
+			  '>CLN00000000<'
+			, '>VS16,14,3600<'
 			, '>VS16,16,60<'
 			, '>VS16,18,32<'
 			, '>VS16,DA,400<'
