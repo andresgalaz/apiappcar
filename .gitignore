@@ -8,3 +8,5 @@
 assets/less/
 gruntfile.js
 node_modules/
+servicio/.wsAppEstado.js.swp
+**/.*.swp
