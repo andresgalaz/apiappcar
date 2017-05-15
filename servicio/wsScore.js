@@ -25,9 +25,11 @@ module.exports = function(req,res){
 
     var qEventoSum = db.scoreDB.knex("vEvento")
 		.select("fTpEvento as idEvento", "cEvento as tipoEvento")
+        .whereIn("fTpEvento", [3,4,5])
  		.count("fTpEvento as cantidad");
     var qEventoVeh = db.scoreDB.knex("vEvento")
 		.select("fVehiculo as idVehiculo", "fTpEvento as idEvento", "cEvento as tipoEvento")
+        .whereIn("fTpEvento", [3,4,5])
  		.count("fTpEvento as cantidad");
     var qScore = db.scoreDB.knex("vScoreMes")
 		.select("fVehiculo as idVehiculo", "cPatente as patente", "nKms as kms", "nScore as score"

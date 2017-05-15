@@ -100,7 +100,8 @@ module.exports = function(req, res) {
                     db.scoreDB.knex("vEvento")
                         .select("nIdViaje as idViaje", "fTpEvento as idEvento", "cEvento as tipoEvento")
                         .count("fTpEvento as cantidad")
-                        .where("nIdViaje", id[i])
+                        .whereIn("fTpEvento", [3,4,5])
+                        .andWhere("nIdViaje", id[i])
                         .groupBy("fTpEvento", "cEvento").then(function(arrEventoViaje) {
                             if (arrEventoViaje.length > 0)
                                 objEventosPorViaje['id_' + arrEventoViaje[0].idViaje] = arrEventoViaje;
