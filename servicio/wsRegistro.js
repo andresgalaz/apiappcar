@@ -81,9 +81,9 @@ module.exports = function(req, res) {
                     new Model.UsuarioVeh({ pUsuario: user.pUsuario }).fetch({ withRelated: ['vehiculos'] }).then(function(data) {
                         user = data.toJSON();
                         var usrOut = Model.UsuarioVeh.salida(user);
-                        usrOut.success = false;
-                        usrOut.message = 'Se le ha enviado un mail. Cofirme el mail para ingresar';
-                        return res.status(400).json(usrOut);
+						usrOut.success = true;
+						usrOut.message ='Se le ha enviado un mail. Cofirme el mail para ingresar';
+						return res.status(201).json(usrOut);
                     });
 
                     const cEmailBody = pug.compileFile('views/emailRegistro.pug');
