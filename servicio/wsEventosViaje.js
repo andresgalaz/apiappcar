@@ -16,7 +16,8 @@ module.exports = function(req,res){
 	.select( "fTpEvento as idEvento", "cEvento as tipoEvento", "tEvento as ts",
 			 "nLT as LT", "nLG as LG", "nValor as valor",
 			 "nVelocidadMaxima as velocidadMaxima", "cCalle as calle")
-	.where("nIdViaje", req.body.idViaje)
+    .whereIn("fTpEvento", [3,4,5])
+	.andWhere("nIdViaje", req.body.idViaje)
 	.then(function( arrEventoViaje ){
 		try {
 			for( var i=0 ; i < arrEventoViaje.length ; i++){
