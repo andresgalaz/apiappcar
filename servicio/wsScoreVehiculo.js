@@ -131,11 +131,16 @@ module.exports = function(req, res) {
                     for (var i = 0; i < arrVeh.length; i++) {
                         // arrVeh[i].kms = 0;
                         nKmsGlobal += arrVeh[i].kms;
-                        nScoreGlobal += arrVeh[i].score;
+                        nScoreGlobal += arrVeh[i].score * arrVeh[i].kms ;
                         arrVeh[i].cantidadViajes = 0;
                         arrVeh[i].eventos = [{ idEvento: '3', tipoEvento: 'Aceleración', cantidad: 0 }, { idEvento: '4', tipoEvento: 'Frenada', cantidad: 0 }, { idEvento: '5', tipoEvento: "Exceso Velocidad", cantidad: 0 }];
                     }
-                    nScoreGlobal = (nScoreGlobal / (arrVeh.length > 0 ? arrVeh.length : 1));
+                    // nScoreGlobal = (nScoreGlobal / (arrVeh.length > 0 ? arrVeh.length : 1));
+                    if( nKmsGlobal == 0 )
+                        nScoreGlobal = 100;
+                    else
+                        nScoreGlobal = ( nScoreGlobal / nKmsGlobal );
+
 
                     // Cursor de Conductores
                     qConductor.then(function(data) {
