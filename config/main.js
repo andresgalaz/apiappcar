@@ -8,8 +8,9 @@ if (process.env.WSAPI_AMBIENTE == 'DESA') {
     oConexion = {
         host: '127.0.0.1', // your host
         user: 'snapcar', // your database user
-        password: 'snapcar', // your database password
-        database: 'score_desa',
+        password: 's', // your database password
+        database: 'score',
+        port: 3308,
         charset: 'UTF8_GENERAL_CI'
     };
 } else if (process.env.WSAPI_AMBIENTE == 'PROD') {
