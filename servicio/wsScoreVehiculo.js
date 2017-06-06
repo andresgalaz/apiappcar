@@ -4,6 +4,14 @@ const moment = require("moment");
 module.exports = function (req, res) {
     const Util = require("../util");
 
+    function convertEventos(ob) {
+        return [{ idEvento: '3', tipoEvento: 'Aceleración', cantidad: ob.nQAceleracion }
+            , { idEvento: '4', tipoEvento: 'Frenada', cantidad: ob.nQFrenada }
+            , { idEvento: '5', tipoEvento: "Exceso Velocidad", cantidad: ob.nQVelocidad }
+            , { idEvento: '6', tipoEvento: "Curvas", cantidad: ob.nQCurva }
+        ];
+    }
+
     // Registra nuevos usuarios o usuarios existentes en dispositivos nuevos
     console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
     console.log('req.user:', req.user);
@@ -47,11 +55,7 @@ module.exports = function (req, res) {
                     score: arr[i].nScore,
                     descuento: arr[i].nDescuento,
                     cantidadViajes: arr[i].nQViajes,
-                    eventos: [{ idEvento: '3', tipoEvento: 'Aceleración', cantidad: arr[i].nQAceleracion }
-                        , { idEvento: '4', tipoEvento: 'Frenada', cantidad: arr[i].nQFrenada }
-                        , { idEvento: '5', tipoEvento: "Exceso Velocidad", cantidad: arr[i].nQVelocidad }
-                        , { idEvento: '6', tipoEvento: "Curvas", cantidad: arr[i].nQCurva }
-                    ]
+                    eventos: convertEventos(arr[i])
                 });
             }
             // Tercer cursor trae los conductores que pueden conducir cada vehículo
@@ -72,19 +76,39 @@ module.exports = function (req, res) {
                     }
                 }
             }
-            // Cuarto cursor, trae los conductores que pueden conducir cada vehículo
-            arr = data[0][3];
+            // Cuarto cursor, resumen de los eventos del usuario
+            var arr = data[0][3];
+            var arrEventos = convertEventos(arr[0]);
+            // Quinto cursor, detalle de viajes
+            arr = data[0][4];
+            var arrViajes = [];
+            var arrViaje = [];
+            for (var i = 0; i < arr.length; i++) {
+                arrViaje.push({
+                    idViaje: arr[i].nIdViaje,
+                    idVehiculo: arr[i].fVehiculo,
+                    patente: arr[i].cPatente,
+                    calleInicio: arr[i].cCalleInicio,
+                    calleFin: arr[i].cCalleFin,
+                    fechaInicio: arr[i].tInicio,
+                    fechaFin: arr[i].tFin,
+                    score: arr[i].nScore,
+                    kms: arr[i].nKms,
+                    idTitular: arr[i].fUsuarioTitular,
+                    titular: arr[i].cNombreTitular,
+                    idConductor: arr[i].fUsuario,
+                    conductor: arr[i].cNombreConductor,
+                    eventos: convertEventos(arr[i])
+                });
+            };
             // Inicializa Acumuladores para los viajes
             return res.status(201).json({
                 success: true,
                 score: nScoreGlobal,
                 kms: nKmsGlobal,
                 vehiculos: arrVeh,
-                eventos: [{ idEvento: '3', tipoEvento: 'Aceleración', cantidad: arr[0].nQAceleracion }
-                    , { idEvento: '4', tipoEvento: 'Frenada', cantidad: arr[0].nQFrenada }
-                    , { idEvento: '5', tipoEvento: "Exceso Velocidad", cantidad: arr[0].nQVelocidad }
-                    , { idEvento: '6', tipoEvento: "Curvas", cantidad: arr[0].nQCurva }
-                ]
+                viajes: arrViaje,
+                eventos: arrEventos
             });
         } catch (e) {
             console.log(e.stack);
