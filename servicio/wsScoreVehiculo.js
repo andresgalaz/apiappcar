@@ -84,6 +84,8 @@ module.exports = function (req, res) {
             var arrViajes = [];
             var arrViaje = [];
             for (var i = 0; i < arr.length; i++) {
+                if(!arr[i].cCalleInicio) delete arr[i].cCalleInicio;
+                if(!arr[i].cCalleFin) delete arr[i].cCalleFin;
                 arrViaje.push({
                     idViaje: arr[i].nIdViaje,
                     idVehiculo: arr[i].fVehiculo,
@@ -92,6 +94,7 @@ module.exports = function (req, res) {
                     calleFin: arr[i].cCalleFin,
                     fechaInicio: arr[i].tInicio,
                     fechaFin: arr[i].tFin,
+                    duracion: arr[i].nDuracionSeg,
                     score: arr[i].nScore,
                     kms: arr[i].nKms,
                     idTitular: arr[i].fUsuarioTitular,
