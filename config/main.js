@@ -10,7 +10,7 @@ if (process.env.WSAPI_AMBIENTE == 'DESA') {
         user: 'snapcar', // your database user
         password: 's', // your database password
         database: 'score',
-        port: 3308,
+        port: 3306,
         charset: 'UTF8_GENERAL_CI'
     };
 } else if (process.env.WSAPI_AMBIENTE == 'PROD') {

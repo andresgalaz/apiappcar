@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "API de Micro-servicios",
-            "program": "${workspaceRoot}\\server.js",
+            "program": "${workspaceRoot}/server.js",
             "cwd": "${workspaceRoot}",
             "env": {
                 "WSAPI_AMBIENTE": "DESA"
