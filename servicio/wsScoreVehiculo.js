@@ -1,37 +1,58 @@
 const db = require("../db/db");
 const moment = require("moment");
 
-module.exports = function (req, res) {
+module.exports = function(req, res) {
     const Util = require("../util");
-
-    function convertEventos(ob) {
-        return [{ idEvento: '3', tipoEvento: 'Aceleración', cantidad: ob.nQAceleracion }
-            , { idEvento: '4', tipoEvento: 'Frenada', cantidad: ob.nQFrenada }
-            , { idEvento: '5', tipoEvento: "Exceso Velocidad", cantidad: ob.nQVelocidad }
-            , { idEvento: '6', tipoEvento: "Curvas", cantidad: ob.nQCurva }
-        ];
-    }
 
     // Registra nuevos usuarios o usuarios existentes en dispositivos nuevos
     console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
     console.log('req.user:', req.user);
     console.log(req.body);
-    if (!req.body.fechaInicio || !req.body.fechaFin) {
-        return res.status(400).json({ success: false, code: 2012, message: "Falta rango de fechas." });
+    var nPeriodo = null,
+        nIdVehiculo = null,
+        cFecIni = null,
+        cFecFin = null;
+    if (req.body.periodo) {
+        nPeriodo = parseInt(req.body.periodo);
+        if (isNaN(nPeriodo))
+            return res.status(400).json({ success: false, code: 2010, message: "Periodo debe se numérico." });
+        if (nPeriodo > 0)
+            return res.status(400).json({ success: false, code: 2012, message: "Periodo debe ser negativo" });
+    } else {
+        if (!req.body.fechaInicio || !req.body.fechaFin)
+            return res.status(400).json({ success: false, code: 2016, message: "Se debe indicar periodo o rango de fechas." });
+        var dIni = moment(req.body.fechaInicio, "YYYY-MM-DD");
+        if (!dIni.isValid()) {
+            return res.status(400).json({ success: false, code: 2018, message: "Fecha de inicio no válica." });
+        }
+        var dFin = moment(req.body.fechaFin, "YYYY-MM-DD");
+        if (!dFin.isValid()) {
+            return res.status(400).json({ success: false, code: 2020, message: "Fecha de fin no válica." });
+        }
+        if (dIni > dFin) {
+            return res.status(400).json({ success: false, code: 2022, message: "La fecha de inicio debe ser anterior a la fecha de fin." });
+        }
+        cFecIni = dIni.format("YYYY-MM-DD");
+        cFecFin = dFin.format("YYYY-MM-DD");
     }
-    var dIni = moment(req.body.fechaInicio, "YYYY-MM-DD");
-    if (!dIni.isValid()) {
-        return res.status(400).json({ success: false, code: 2014, message: "Fecha de inicio no válica." });
-    }
-    var dFin = moment(req.body.fechaFin, "YYYY-MM-DD");
-    if (!dFin.isValid()) {
-        return res.status(400).json({ success: false, code: 2016, message: "Fecha de fin no válica." });
-    }
-    if (dIni > dFin) {
-        return res.status(400).json({ success: false, code: 2018, message: "La fecha de inicio debe ser anterior a la fecha de fin." });
+    if (req.body.idVehiculo) {
+        nIdVehiculo = parseInt(req.body.idVehiculo);
+        if (isNaN(nIdVehiculo))
+            return res.status(400).json({ success: false, code: 2010, message: "Id. vehículo debe se numérico." });
+        if (nIdVehiculo <= 0)
+            return res.status(400).json({ success: false, code: 2012, message: "Id. vehículo debe ser mayor que cero" });
     }
 
-    qVeh = db.scoreDB.knex.raw("call prScoreVehiculoRangoFecha(?,?,?)", [req.user.pUsuario, req.body.fechaInicio, req.body.fechaFin]).then(function (data) {
+    function convertEventos(ob) {
+        return [
+            { idEvento: '3', tipoEvento: 'Aceleración', cantidad: ob.nQAceleracion },
+            { idEvento: '4', tipoEvento: 'Frenada', cantidad: ob.nQFrenada },
+            { idEvento: '5', tipoEvento: "Exceso Velocidad", cantidad: ob.nQVelocidad },
+            { idEvento: '6', tipoEvento: "Curvas", cantidad: ob.nQCurva }
+        ];
+    }
+
+    qVeh = db.scoreDB.knex.raw("call prScoreVehiculoRangoFecha(?,?,?,?,?)", [req.user.pUsuario, nIdVehiculo, nPeriodo, cFecIni, cFecFin]).then(function(data) {
         if (data === null) {
             return res.status(400).json({ success: false, code: 2024, message: "Error al ejecutar consulta Score de Vehiculos" });
         }
@@ -84,8 +105,8 @@ module.exports = function (req, res) {
             var arrViajes = [];
             var arrViaje = [];
             for (var i = 0; i < arr.length; i++) {
-                if(!arr[i].cCalleInicio) delete arr[i].cCalleInicio;
-                if(!arr[i].cCalleFin) delete arr[i].cCalleFin;
+                if (!arr[i].cCalleInicio) delete arr[i].cCalleInicio;
+                if (!arr[i].cCalleFin) delete arr[i].cCalleFin;
                 arrViaje.push({
                     idViaje: arr[i].nIdViaje,
                     idVehiculo: arr[i].fVehiculo,

@@ -24,6 +24,7 @@ if (process.env.WSAPI_AMBIENTE == 'DESA') {
     };
 }
 
+console.log(oConexion);
 module.exports = {
     ambiente: process.env.WSAPI_AMBIENTE,
     dirAdjunto: cDirAdjunto,
