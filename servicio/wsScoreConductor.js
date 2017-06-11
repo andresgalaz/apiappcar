@@ -20,7 +20,7 @@ module.exports = function(req,res){
             return res.status(400).json({ success: false, code: 3312, message: "Periodo debe ser negativo" });
     } else {	
 		if(!req.body.fechaInicio || !req.body.fechaFin) {
-			return res.status(400).json({ success: false, code: 3316, message: "Falta rango de fechas." });
+			return res.status(400).json({ success: false, code: 3316, message: "Falta periodo o rango de fechas." });
 		}
 		var dIni = moment(req.body.fechaInicio, "YYYY-MM-DD");
 		if( !dIni.isValid() ) {
