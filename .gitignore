@@ -10,3 +10,5 @@ gruntfile.js
 node_modules/
 servicio/.wsAppEstado.js.swp
 **/.*.swp
+1.json
+servicio/wsScoreConductor.1.js

@@ -38,21 +38,14 @@ module.exports = function(req, res) {
     if (req.body.idVehiculo) {
         nIdVehiculo = parseInt(req.body.idVehiculo);
         if (isNaN(nIdVehiculo))
-            return res.status(400).json({ success: false, code: 2010, message: "Id. vehículo debe se numérico." });
+            return res.status(400).json({ success: false, code: 2026, message: "Id. vehículo debe se numérico." });
         if (nIdVehiculo <= 0)
-            return res.status(400).json({ success: false, code: 2012, message: "Id. vehículo debe ser mayor que cero" });
+            return res.status(400).json({ success: false, code: 2028, message: "Id. vehículo debe ser mayor que cero" });
     }
+    if(!nIdVehiculo && nPeriodo)
+        return res.status(400).json({ success: false, code: 2030, message: "Si indica periodo, debe indicar vehículo" });
 
-    function convertEventos(ob) {
-        return [
-            { idEvento: '3', tipoEvento: 'Aceleración', cantidad: ob.nQAceleracion },
-            { idEvento: '4', tipoEvento: 'Frenada', cantidad: ob.nQFrenada },
-            { idEvento: '5', tipoEvento: "Exceso Velocidad", cantidad: ob.nQVelocidad },
-            { idEvento: '6', tipoEvento: "Curvas", cantidad: ob.nQCurva }
-        ];
-    }
-
-    qVeh = db.scoreDB.knex.raw("call prScoreVehiculoRangoFecha(?,?,?,?,?)", [req.user.pUsuario, nIdVehiculo, nPeriodo, cFecIni, cFecFin]).then(function(data) {
+    db.scoreDB.knex.raw("call prScoreVehiculoRangoFecha(?,?,?,?,?)", [req.user.pUsuario, nIdVehiculo, nPeriodo, cFecIni, cFecFin]).then(function(data) {
         if (data === null) {
             return res.status(400).json({ success: false, code: 2024, message: "Error al ejecutar consulta Score de Vehiculos" });
         }
@@ -72,11 +65,13 @@ module.exports = function(req, res) {
                     patente: arr[i].cPatente,
                     idTitular: arr[i].fUsuarioTitular,
                     titular: arr[i].cNombre,
+                    fechaInicio: arr[i].dInicio,
+                    fechaFin: arr[i].dFin,
                     kms: arr[i].nKms,
                     score: arr[i].nScore,
                     descuento: arr[i].nDescuento,
                     cantidadViajes: arr[i].nQViajes,
-                    eventos: convertEventos(arr[i])
+                    eventos: db.convertEventos(arr[i])
                 });
             }
             // Tercer cursor trae los conductores que pueden conducir cada vehículo
@@ -99,10 +94,9 @@ module.exports = function(req, res) {
             }
             // Cuarto cursor, resumen de los eventos del usuario
             var arr = data[0][3];
-            var arrEventos = convertEventos(arr[0]);
+            var arrEventos = db.convertEventos(arr[0]);
             // Quinto cursor, detalle de viajes
             arr = data[0][4];
-            var arrViajes = [];
             var arrViaje = [];
             for (var i = 0; i < arr.length; i++) {
                 if (!arr[i].cCalleInicio) delete arr[i].cCalleInicio;
@@ -122,7 +116,7 @@ module.exports = function(req, res) {
                     titular: arr[i].cNombreTitular,
                     idConductor: arr[i].fUsuario,
                     conductor: arr[i].cNombreConductor,
-                    eventos: convertEventos(arr[i])
+                    eventos: db.convertEventos(arr[i])
                 });
             };
             // Inicializa Acumuladores para los viajes
