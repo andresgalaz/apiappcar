@@ -42,7 +42,7 @@ module.exports = function(req, res) {
         if (nIdVehiculo <= 0)
             return res.status(400).json({ success: false, code: 2028, message: "Id. vehículo debe ser mayor que cero" });
     }
-    if(!nIdVehiculo && nPeriodo)
+    if (!nIdVehiculo && nPeriodo)
         return res.status(400).json({ success: false, code: 2030, message: "Si indica periodo, debe indicar vehículo" });
 
     db.scoreDB.knex.raw("call prScoreVehiculoRangoFecha(?,?,?,?,?)", [req.user.pUsuario, nIdVehiculo, nPeriodo, cFecIni, cFecFin]).then(function(data) {
@@ -71,7 +71,9 @@ module.exports = function(req, res) {
                     score: arr[i].nScore,
                     descuento: arr[i].nDescuento,
                     cantidadViajes: arr[i].nQViajes,
-                    eventos: db.convertEventos(arr[i])
+                    ultimoRegistro: arr[i].tUltimoRegistro,
+                    ultimaSincro: arr[i].tUltimaSincro,
+                    estadoSincro: arr[i].cEstadoSincro
                 });
             }
             // Tercer cursor trae los conductores que pueden conducir cada vehículo
