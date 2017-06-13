@@ -9,7 +9,6 @@ module.exports = function(req, res) {
     console.log('req.user:', req.user);
     console.log(req.body);
     var nPeriodo = null,
-        nIdVehiculo = null,
         cFecIni = null,
         cFecFin = null;
     if (req.body.periodo) {
@@ -35,17 +34,8 @@ module.exports = function(req, res) {
         cFecIni = dIni.format("YYYY-MM-DD");
         cFecFin = dFin.format("YYYY-MM-DD");
     }
-    if (req.body.idVehiculo) {
-        nIdVehiculo = parseInt(req.body.idVehiculo);
-        if (isNaN(nIdVehiculo))
-            return res.status(400).json({ success: false, code: 2026, message: "Id. vehículo debe se numérico." });
-        if (nIdVehiculo <= 0)
-            return res.status(400).json({ success: false, code: 2028, message: "Id. vehículo debe ser mayor que cero" });
-    }
-    if (!nIdVehiculo && nPeriodo)
-        return res.status(400).json({ success: false, code: 2030, message: "Si indica periodo, debe indicar vehículo" });
 
-    db.scoreDB.knex.raw("call prScoreVehiculoRangoFecha(?,?,?,?,?)", [req.user.pUsuario, nIdVehiculo, nPeriodo, cFecIni, cFecFin]).then(function(data) {
+    db.scoreDB.knex.raw("call prScoreVehiculoRangoFecha(?,?,?,?)", [req.user.pUsuario, nPeriodo, cFecIni, cFecFin]).then(function(data) {
         if (data === null) {
             return res.status(400).json({ success: false, code: 2024, message: "Error al ejecutar consulta Score de Vehiculos" });
         }
