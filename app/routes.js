@@ -30,6 +30,8 @@ module.exports = function(app) {
     }
 
     // Conecta los servicios
+    // Sin TOKEN de autenticación
+    apiRoutes.post('/wsCambioPassword', require('../servicio/wsCambioPassword'));
     apiRoutes.post('/wsLogin', require('../servicio/wsLogin'));
     apiRoutes.post('/wsRecuperaPassword', require('../servicio/wsRecuperaPassword'));
     apiRoutes.post('/wsRegistro', require('../servicio/wsRegistro'));
@@ -37,7 +39,6 @@ module.exports = function(app) {
     // Service que requieren TOKEN de autenticación
     apiRoutes.post('/wsAppEstado', agvJwt, require('../servicio/wsAppEstado'));
     apiRoutes.post('/wsAuditoria', agvJwt, require('../servicio/wsAuditoria'));
-    apiRoutes.post('/wsCambioPassword', agvJwt, require('../servicio/wsCambioPassword'));
     apiRoutes.post('/wsEventosViaje', agvJwt, require('../servicio/wsEventosViaje'));
     apiRoutes.post('/wsFirmware', agvJwt, require('../servicio/wsFirmware'));
     apiRoutes.post('/wsInicioTransferencia', agvJwt, require('../servicio/wsInicioTransferencia'));
