@@ -18,6 +18,8 @@ app.set('view engine', 'pug');
 var port = null;
 if (config.ambiente == 'DESA')
     port = 2080;
+else if (config.ambiente == 'TEST')
+    port = 8090;
 else if (config.ambiente == 'PROD')
     port = 8090;
 
