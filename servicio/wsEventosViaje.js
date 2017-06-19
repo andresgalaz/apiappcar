@@ -13,7 +13,7 @@ module.exports = function(req, res) {
     }
     // Lista Eventos
     db.scoreDB.knex("vEvento")
-        .select("fTpEvento as idEvento", "cEvento as tipoEvento", "tEvento as ts",
+        .select("nIdObservation as id", "fTpEvento as idEvento", "cEvento as tipoEvento", "tEvento as ts",
             "nLT as LT", "nLG as LG", "nValor as valor",
             "nVelocidadMaxima as velocidadMaxima", "cCalle as calle", "cCalleCorta as calle_corta", "nNivelApp as nivel")
         .whereIn("fTpEvento", [3, 4, 5, 6])
