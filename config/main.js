@@ -13,7 +13,7 @@ if (process.env.WSAPI_AMBIENTE == 'DESA') {
         port: 3306,
         charset: 'UTF8_GENERAL_CI'
     };
-} else if (process.env.WSAPI_AMBIENTE == 'PROD') {
+} else if (process.env.WSAPI_AMBIENTE == 'TEST') {
     cDirAdjunto = '/home/ubuntu/adjunto/';
     oConexion = {
         host: '127.0.0.1', // your host
@@ -22,9 +22,18 @@ if (process.env.WSAPI_AMBIENTE == 'DESA') {
         database: 'score',
         charset: 'UTF8_GENERAL_CI'
     };
+} else if (process.env.WSAPI_AMBIENTE == 'PROD') {
+    cDirAdjunto = '/home/ubuntu/adjunto/';
+    oConexion = {
+        host: '127.0.0.1', // your host
+        user: 'snapcar', // your database user
+        password: 'oycobe', // your database password
+        database: 'score',
+        charset: 'UTF8_GENERAL_CI'
+    };
 }
 
-console.log(oConexion);
+console.log(process.env.WSAPI_AMBIENTE, oConexion);
 module.exports = {
     ambiente: process.env.WSAPI_AMBIENTE,
     dirAdjunto: cDirAdjunto,
