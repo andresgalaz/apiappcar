@@ -60,6 +60,7 @@ var usrVeh = scoreDB.Model.extend({
 
 usrVeh.salida = function(user) {
     var sal = {
+        perfil: (user.cPerfil ? user.cPerfil : '*'),
         usuarios: [{
             idUsuario: user.pUsuario,
             email: user.cEmail,

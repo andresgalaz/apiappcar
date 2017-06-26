@@ -22,8 +22,6 @@ module.exports = function(app) {
         passport.authenticate('jwt', { session: false }, function(err, user, info) {
             if (err) { return next(err); }
             if (!user) { return res.status(401).json({ success: false, code: 10, message: 'Token incorrecto o vencido.' }); }
-            // edit as per comment
-            //return res.send("Test Route Accessed").end();
             req.user = user;
             next();
         })(req, res, next);
@@ -33,6 +31,7 @@ module.exports = function(app) {
     // Sin TOKEN de autenticación
     apiRoutes.post('/wsCambioPassword', require('../servicio/wsCambioPassword'));
     apiRoutes.post('/wsLogin', require('../servicio/wsLogin'));
+    apiRoutes.post('/wsLoginInstalador', require('../servicio/wsLoginInstalador'));
     apiRoutes.post('/wsRecuperaPassword', require('../servicio/wsRecuperaPassword'));
     apiRoutes.post('/wsRegistro', require('../servicio/wsRegistro'));
     apiRoutes.post('/wsTokenTemporal', require('../servicio/wsTokenTemporal'));
@@ -42,6 +41,7 @@ module.exports = function(app) {
     apiRoutes.post('/wsEventosViaje', agvJwt, require('../servicio/wsEventosViaje'));
     apiRoutes.post('/wsFirmware', agvJwt, require('../servicio/wsFirmware'));
     apiRoutes.post('/wsInicioTransferencia', agvJwt, require('../servicio/wsInicioTransferencia'));
+    apiRoutes.post('/wsInstalacion', agvJwt, require('../servicio/wsInstalacion'));
     apiRoutes.post('/wsInvitacion', agvJwt, require('../servicio/wsInvitacion'));
     apiRoutes.post('/wsParametros', agvJwt, require('../servicio/wsParametros'));
     apiRoutes.post('/wsReToken', agvJwt, require('../servicio/wsReToken'));

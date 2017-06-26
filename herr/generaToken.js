@@ -16,6 +16,7 @@ module.exports = {
         var oPayLoad = {
             pUsuario: user.pUsuario,
             bConfirmado: user.bConfirmado,
+            cPerfil: (user.cPerfil ? user.cPerfil : '*'),
             nDuracionToken: duracion
         };
         token = jwt.sign(oPayLoad, config.secret, {

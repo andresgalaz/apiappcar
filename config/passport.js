@@ -18,6 +18,7 @@ module.exports = function(passport) {
                 } else {
                     user = data.toJSON();
                     user.nDuracionToken = jwt_payload.nDuracionToken;
+                    user.cPerfil = (jwt_payload.cPerfil ? jwt_payload.cPerfil : '*');
                     done(null, user);
                 }
             } catch (e) {

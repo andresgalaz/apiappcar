@@ -4,6 +4,7 @@
 .vscode
 *.log*
 **/*.js-
+**/*~
 *server
 assets/less/
 gruntfile.js
