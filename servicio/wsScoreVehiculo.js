@@ -62,8 +62,8 @@ module.exports = function(req, res) {
                     descuento: arr[i].nDescuento,
                     cantidadViajes: arr[i].nQViajes,
                     ultimoRegistro: arr[i].tUltimoRegistro,
-                    ultimaSincro: arr[i].tUltimaSincro,
-                    estadoSincro: arr[i].cEstadoSincro
+                    ultimaSincro: arr[i].tUltimaSincro ? arr[i].tUltimaSincro : arr[i].tUltimoRegistro,
+                    estadoSincro: arr[i].tUltimaSincro ? arr[i].cEstadoSincroTrips : arr[i].cEstadoSincroTrans
                 });
             }
             // Cursor-3 trae los eventos graves x vehículo
