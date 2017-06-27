@@ -40,12 +40,12 @@ module.exports = function(req, res) {
             return res.status(400).json({ success: false, code: 2024, message: "Error al ejecutar consulta Score de Vehiculos" });
         }
         try {
-            // El primer cursor trae la información global de todos los vehículos
+            // Cursor-1 trae la información global de todos los vehículos
             var arr = data[0][0];
             var nKmsGlobal = arr[0].nKmsTotal;
             var nScoreGlobal = arr[0].nScoreGlobal;
 
-            // El segundo cursor trae un arreglo de vehículos
+            // Cursor-2 trae un arreglo de vehículos
             arr = data[0][1];
             // Inicializa Acumuladores para los viajes
             var arrVeh = [];
@@ -66,8 +66,21 @@ module.exports = function(req, res) {
                     estadoSincro: arr[i].cEstadoSincro
                 });
             }
-            // Tercer cursor trae los conductores que pueden conducir cada vehículo
+            // Cursor-3 trae los eventos graves x vehículo
             arr = data[0][2];
+            for (var i = 0; i < arrVeh.length; i++) {
+                for (var j = 0; j < arr.length; j++) {
+                    if (arrVeh[i].idVehiculo == arr[j].pVehiculo) {
+                        arrVeh[i].eventos = db.convertEventos(arr[j]);
+                        break;
+                    }
+                }
+                // No tiene eventos, los pone en cero para que los de Mobiltonic no jodan con que en la APP es muy dificil, digo yo para que se meten en temas que después son muy dificiles, es mejor que aprendar a programar y se dejen de quejar.
+                if (!arrVeh[i].eventos)
+                    arrVeh[i].eventos = db.convertEventos({})
+            }
+            // Cursor-4 trae los conductores que pueden conducir cada vehículo, este resumen de lo anterior se envía porque al parecer el equipo de Mobiltonic no saben hacer un ciclo FOR para sumar un array
+            arr = data[0][3];
             // Inicializa Acumuladores para los viajes
             for (var i = 0; i < arrVeh.length; i++) {
                 var veh = arrVeh[i];
@@ -75,20 +88,21 @@ module.exports = function(req, res) {
                 for (var j = 0; j < arr.length; j++) {
                     var conductor = arr[j];
                     if (veh.idVehiculo == conductor.pVehiculo) {
+                        var oKmScore = JSON.parse(conductor.cJsonKmScore);
                         veh.conductores.push({
                             idConductor: conductor.pUsuario,
                             conductor: conductor.cUsuario,
-                            kms: conductor.nKms,
-                            score: conductor.nScore
+                            kms: oKmScore.nKms,
+                            score: oKmScore.nScore
                         });
                     }
                 }
             }
-            // Cuarto cursor, resumen de los eventos del usuario
-            var arr = data[0][3];
+            // Cursor-5, resumen de los eventos del vehículo, este resumen de lo anterior se envía porque al parecer el equipo de Mobiltonic no saben hacer un ciclo FOR para sumar un array
+            var arr = data[0][4];
             var arrEventos = db.convertEventos(arr[0]);
-            // Quinto cursor, detalle de viajes
-            arr = data[0][4];
+            // Cursor-6, detalle de viajes
+            arr = data[0][5];
             var arrViaje = [];
             for (var i = 0; i < arr.length; i++) {
                 if (!arr[i].cCalleInicio) delete arr[i].cCalleInicio;

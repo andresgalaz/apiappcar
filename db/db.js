@@ -8,13 +8,13 @@ var knex = require('knex')({
 var DB = require('bookshelf')(knex);
 
 module.exports = {
-    scoreDB : DB,
-    convertEventos : function (ob) {
+    scoreDB: DB,
+    convertEventos: function(ob) {
         return [
-            { idEvento: '3', tipoEvento: 'Aceleración', cantidad: ob.nQAceleracion },
-            { idEvento: '4', tipoEvento: 'Frenada', cantidad: ob.nQFrenada },
-            { idEvento: '5', tipoEvento: "Exceso Velocidad", cantidad: ob.nQVelocidad },
-            { idEvento: '6', tipoEvento: "Curvas", cantidad: ob.nQCurva }
+            { idEvento: '3', tipoEvento: 'Aceleración', cantidad: (ob.nQAceleracion ? ob.nQAceleracion : 0) },
+            { idEvento: '4', tipoEvento: 'Frenada', cantidad: (ob.nQFrenada ? ob.nQFrenada : 0) },
+            { idEvento: '5', tipoEvento: "Exceso Velocidad", cantidad: (ob.nQVelocidad ? ob.nQVelocidad : 0) },
+            { idEvento: '6', tipoEvento: "Curvas", cantidad: (ob.nQCurva ? ob.nQCurva : 0) }
         ];
     }
 };
