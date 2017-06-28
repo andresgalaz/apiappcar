@@ -50,6 +50,12 @@ module.exports = function(req, res) {
             // Inicializa Acumuladores para los viajes
             var arrVeh = [];
             for (var i = 0; i < arr.length; i++) {
+				if( ! arr[i].tUltimoRegistro )
+					arr[i].tUltimoRegistro = arr[i].dInicio+'T00:00:00.000Z';
+				if( ! arr[i].tUltimaSincro ){
+					arr[i].tUltimaSincro = arr[i].tUltimoRegistro;
+					arr[i].cEstadoSincroTrans = arr[i].cEstadoSincroTrips;
+				}
                 arrVeh.push({
                     idVehiculo: arr[i].pVehiculo,
                     patente: arr[i].cPatente,
@@ -62,8 +68,8 @@ module.exports = function(req, res) {
                     descuento: arr[i].nDescuento,
                     cantidadViajes: arr[i].nQViajes,
                     ultimoRegistro: arr[i].tUltimoRegistro,
-                    ultimaSincro: arr[i].tUltimaSincro ? arr[i].tUltimaSincro : arr[i].tUltimoRegistro,
-                    estadoSincro: arr[i].tUltimaSincro ? arr[i].cEstadoSincroTrips : arr[i].cEstadoSincroTrans
+                    ultimaSincro: arr[i].tUltimaSincro,
+                    estadoSincro: arr[i].cEstadoSincroTrans
                 });
             }
             // Cursor-3 trae los eventos graves x vehículo
@@ -75,7 +81,7 @@ module.exports = function(req, res) {
                         break;
                     }
                 }
-                // No tiene eventos, los pone en cero para que los de Mobiltonic no jodan con que en la APP es muy dificil, digo yo para que se meten en temas que después son muy dificiles, es mejor que aprendar a programar y se dejen de quejar.
+                // No tiene eventos, los pone en cero para que los de Mobiltonic no jodan con que en la APP es muy dificil, digo yo para que se meten en temas que después son muy dificiles, es mejor que aprendan a programar y se dejen de quejar, o se dediquen a otra cosa.
                 if (!arrVeh[i].eventos)
                     arrVeh[i].eventos = db.convertEventos({})
             }
