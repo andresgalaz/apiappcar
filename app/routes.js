@@ -56,6 +56,7 @@ module.exports = function(app) {
     apiRoutes.post('/wsVehiculoDel', agvJwt, require('../servicio/wsVehiculoDel'));
     apiRoutes.post('/wsVehiculoDelBluetooth', agvJwt, require('../servicio/wsVehiculoDelBluetooth'));
     apiRoutes.post('/wsVehiculoDesconectado', agvJwt, require('../servicio/wsVehiculoDesconectado'));
+    apiRoutes.post('/wsViajes', agvJwt, require('../servicio/wsViajes'));
     apiRoutes.delete('/wsVehiculo', agvJwt, require('../servicio/wsVehiculoDel'));
     // Servicios sin autenticación de TOKEN
     apiRoutes.post('/wsCalculaDescuento', require('../servicio/wsCalculaDescuento'));

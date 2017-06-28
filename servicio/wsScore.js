@@ -137,14 +137,14 @@ module.exports = function(req,res){
 		res.status(201).json(sObj);
 	} catch(e){
 		console.log(e.stack);
-		res.status(500).json({ success: false, code:1932, message: "Error inesperado al leer Score SUma", errors: [ {code: 1933, message: e.message }]});
+		res.status(500).json({ success: false, code: 1932, message: "Error inesperado al leer Score SUma", errors: [ {code: 1933, message: e.message }]});
 	} });
 	} catch(e){
 		console.log(e.stack);
-		res.status(500).json({ success: false, code:1934, message: "Error inesperado al leer Evento Vehiculo", errors: [ {code: 1933, message: e.message }]});
+		res.status(500).json({ success: false, code: 1934, message: "Error inesperado al leer Evento Vehiculo", errors: [ {code: 1933, message: e.message }]});
 	} });
 	} catch(e){
 		console.log(e.stack);
-		res.status(500).json({ success: false, code:1936, message: "Error inesperado al leer Eventos", errors: [ {code: 1935, message: e.message }]});
+		res.status(500).json({ success: false, code: 1936, message: "Error inesperado al leer Eventos", errors: [ {code: 1935, message: e.message }]});
 	} });
 };

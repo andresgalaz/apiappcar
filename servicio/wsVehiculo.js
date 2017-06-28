@@ -75,12 +75,12 @@ module.exports = function(req,res){
 						res.status(201).json(veh);
 					} catch(e){
 						console.log(e.stack);
-						res.status(500).json({ success: false, code:1436, message: 'Error inesperado al grabar', errors: [ {code: 1438, message: e.message }]});
+						res.status(500).json({ success: false, code: 1436, message: 'Error inesperado al grabar', errors: [ {code: 1438, message: e.message }]});
 					}
 				});
 			} catch(e){
 				console.log(e.stack);
-				res.status(500).json({ success: false, code:1436, message: 'Error inesperado al leer', errors: [ {code: 1438, message: e.message }]});
+				res.status(500).json({ success: false, code: 1436, message: 'Error inesperado al leer', errors: [ {code: 1438, message: e.message }]});
 			}
 		});
 	} else {
@@ -122,17 +122,17 @@ module.exports = function(req,res){
 								res.status(201).json(veh);
 							} catch(e){
 								console.log(e.stack);
-								res.status(500).json({ success: false, code:1454, message: 'Error inesperado al grabar', errors: [ {code: 1455, message: e.message }]});
+								res.status(500).json({ success: false, code: 1454, message: 'Error inesperado al grabar', errors: [ {code: 1455, message: e.message }]});
 							}
 						});
 					} catch(e){
 						console.log(e.stack);
-						res.status(500).json({ success: false, code:1458, message: 'Error inesperado al leer', errors: [ {code: 1459, message: e.message }]});
+						res.status(500).json({ success: false, code: 1458, message: 'Error inesperado al leer', errors: [ {code: 1459, message: e.message }]});
 					}
 				});
 			} catch(e){
 				console.log(e.stack);
-				res.status(500).json({ success: false, code:1450, message: 'Error inesperado al leer', errors: [ {code: 1452, message: e.message }]});
+				res.status(500).json({ success: false, code: 1450, message: 'Error inesperado al leer', errors: [ {code: 1452, message: e.message }]});
 			}
 		});
 	}
