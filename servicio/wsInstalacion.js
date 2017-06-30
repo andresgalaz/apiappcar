@@ -30,7 +30,6 @@ module.exports = function(req, res) {
         .then(function(data) {
             try {
                 var arr = data[0][0][0];
-                console.log(arr.LOG);
                 if (arr.nCodigo == 0) {
                     var oResp = { success: true };
                     if (typeof arr.cPatenteActual != undefined) oResp.patenteActual = arr.cPatenteActual;
