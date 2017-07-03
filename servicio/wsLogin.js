@@ -87,24 +87,28 @@ module.exports = function(req, res) {
                         var auth = new GoogleAuth;
                         var client = new auth.OAuth2(clientId, '', '');
 
-                        client.verifyIdToken(
-                            req.body.google.token,
-                            clientId,
-                            function(e, login) {
-                                if (login) {
-                                    var payload = login.getPayload();
+                        try {
+                            client.verifyIdToken(
+                                req.body.google.token,
+                                clientId,
+                                function(e, login) {
+                                    if (login) {
+                                        var payload = login.getPayload();
 
-                                    if (payload.email !== req.body.email) {
-                                        return res.status(401).json({ success: false, code: 1134, message: 'Token de Google inválido.' });
+                                        if (payload.email !== req.body.email) {
+                                            return res.status(401).json({ success: false, code: 1134, message: 'Token de Google inválido.' });
+                                        } else {
+                                            return res.status(200).json(token.genera(user));
+                                        }
                                     } else {
-                                        return res.status(200).json(token.genera(user));
+                                        console.log(e);
+                                        return res.status(401).json({ success: false, code: 1136, message: 'Token de Google inválido.' });
                                     }
-                                } else {
-                                    console.log(e);
-                                    return res.status(401).json({ success: false, code: 1136, message: 'Token de Google inválido.' });
                                 }
-                            }
-                        );
+                            );
+                        } catch (err) {
+                            return res.status(401).json({ success: false, code: 1136, message: 'Token de Google inválido.' });
+                        }
                         /**
                          * Si utiliza Facebook signin corrobora si el token es válido.
                          */
