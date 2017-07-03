@@ -18,6 +18,7 @@ module.exports = function(req, res) {
      * La password se encripta antes de desplegar en la bitácora
      */
     req.body.password = config.encripta(req.body.password);
+    console.log(req.body);
 
     if (!req.body.email) {
         return res.status(400).json({ success: false, code: 1110, message: 'Falta email.' });
