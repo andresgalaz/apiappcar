@@ -18,6 +18,7 @@ module.exports = function(req, res) {
             "nVelocidadMaxima as velocidadMaxima", "cCalle as calle", "cCalleCorta as calle_corta", "nNivelApp as nivel")
         .whereIn("fTpEvento", [3, 4, 5, 6])
         .andWhere("nIdViaje", req.body.idViaje)
+		.orderBy("tEvento")
 //        .andWhere("nNivelApp", ">=", 2)
         .then(function(arrEventoViaje) {
             try {
