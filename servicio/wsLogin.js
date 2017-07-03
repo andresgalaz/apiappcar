@@ -120,7 +120,7 @@ module.exports = function(req, res) {
                             },
                             function(response) {
                                 if (response) {
-                                    FB.api('/access_token', 'get', {
+                                    FB.api('/debug_token', 'get', {
                                             input_token: response.access_token,
                                             access_token: req.body.facebook.token
                                         },
