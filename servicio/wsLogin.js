@@ -82,7 +82,7 @@ module.exports = function(req, res) {
                     /**
                      * Si utiliza Google signin corrobora si el token es válido.
                      */
-                    if (req.body.google.token) {
+                    if (req.body.google && req.body.google.token) {
                         var clientId = '752485347754-c9bp4j0u7o5rvs13o5hek35a1td40d3h.apps.googleusercontent.com';
                         var auth = new GoogleAuth;
                         var client = new auth.OAuth2(clientId, '', '');
@@ -108,7 +108,7 @@ module.exports = function(req, res) {
                         /**
                          * Si utiliza Facebook signin corrobora si el token es válido.
                          */
-                    } else if (req.body.facebook.token) {
+                    } else if (req.body.facebook && req.body.facebook.token) {
                         FB.api('/oauth/access_token', 'get', {
                                 client_id: '1820396898212790',
                                 client_secret: 'a4a58aa49ca89a6e75a9b9f687bd523e',
