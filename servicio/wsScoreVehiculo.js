@@ -9,6 +9,8 @@ module.exports = function(req, res) {
     console.log('req.user:', req.user);
     console.log(req.body);
     var nPeriodo = null,
+        nIdVehiculo = null,
+        nIdConductor,
         cFecIni = null,
         cFecFin = null;
     if (req.body.periodo) {
@@ -34,8 +36,22 @@ module.exports = function(req, res) {
         cFecIni = dIni.format("YYYY-MM-DD");
         cFecFin = dFin.format("YYYY-MM-DD");
     }
+    if (req.body.idVehiculo) {
+        nIdVehiculo = parseInt(req.body.idVehiculo);
+        if (isNaN(nIdVehiculo))
+            return res.status(400).json({ success: false, code: 2010, message: "Id. Vehículo debe ser numérico." });
+        if (nIdVehiculo <= 0)
+            return res.status(400).json({ success: false, code: 2012, message: "Id. Vehículo debe ser mayor que cero" });
+    }
+    if (req.body.idUsuario) {
+        nIdConductor = parseInt(req.body.idUsuario);
+        if (isNaN(nIdConductor))
+            return res.status(400).json({ success: false, code: 2010, message: "Id. Usuario debe ser numérico." });
+        if (nIdConductor <= 0)
+            return res.status(400).json({ success: false, code: 2012, message: "Id. Usuario debe ser mayor que cero" });
+    }
 
-    db.scoreDB.knex.raw("call prScoreVehiculoRangoFecha(?,?,?,?)", [req.user.pUsuario, nPeriodo, cFecIni, cFecFin]).then(function(data) {
+    db.scoreDB.knex.raw("call prScoreVehiculoRangoFecha(?,?,?,?,?,?)", [req.user.pUsuario, nPeriodo, cFecIni, cFecFin, nIdVehiculo, nIdConductor]).then(function(data) {
         if (data === null) {
             return res.status(400).json({ success: false, code: 2024, message: "Error al ejecutar consulta Score de Vehiculos" });
         }
@@ -50,12 +66,12 @@ module.exports = function(req, res) {
             // Inicializa Acumuladores para los viajes
             var arrVeh = [];
             for (var i = 0; i < arr.length; i++) {
-				if( ! arr[i].tUltimoRegistro )
-					arr[i].tUltimoRegistro = arr[i].dInicio+'T00:00:00.000Z';
-				if( ! arr[i].tUltimaSincro ){
-					arr[i].tUltimaSincro = arr[i].tUltimoRegistro;
-					arr[i].cEstadoSincroTrans = arr[i].cEstadoSincroTrips;
-				}
+                if (!arr[i].tUltimoRegistro)
+                    arr[i].tUltimoRegistro = arr[i].dInicio + 'T00:00:00.000Z';
+                if (!arr[i].tUltimaSincro) {
+                    arr[i].tUltimaSincro = arr[i].tUltimoRegistro;
+                    arr[i].cEstadoSincroTrans = arr[i].cEstadoSincroTrips;
+                }
                 arrVeh.push({
                     idVehiculo: arr[i].pVehiculo,
                     patente: arr[i].cPatente,
