@@ -100,6 +100,8 @@ module.exports = function(req, res) {
                         patente: arr[i].cPatente,
                         calleInicio: arr[i].cCalleInicio,
                         calleFin: arr[i].cCalleFin,
+                        calleCortaInicio: arr[i].cCalleCortaInicio,
+                        calleCortaFin: arr[i].cCalleCortaFin,
                         fechaInicio: arr[i].tInicio,
                         fechaFin: arr[i].tFin,
                         duracion: arr[i].nDuracionSeg,
