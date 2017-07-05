@@ -100,6 +100,7 @@ module.exports = function(req, res) {
                 // No tiene eventos, los pone en cero para que los de Mobiltonic no jodan con que en la APP es muy dificil, digo yo para que se meten en temas que después son muy dificiles, es mejor que aprendan a programar y se dejen de quejar, o se dediquen a otra cosa.
                 if (!arrVeh[i].eventos)
                     arrVeh[i].eventos = db.convertEventos({})
+                Util.borraPropiedadNula(arrVeh[i]);
             }
             // Cursor-4 trae los conductores que pueden conducir cada vehículo, este resumen de lo anterior se envía porque al parecer el equipo de Mobiltonic no saben hacer un ciclo FOR para sumar un array
             arr = data[0][3];
@@ -111,12 +112,12 @@ module.exports = function(req, res) {
                     var conductor = arr[j];
                     if (veh.idVehiculo == conductor.pVehiculo) {
                         var oKmScore = JSON.parse(conductor.cJsonKmScore);
-                        veh.conductores.push({
+                        veh.conductores.push(Util.borraPropiedadNula({
                             idConductor: conductor.pUsuario,
                             conductor: conductor.cUsuario,
                             kms: oKmScore.nKms,
                             score: oKmScore.nScore
-                        });
+                        }));
                     }
                 }
             }
@@ -127,14 +128,14 @@ module.exports = function(req, res) {
             arr = data[0][5];
             var arrViaje = [];
             for (var i = 0; i < arr.length; i++) {
-                if (!arr[i].cCalleInicio) delete arr[i].cCalleInicio;
-                if (!arr[i].cCalleFin) delete arr[i].cCalleFin;
-                arrViaje.push({
+                arrViaje.push(Util.borraPropiedadNula({
                     idViaje: arr[i].nIdViaje,
                     idVehiculo: arr[i].fVehiculo,
                     patente: arr[i].cPatente,
                     calleInicio: arr[i].cCalleInicio,
                     calleFin: arr[i].cCalleFin,
+                    calleCortaInicio: arr[i].cCalleCortaInicio,
+                    calleCortaFin: arr[i].cCalleCortaFin,
                     fechaInicio: arr[i].tInicio,
                     fechaFin: arr[i].tFin,
                     duracion: arr[i].nDuracionSeg,
@@ -145,7 +146,7 @@ module.exports = function(req, res) {
                     idConductor: arr[i].fUsuario,
                     conductor: arr[i].cNombreConductor,
                     eventos: db.convertEventos(arr[i])
-                });
+                }));
             };
             // Inicializa Acumuladores para los viajes
             return res.status(201).json({

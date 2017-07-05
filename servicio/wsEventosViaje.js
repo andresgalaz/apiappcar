@@ -15,15 +15,15 @@ module.exports = function(req, res) {
     db.scoreDB.knex("vEvento")
         .select("nIdObservation as id", "fTpEvento as idEvento", "cEvento as tipoEvento", "tEvento as ts",
             "nLT as LT", "nLG as LG", "nValor as valor", "nValorG as valor_g", "cDescripcion as descripcion",
-            "nVelocidadMaxima as velocidadMaxima", "cCalle as calle", "cCalleCorta as calle_corta", "nNivelApp as nivel")
+            "nVelocidadMaxima as velocidadMaxima", "cCalle as calle", "cCalleCorta as calleCorta", "nNivelApp as nivel")
         .whereIn("fTpEvento", [3, 4, 5, 6])
         .andWhere("nIdViaje", req.body.idViaje)
-		.orderBy("tEvento")
-//        .andWhere("nNivelApp", ">=", 2)
+        .orderBy("tEvento")
+        //        .andWhere("nNivelApp", ">=", 2)
         .then(function(arrEventoViaje) {
             try {
                 for (var i = 0; i < arrEventoViaje.length; i++) {
-                    var eventoViaje = arrEventoViaje[i];
+                    var eventoViaje = Util.borraPropiedadNula(arrEventoViaje[i]);
                     if (eventoViaje.idEvento != 5) {
                         eventoViaje.valor = Math.round(eventoViaje.valor);
                         delete eventoViaje['velocidadMaxima'];

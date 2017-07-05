@@ -39,9 +39,9 @@ module.exports = function(req, res) {
     if (req.body.pagina) {
         nPagina = parseInt(req.body.pagina);
         if (isNaN(nPagina))
-            return res.status(400).json({ success: false, code: 3624, message: "Periodo debe se numérico." });
+            return res.status(400).json({ success: false, code: 3624, message: "Página debe se numérico." });
         if (nPagina <= 0)
-            return res.status(400).json({ success: false, code: 3626, message: "Periodo debe ser mayor que cero" });
+            return res.status(400).json({ success: false, code: 3626, message: "Página debe ser mayor que cero" });
     }
     console.log([req.user.pUsuario, nPagina, nPeriodo, cFecIni, cFecFin]);
     db.scoreDB.knex.raw("call prViajesRangoFecha(?,?,?,?,?)", [req.user.pUsuario, nPagina, nPeriodo, cFecIni, cFecFin]).then(function(data) {
@@ -60,19 +60,21 @@ module.exports = function(req, res) {
                 for (var i = 0; i < arr.length; i++) {
                     if (!arr[i].cCalleInicio) delete arr[i].cCalleInicio;
                     if (!arr[i].cCalleFin) delete arr[i].cCalleFin;
-                    arrViaje.push({
+                    arrViaje.push(Util.borraPropiedadNula({
                         idViaje: arr[i].nIdViaje,
                         idVehiculo: arr[i].fVehiculo,
                         patente: arr[i].cPatente,
                         calleInicio: arr[i].cCalleInicio,
+                        calleCortaInicio: arr[i].cCalleCortaInicio,
                         calleFin: arr[i].cCalleFin,
+                        calleCortaFin: arr[i].cCalleCortaFin,
                         fechaInicio: arr[i].tInicio,
                         fechaFin: arr[i].tFin,
                         duracion: arr[i].nDuracionSeg,
                         score: arr[i].nScore,
                         kms: arr[i].nKms,
                         eventos: db.convertEventos(arr[i])
-                    });
+                    }));
                 };
             }
             // Entrega resultado

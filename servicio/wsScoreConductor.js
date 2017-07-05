@@ -56,7 +56,7 @@ module.exports = function(req, res) {
                 for (var i = 0; i < arr.length; i++) {
                     nKmsGlobal += nKmsGlobal + arr[i].nKms;
                     nScoreGlobal += nScoreGlobal + arr[i].nScore * arr[i].nKms;
-                    arrUsr.push({
+                    arrUsr.push(Util.borraPropiedadNula({
                         idConductor: arr[i].pUsuario,
                         conductor: arr[i].cUsuario,
                         kms: arr[i].nKms,
@@ -64,7 +64,7 @@ module.exports = function(req, res) {
                         cantidadViajes: arr[i].nQViajes,
                         eventos: db.convertEventos(arr[i]),
                         vehiculos: []
-                    });
+                    }));
                 }
                 if (nKmsGlobal > 0) {
                     nScoreGlobal = Math.round(nScoreGlobal / nKmsGlobal);
@@ -76,14 +76,14 @@ module.exports = function(req, res) {
                 for (var i = 0; i < arrUsr.length; i++) {
                     for (var j = 0; j < arr.length; j++) {
                         if (arrUsr[i].idConductor == arr[j].pUsuario) {
-                            arrUsr[i].vehiculos.push({
+                            arrUsr[i].vehiculos.push(Util.borraPropiedadNula({
                                 idTitular: arr[j].fUsuarioTitular,
                                 titular: arr[j].cUsuarioTitular,
                                 idVehiculo: arr[j].pVehiculo,
                                 patente: arr[j].cPatente,
                                 kms: arr[j].nKms,
                                 score: arr[j].nScore
-                            });
+                            }));
                         }
                     }
                 }
@@ -94,9 +94,7 @@ module.exports = function(req, res) {
                 var arr = data[0][4];
                 var arrViaje = [];
                 for (var i = 0; i < arr.length; i++) {
-                    if (!arr[i].cCalleInicio) delete arr[i].cCalleInicio;
-                    if (!arr[i].cCalleFin) delete arr[i].cCalleFin;
-                    arrViaje.push({
+                    arrViaje.push(Util.borraPropiedadNula({
                         idViaje: arr[i].nIdViaje,
                         idVehiculo: arr[i].fVehiculo,
                         patente: arr[i].cPatente,
@@ -112,7 +110,7 @@ module.exports = function(req, res) {
                         idConductor: arr[i].fUsuario,
                         conductor: arr[i].cNombreConductor,
                         eventos: db.convertEventos(arr[i])
-                    });
+                    }));
                 };
 
                 return res.status(201).json({
