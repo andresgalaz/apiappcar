@@ -37,6 +37,7 @@ module.exports = function(req, res) {
         cFecFin = dFin.format("YYYY-MM-DD");
     }
     // Lista score
+    console.log("call prScoreConductorRangoFecha(?,?,?,?,?)", [req.user.pUsuario, null, nPeriodo, cFecIni, cFecFin]);
     db.scoreDB.knex.raw("call prScoreConductorRangoFecha(?,?,?,?,?)", [req.user.pUsuario, null, nPeriodo, cFecIni, cFecFin])
         .then(function(data) {
             if (data === null) {
@@ -44,12 +45,12 @@ module.exports = function(req, res) {
             }
             try {
                 // Primer cursor rango de fechas
-                arr = data[0][0];
-                var fechaInicio = arr[0].dInicio;
-                var fechaFin = arr[0].dFin;
+                // arr = data[0][0];
+                // var fechaInicio = arr[0].dInicio;
+                // var fechaFin = arr[0].dFin;
 
-                // Segundo cursor trae un arreglo de conductores
-                arr = data[0][1];
+                // CURSOR-1 trae un arreglo de conductores
+                arr = data[0][0];
                 var nKmsGlobal = 0;
                 var nScoreGlobal = 0;
                 var arrUsr = [];
@@ -67,12 +68,14 @@ module.exports = function(req, res) {
                     }));
                 }
                 if (nKmsGlobal > 0) {
+                    nKmsGlobal = Math.round(nKmsGlobal);
                     nScoreGlobal = Math.round(nScoreGlobal / nKmsGlobal);
                 } else {
+                    nKmsGlobal = 0;
                     nScoreGlobal = 100;
                 }
-                // Tercer cursor tare vehiculos x usuario
-                arr = data[0][2];
+                // CURSOR-2 trae vehiculos x usuario
+                arr = data[0][1];
                 for (var i = 0; i < arrUsr.length; i++) {
                     for (var j = 0; j < arr.length; j++) {
                         if (arrUsr[i].idConductor == arr[j].pUsuario) {
@@ -81,17 +84,20 @@ module.exports = function(req, res) {
                                 titular: arr[j].cUsuarioTitular,
                                 idVehiculo: arr[j].pVehiculo,
                                 patente: arr[j].cPatente,
+                                fechaInicio: arr[j].dInicio,
+                                fechaFin: arr[j].dFin,
+                                cantidadViajes: arr[i].nQViajes,
                                 kms: arr[j].nKms,
                                 score: arr[j].nScore
                             }));
                         }
                     }
                 }
-                // Cuarto cursor, resumen de los eventos del usuario
-                var arr = data[0][3];
+                // CURSOR-3 resumen de los eventos del usuario
+                var arr = data[0][2];
                 var arrEventos = db.convertEventos(arr[0]);
-                // Quinto cursor, detalle de viajes
-                var arr = data[0][4];
+                // CURSOR-4, detalle de viajes
+                var arr = data[0][3];
                 var arrViaje = [];
                 for (var i = 0; i < arr.length; i++) {
                     arrViaje.push(Util.borraPropiedadNula({
@@ -117,8 +123,8 @@ module.exports = function(req, res) {
 
                 return res.status(201).json({
                     success: true,
-                    fechaInicio: fechaInicio,
-                    fechaFin: fechaFin,
+                    fechaInicio: null, // fechaInicio,
+                    fechaFin: null, // fechaFin,
                     score: nScoreGlobal,
                     kms: nKmsGlobal,
                     conductores: arrUsr,
