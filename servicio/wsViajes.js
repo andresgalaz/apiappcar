@@ -11,29 +11,40 @@ module.exports = function(req, res) {
     var nPeriodo = null,
         nPagina = 0,
         cFecIni = null,
-        cFecFin = null;
-    if (req.body.periodo) {
-        nPeriodo = parseInt(req.body.periodo);
-        if (isNaN(nPeriodo))
-            return res.status(400).json({ success: false, code: 3610, message: "Periodo debe se numérico." });
-        if (nPeriodo > 0)
-            return res.status(400).json({ success: false, code: 3612, message: "Periodo debe ser negativo" });
+        cFecFin = null,
+        nIdViaje = null;
+
+    if (req.body.idViaje) {
+        nIdViaje = parseInt(req.body.idViaje);
+        if (isNaN(nIdViaje))
+            return res.status(400).json({ success: false, code: 3608, message: "Identificador del viaje debe ser numérico." });
+        if (nIdViaje <= 0)
+            return res.status(400).json({ success: false, code: 3609, message: "Identificador del viaje debe ser mayor que cero." });
     } else {
-        if (!req.body.fechaInicio || !req.body.fechaFin)
-            return res.status(400).json({ success: false, code: 3616, message: "Se debe indicar periodo o rango de fechas." });
-        var dIni = moment(req.body.fechaInicio, "YYYY-MM-DD");
-        if (!dIni.isValid()) {
-            return res.status(400).json({ success: false, code: 3618, message: "Fecha de inicio no válica." });
+
+        if (req.body.periodo) {
+            nPeriodo = parseInt(req.body.periodo);
+            if (isNaN(nPeriodo))
+                return res.status(400).json({ success: false, code: 3610, message: "Periodo debe se numérico." });
+            if (nPeriodo > 0)
+                return res.status(400).json({ success: false, code: 3612, message: "Periodo debe ser negativo" });
+        } else {
+            if (!req.body.fechaInicio || !req.body.fechaFin)
+                return res.status(400).json({ success: false, code: 3616, message: "Se debe indicar periodo o rango de fechas." });
+            var dIni = moment(req.body.fechaInicio, "YYYY-MM-DD");
+            if (!dIni.isValid()) {
+                return res.status(400).json({ success: false, code: 3618, message: "Fecha de inicio no válica." });
+            }
+            var dFin = moment(req.body.fechaFin, "YYYY-MM-DD");
+            if (!dFin.isValid()) {
+                return res.status(400).json({ success: false, code: 3620, message: "Fecha de fin no válica." });
+            }
+            if (dIni > dFin) {
+                return res.status(400).json({ success: false, code: 3622, message: "La fecha de inicio debe ser anterior a la fecha de fin." });
+            }
+            cFecIni = dIni.format("YYYY-MM-DD");
+            cFecFin = dFin.format("YYYY-MM-DD");
         }
-        var dFin = moment(req.body.fechaFin, "YYYY-MM-DD");
-        if (!dFin.isValid()) {
-            return res.status(400).json({ success: false, code: 3620, message: "Fecha de fin no válica." });
-        }
-        if (dIni > dFin) {
-            return res.status(400).json({ success: false, code: 3622, message: "La fecha de inicio debe ser anterior a la fecha de fin." });
-        }
-        cFecIni = dIni.format("YYYY-MM-DD");
-        cFecFin = dFin.format("YYYY-MM-DD");
     }
 
     if (req.body.pagina) {
@@ -44,18 +55,33 @@ module.exports = function(req, res) {
             return res.status(400).json({ success: false, code: 3626, message: "Página debe ser mayor que cero" });
     }
     console.log([req.user.pUsuario, nPagina, nPeriodo, cFecIni, cFecFin]);
-    db.scoreDB.knex.raw("call prViajesRangoFecha(?,?,?,?,?)", [req.user.pUsuario, nPagina, nPeriodo, cFecIni, cFecFin]).then(function(data) {
+    var qViaje;
+    if (nIdViaje != null) {
+        // Trae un solo viaje
+        qViaje = db.scoreDB.knex.raw("call prViajesById(?)", [nIdViaje]);
+    } else {
+        // Trae un listado de viajes
+        qViaje = db.scoreDB.knex.raw("call prViajesRangoFecha(?,?,?,?,?)", [req.user.pUsuario, nPagina, nPeriodo, cFecIni, cFecFin]);
+    }
+
+    qViaje.then(function(data) {
         if (data === null) {
             return res.status(400).json({ success: false, code: 3624, message: "Error al ejecutar consulta de viajes" });
         }
         try {
-            // Cursor-1 trae la información de fechas usadas, cantidad de registros / páginas
-            var arrTotal = data[0][0][0];
+            // Cursor-1 trae la información de fechas usadas, cantidad de registros / páginas, si se indicó ID.Viaje este no viene
+            var arrTotal = null,
+                nIdCursor = 0;
+            if (nIdViaje == null) {
+                arrTotal = data[0][nIdCursor++][0];
+            } else {
+                arrTotal = { nRegs: 1, nPagina: 1, nPaginas: 1 };
+            }
             var arrViaje = [];
             if (arrTotal.nRegs > 0) {
                 // Si hay registros
                 // Cursor-2 trae un arreglo de vehículos
-                var arr = data[0][1];
+                var arr = data[0][nIdCursor++];
                 // Inicializa Acumuladores para los viajes
                 for (var i = 0; i < arr.length; i++) {
                     if (!arr[i].cCalleInicio) delete arr[i].cCalleInicio;
