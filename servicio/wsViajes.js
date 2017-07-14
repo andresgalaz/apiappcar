@@ -21,16 +21,13 @@ module.exports = function(req, res) {
         if (nIdViaje <= 0)
             return res.status(400).json({ success: false, code: 3609, message: "Identificador del viaje debe ser mayor que cero." });
     } else {
-
         if (req.body.periodo) {
             nPeriodo = parseInt(req.body.periodo);
             if (isNaN(nPeriodo))
                 return res.status(400).json({ success: false, code: 3610, message: "Periodo debe se numérico." });
             if (nPeriodo > 0)
                 return res.status(400).json({ success: false, code: 3612, message: "Periodo debe ser negativo" });
-        } else {
-            if (!req.body.fechaInicio || !req.body.fechaFin)
-                return res.status(400).json({ success: false, code: 3616, message: "Se debe indicar periodo o rango de fechas." });
+        } else if (req.body.fechaInicio && req.body.fechaFin) {
             var dIni = moment(req.body.fechaInicio, "YYYY-MM-DD");
             if (!dIni.isValid()) {
                 return res.status(400).json({ success: false, code: 3618, message: "Fecha de inicio no válica." });
