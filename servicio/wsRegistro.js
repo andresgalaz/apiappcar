@@ -88,9 +88,13 @@ module.exports = function(req, res) {
 
                     const cEmailBody = pug.compileFile('views/emailRegistro.pug');
                     var idRegistro = hashId.encode(10e10 + user.pUsuario);
+					var toMail = ['andres.galaz@gmail.com'];
+					if (process.env.WSAPI_AMBIENTE == 'PROD') {
+						toMail.push( req.body.email );
+					}
                     email.server.send({
                         from: 'SnapCar <no-responder@snapcar.com.ar>',
-                        to: req.body.email,
+                        to: toMail,
                         subject: 'Confirme su registro',
                         attachment: [{
                             data: cEmailBody({
