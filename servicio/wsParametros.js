@@ -11,6 +11,7 @@ module.exports = function(req, res) {
     // 	return res.status(400).json({ success: false, code: 2810, message: 'Falta id. de vehículo.' });
     // }
     var oOut = {
+        success: true,
         version: 6,
         umbral: 300,
         params: [
