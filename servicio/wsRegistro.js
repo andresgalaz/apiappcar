@@ -89,8 +89,10 @@ module.exports = function(req, res) {
                     const cEmailBody = pug.compileFile('views/emailRegistro.pug');
                     var idRegistro = hashId.encode(10e10 + user.pUsuario);
 					var toMail = ['andres.galaz@gmail.com'];
+                    var baseUrl = 'https://desa.snapcar.com.ar/wappTest'
 					if (process.env.WSAPI_AMBIENTE == 'PROD') {
 						toMail.push( req.body.email );
+                    	baseUrl = 'https://crm.snapcar.com.ar/wappCar'
 					}
                     email.server.send({
                         from: 'SnapCar <no-responder@snapcar.com.ar>',
@@ -102,7 +104,7 @@ module.exports = function(req, res) {
                                 idRegistro: idRegistro,
                                 emailRegistro: req.body.email,
                                 // baseUrl: req.protocol + '://' + req.headers.host
-                                baseUrl: 'https://api.appcar.com.ar'
+                                baseUrl: baseUrl
                             }),
                             alternative: true
                         }]
