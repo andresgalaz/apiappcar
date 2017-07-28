@@ -20,13 +20,10 @@ module.exports = function(req, res) {
     if (req.body.patente && req.body.patente.length > 20) {
         return res.status(400).json({ success: false, code: 3522, message: 'Patente no válida.' });
     }
-    if (req.body.num_instalacion && req.body.num_instalacion.length > 20) {
-        return res.status(400).json({ success: false, code: 3524, message: 'Nº instalación no válido.' });
-    }
 
-    var arrPrm = [req.user.pUsuario, req.body.accion, req.body.id, req.body.patente, req.body.estado, req.body.num_instalacion];
+    var arrPrm = [req.user.pUsuario, req.body.accion, req.body.id, req.body.patente, req.body.estado];
     console.log(arrPrm);
-    db.scoreDB.knex.raw("call prInstalacion(?,?,?,?,?,?)", arrPrm)
+    db.scoreDB.knex.raw("call prInstalacion(?,?,?,?,?)", arrPrm)
         .then(function(data) {
             try {
                 var arr = data[0][0][0];
