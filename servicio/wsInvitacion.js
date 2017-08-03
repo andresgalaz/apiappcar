@@ -60,17 +60,22 @@ module.exports = function (req, res) {
 							arrVeh[arrVeh.length] = { pInvitacion: invita.pInvitacion, pVehiculo: entry };
 						});
 						// Convierte el PK de invitación en un HASH de largo razonable
-						invita.idInvitacion = hashId.encode(10e10 + invita.pInvitacion);
+						invita.idInvitacion = hashId.encode(1e11 + invita.pInvitacion);
 						dataIns.vehiculos().attach(arrVeh);
 
 						// Template
 						const cEmailBody = pug.compileFile('views/emailInvitacion.pug');
 
+						var toMail = ['andres.galaz@gmail.com','req.body.emailInvitado'];
+                    	var baseUrl = 'https://desa.snapcar.com.ar/wappTest/do/cli/login/registro.vm';
+						if (process.env.WSAPI_AMBIENTE == 'PROD') {
+                    		baseUrl = 'https://crm.snapcar.com.ar/wappCar/do/cli/login/registro.vm';
+						}
 						// Envía correo al usuario invitado
 						email.server.send({
 							//from: "SnapCar Seguros <soporte@appcar.com.ar>",
 							from: "SnapCar Seguros <no-responder@snapcar.com.ar>",
-							to: req.body.emailInvitado,
+							to: toMail,
 							subject: "Invitación",
 							attachment: [{
 								data: cEmailBody({
@@ -78,8 +83,7 @@ module.exports = function (req, res) {
 									emailUsuario: req.user.cEmail,
 									emailInvitado: req.body.emailInvitado,
 									idInvitacion: invita.idInvitacion,
-									// baseUrl: req.protocol + '://' + req.headers.host
-									baseUrl: 'https://api.appcar.com.ar'
+									baseUrl: baseUrl
 								}),
 								alternative: true
 							}]

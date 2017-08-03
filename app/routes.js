@@ -32,6 +32,7 @@ module.exports = function(app) {
     apiRoutes.post('/wsCambioPassword', require('../servicio/wsCambioPassword'));
     apiRoutes.post('/wsLogin', require('../servicio/wsLogin'));
     apiRoutes.post('/wsLoginInstalador', require('../servicio/wsLoginInstalador'));
+    apiRoutes.post('/wsPassword', require('../servicio/wsPassword'));
     apiRoutes.post('/wsRecuperaPassword', require('../servicio/wsRecuperaPassword'));
     apiRoutes.post('/wsRegistro', require('../servicio/wsRegistro'));
     apiRoutes.post('/wsTokenTemporal', require('../servicio/wsTokenTemporal'));

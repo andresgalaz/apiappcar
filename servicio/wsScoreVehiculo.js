@@ -19,6 +19,7 @@ module.exports = function(req, res) {
             return res.status(400).json({ success: false, code: 2010, message: "Periodo debe se numérico." });
         if (nPeriodo > 0)
             return res.status(400).json({ success: false, code: 2012, message: "Periodo debe ser negativo" });
+//		nPeriodo++;
     } else {
         if (!req.body.fechaInicio || !req.body.fechaFin)
             return res.status(400).json({ success: false, code: 2016, message: "Se debe indicar periodo o rango de fechas." });

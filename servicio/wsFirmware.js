@@ -12,8 +12,8 @@ module.exports = function(req, res) {
     // }
     var oOut = {
         success: true,
-        version: 112,
-        url: 'https://api.appcar.com.ar/VCNV500112_BIN.SFB'
+        version: 113,
+        url: 'https://api.appcar.com.ar/VCNV500113_BIN.SFB'
     };
     return res.status(200).json(oOut);
 };
