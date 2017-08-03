@@ -66,7 +66,7 @@ module.exports = function (req, res) {
 						// Template
 						const cEmailBody = pug.compileFile('views/emailInvitacion.pug');
 
-						var toMail = ['andres.galaz@gmail.com','req.body.emailInvitado'];
+						var toMail = [req.body.emailInvitado];
                     	var baseUrl = 'https://desa.snapcar.com.ar/wappTest/do/cli/login/registro.vm';
 						if (process.env.WSAPI_AMBIENTE == 'PROD') {
                     		baseUrl = 'https://crm.snapcar.com.ar/wappCar/do/cli/login/registro.vm';

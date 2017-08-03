@@ -88,7 +88,7 @@ module.exports = function(req, res) {
 
                     const cEmailBody = pug.compileFile('views/emailRegistro.pug');
                     var idRegistro = hashId.encode(1e11 + user.pUsuario);
-					var toMail = ['andres.galaz@gmail.com', req.body.email];
+					var toMail = [req.body.email];
                     var baseUrl = 'https://desa.snapcar.com.ar/wappTest'
 					if (process.env.WSAPI_AMBIENTE == 'PROD') {
                     	baseUrl = 'https://crm.snapcar.com.ar/wappCar'
