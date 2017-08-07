@@ -52,6 +52,7 @@ module.exports = function(req, res) {
             return res.status(400).json({ success: false, code: 2012, message: "Id. Usuario debe ser mayor que cero" });
     }
 
+console.log("call prScoreVehiculoRangoFecha(?,?,?,?,?,?)", [req.user.pUsuario, nPeriodo, cFecIni, cFecFin, nIdVehiculo, nIdConductor]);
     db.scoreDB.knex.raw("call prScoreVehiculoRangoFecha(?,?,?,?,?,?)", [req.user.pUsuario, nPeriodo, cFecIni, cFecFin, nIdVehiculo, nIdConductor]).then(function(data) {
         if (data === null) {
             return res.status(400).json({ success: false, code: 2024, message: "Error al ejecutar consulta Score de Vehiculos" });

@@ -113,6 +113,20 @@ module.exports = function(req, res) {
                          * Si utiliza Facebook signin corrobora si el token es válido.
                          */
                     } else if (req.body.facebook && req.body.facebook.token) {
+                        FB.api('/me', 'get', {
+                                access_token: req.body.facebook.token,
+                                fields: 'id, email'
+                            },
+                            function (response) {
+                                console.log(response);
+                                if (response.email === req.body.email) {
+                                    return res.status(200).json(token.genera(user));
+                                } else {
+                                    return res.status(401).json({ success: false, code: 1138, message: 'Token de Facebook inválido.' });
+                                }
+                            }
+                        );
+			/*
                         FB.api('/oauth/access_token', 'get', {
                                 client_id: '1820396898212790',
                                 client_secret: 'a4a58aa49ca89a6e75a9b9f687bd523e',
@@ -134,6 +148,7 @@ module.exports = function(req, res) {
                                         })
                                 }
                             });
+			*/
                         /**
                          * Si utiliza contraseña corrobora que se válida.
                          */
