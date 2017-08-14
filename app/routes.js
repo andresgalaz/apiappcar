@@ -44,6 +44,7 @@ module.exports = function(app) {
     apiRoutes.post('/wsFirmwareEstado', agvJwt, require('../servicio/wsFirmwareEstado'));
     apiRoutes.post('/wsInicioTransferencia', agvJwt, require('../servicio/wsInicioTransferencia'));
     apiRoutes.post('/wsInstalacion', agvJwt, require('../servicio/wsInstalacion'));
+    apiRoutes.post('/wsInstaladorPassword', agvJwt, require('../servicio/wsInstaladorPassword'));
     apiRoutes.post('/wsInvitacion', agvJwt, require('../servicio/wsInvitacion'));
     apiRoutes.post('/wsParametros', agvJwt, require('../servicio/wsParametros'));
     apiRoutes.post('/wsReToken', agvJwt, require('../servicio/wsReToken'));
