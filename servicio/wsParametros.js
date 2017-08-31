@@ -12,7 +12,7 @@ module.exports = function(req, res) {
     // }
     var oOut = {
         success: true,
-        version: 6,
+        version: 7,
         umbral: 300,
         params: [
             '>CLN00000000<' //
