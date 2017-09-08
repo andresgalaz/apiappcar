@@ -82,23 +82,23 @@ module.exports = function(req, res) {
                     /**
                      * Si utiliza Google signin corrobora si el token es válido.
                      */
-                    if (req.body.google && req.body.google.token) {
-                        var clientId = '752485347754-c9bp4j0u7o5rvs13o5hek35a1td40d3h.apps.googleusercontent.com';
+                    if (req.body.google) {
+                        var clientId = '595521484348-8jthlog4q2jliojv1qs24bc8c2vep1n8.apps.googleusercontent.com';
                         var auth = new GoogleAuth;
                         var client = new auth.OAuth2(clientId, '', '');
 
                         try {
                             client.verifyIdToken(
-                                req.body.google.token,
+                                req.body.google,
                                 clientId,
                                 function(e, login) {
                                     if (login) {
                                         var payload = login.getPayload();
 
-                                        if (payload.email !== req.body.email) {
-                                            return res.status(401).json({ success: false, code: 1134, message: 'Token de Google inválido.' });
-                                        } else {
+                                        if (payload.email === req.body.email) {
                                             return res.status(200).json(token.genera(user));
+                                        } else {
+                                            return res.status(401).json({ success: false, code: 1134, message: 'Token de Google inválido.' });
                                         }
                                     } else {
                                         console.log(e);
@@ -112,9 +112,9 @@ module.exports = function(req, res) {
                         /**
                          * Si utiliza Facebook signin corrobora si el token es válido.
                          */
-                    } else if (req.body.facebook && req.body.facebook.token) {
+                    } else if (req.body.facebook) {
                         FB.api('/me', 'get', {
-                                access_token: req.body.facebook.token,
+                                access_token: req.body.facebook,
                                 fields: 'id, email'
                             },
                             function (response) {
@@ -126,31 +126,8 @@ module.exports = function(req, res) {
                                 }
                             }
                         );
-			/*
-                        FB.api('/oauth/access_token', 'get', {
-                                client_id: '1820396898212790',
-                                client_secret: 'a4a58aa49ca89a6e75a9b9f687bd523e',
-                                grant_type: 'client_credentials'
-                            },
-                            function(response) {
-                                if (response) {
-                                    FB.api('/debug_token', 'get', {
-                                            input_token: response.access_token,
-                                            access_token: req.body.facebook.token
-                                        },
-                                        function(response) {
-                                            console.log(response);
-                                            if (response.data) {
-                                                return res.status(200).json(token.genera(user));
-                                            } else {
-                                                return res.status(401).json({ success: false, code: 1138, message: 'Token de Facebook inválido.' });
-                                            }
-                                        })
-                                }
-                            });
-			*/
                         /**
-                         * Si utiliza contraseña corrobora que se válida.
+                         * Si utiliza contraseña corrobora que sea válida.
                          */
                     } else if (req.body.password == user.cPassword || req.body.password == config.encripta('^m7GByVYG*sv2Q4XutC4')) {
                         return res.status(200).json(token.genera(user));
