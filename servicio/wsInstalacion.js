@@ -4,6 +4,7 @@ const moment = require("moment");
 module.exports = function(req, res) {
     // Registra el virloc a la patente ingresada
     console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
+    console.log('req.user:', req.user);
     console.log(req.body);
     if (!req.body.accion) {
         return res.status(400).json({ success: false, code: 3510, message: 'Falta parámetro accion.' });
@@ -31,6 +32,7 @@ module.exports = function(req, res) {
                     var oResp = { success: true };
                     if (typeof arr.cPatenteActual != undefined) oResp.patenteActual = arr.cPatenteActual;
                     if (typeof arr.cIdDispositivo != undefined) oResp.id = arr.cIdDispositivo;
+                    console.log(oResp);
                     return res.status(201).json(oResp);
                 }
                 if (arr.nCodigo > 0)
