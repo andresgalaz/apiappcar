@@ -113,20 +113,9 @@ module.exports = function(req, res) {
                          * Si utiliza Facebook signin corrobora si el token es válido.
                          */
                     } else if (req.body.facebook) {
-                        // let facebookToken = '';
-
                         var facebookToken = req.body.facebook.token ? req.body.facebook.token : req.body.facebook;
 
-                        console.log(facebookToken);
-
-                        // if (req.body.facebook.facebook) {
-                        //     facebookToken = req.body.facebook.token;
-                        // } else {
-                        //     facebookToken = req.body.facebook;
-                        // }
-
                         FB.api('/me', 'get', {
-                                //access_token: req.body.facebook,
                                 access_token: facebookToken,
                                 fields: 'id, email'
                             },
