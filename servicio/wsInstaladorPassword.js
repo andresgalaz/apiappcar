@@ -11,7 +11,8 @@ module.exports = function(req, res) {
     console.log(req.body);
     var oOut = {
         success: true,
-        password: 'CrYtNPg6'
+        password: 'oK'
+//        password: 'CrYtNPg6'
     };
     return res.status(200).json(oOut);
 };
