@@ -83,13 +83,16 @@ module.exports = function(req, res) {
                      * Si utiliza Google signin corrobora si el token es válido.
                      */
                     if (req.body.google) {
-                        var clientId = '595521484348-8jthlog4q2jliojv1qs24bc8c2vep1n8.apps.googleusercontent.com';
+                        // var clientId = '595521484348-8jthlog4q2jliojv1qs24bc8c2vep1n8.apps.googleusercontent.com';
+                        var clientId = req.body.google.id;
+                        var clientToken = req.body.google.token;
                         var auth = new GoogleAuth;
                         var client = new auth.OAuth2(clientId, '', '');
 
                         try {
                             client.verifyIdToken(
-                                req.body.google,
+                                // req.body.google,
+                                clientToken,
                                 clientId,
                                 function(e, login) {
                                     if (login) {
