@@ -43,10 +43,18 @@ module.exports = function(req, res) {
                     /**
                      * Si usuario no confirmó reenvía email.
                      */
-                    if (moment().diff(moment(user.tEnviaMail, 'minutes') > 10)) {
+                    if ( ! user.tEnvioMail || moment().diff(moment(user.tEnvioMail), 'minutes') > 10) {
                         const cEmailBody = pug.compileFile('views/emailRegistro.pug');
                         var hashId = new Hash(config.secret);
                         var idRegistro = hashId.encode(10e10 + user.pUsuario);
+						var toMail = [req.body.email];
+                    	var linkUrl = 'https://desa.snapcar.com.ar/wappTest'
+                    	var baseUrl = 'https://test.appcar.com.ar/'
+						if (process.env.WSAPI_AMBIENTE == 'PROD') {
+                    		linkUrl = 'https://crm.snapcar.com.ar/wappCar'
+                    		baseUrl = 'https://api.appcar.com.ar/'
+						}
+						linkUrl += '/do/cli/login/registro.vm';
 
                         email.server.send({
                             from: 'SnapCar <no-responder@snapcar.com.ar>',
@@ -57,7 +65,8 @@ module.exports = function(req, res) {
                                     nombreUsuario: user.cNombre.split(' ')[0],
                                     idRegistro: idRegistro,
                                     emailRegistro: user.cEmail,
-                                    baseUrl: 'https://api.appcar.com.ar'
+                                	baseUrl: baseUrl,
+                                	linkUrl: linkUrl
                                 }),
                                 alternative: true
                             }]
@@ -70,7 +79,7 @@ module.exports = function(req, res) {
                                 .fetch()
                                 .then(function() {
                                     try {
-                                        this.save({ tEnviaMail: moment().format() }, { patch: true });
+                                        this.save({ tEnvioMail: moment().format() }, { patch: true });
                                     } catch (err) {
                                         console.log(err);
                                     }
