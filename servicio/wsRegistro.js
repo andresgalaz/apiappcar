@@ -62,7 +62,7 @@ module.exports = function(req, res) {
                 }).then(function(data) {
                     user = data.toJSON();
                     user.success = false;
-                    user.message = 'Se le ha enviado un mail. Cofirme el mail para ingresar';
+                    user.message = 'Se le ha enviado un mail. Confirme el mail para ingresar';
                     return res.status(400).json(user);
                 });
             } else {
@@ -82,7 +82,7 @@ module.exports = function(req, res) {
                         user = data.toJSON();
                         var usrOut = Model.UsuarioVeh.salida(user);
 						usrOut.success = true;
-						usrOut.message ='Se le ha enviado un mail. Cofirme el mail para ingresar';
+						usrOut.message ='Se le ha enviado un mail. Confirme el mail para ingresar';
 						return res.status(201).json(usrOut);
                     });
 
