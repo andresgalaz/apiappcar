@@ -92,7 +92,7 @@ module.exports = function(req, res) {
                     var linkUrl = 'https://desa.snapcar.com.ar/wappTest'
                     var baseUrl = 'https://test.appcar.com.ar/'
 					if (process.env.WSAPI_AMBIENTE == 'PROD') {
-                    	linkUrl = 'https://crm.snapcar.com.ar/wappCar'
+                    	linkUrl = 'https://app.snapcar.com.ar/wappCar'
                     	baseUrl = 'https://api.appcar.com.ar/'
 					}
 					linkUrl += '/do/cli/login/registro.vm';
@@ -111,7 +111,8 @@ module.exports = function(req, res) {
                             alternative: true
                         }]
                     }, function(err, message) {
-                        console.log(err || message);
+						if(err)
+               				console.log(err);
                     });
                 });
             }

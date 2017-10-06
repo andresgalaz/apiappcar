@@ -71,7 +71,10 @@ module.exports = function (req, res) {
                 }),
                 alternative: true
             }]
-        }, function (err, message) { console.log(err || message); });
+        }, function (err, message) {
+			if(err)
+   				console.log(err);
+		});
 
         mensaje = 'no confirma'
         return res.status(200).json({ message: mensaje });

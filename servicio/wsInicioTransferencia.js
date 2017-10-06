@@ -1,6 +1,5 @@
 const Model = require('../db/model');
 const config = require('../config/main');
-const email = require('../config/emailServer');
 const Hash = require('hashids');
 const moment = require("moment");
 

@@ -46,7 +46,10 @@ module.exports = function (req, res) {
 								}),
 								alternative: true
 							}]
-						}, function (err, message) { console.log(err || message); });
+						}, function (err, message) {
+							if(err)
+               					console.log(err);
+						});
 					});
 					res.status(201).json({ success: true, message: 'Correo electrónico enviado' });
 			} else {

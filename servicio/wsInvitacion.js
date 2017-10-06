@@ -69,7 +69,7 @@ module.exports = function (req, res) {
 						var toMail = [req.body.emailInvitado];
                     	var baseUrl = 'https://desa.snapcar.com.ar/wappTest/do/cli/login/registro.vm';
 						if (process.env.WSAPI_AMBIENTE == 'PROD') {
-                    		baseUrl = 'https://crm.snapcar.com.ar/wappCar/do/cli/login/registro.vm';
+                    		baseUrl = 'https://app.snapcar.com.ar/wappCar/do/cli/login/registro.vm';
 						}
 						// Envía correo al usuario invitado
 						email.server.send({
@@ -87,7 +87,10 @@ module.exports = function (req, res) {
 								}),
 								alternative: true
 							}]
-						}, function (err, message) { console.log(err || message); });
+	   					}, function (err, message) {
+							if(err)
+               					console.log(err);
+						});
 						return res.status(200).json({ success: true, idInvitacion: invita.idInvitacion });
 					});
 				} catch (e) {
