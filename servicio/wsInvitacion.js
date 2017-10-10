@@ -74,7 +74,7 @@ module.exports = function (req, res) {
 						// Envía correo al usuario invitado
 						email.server.send({
 							//from: "SnapCar Seguros <soporte@appcar.com.ar>",
-							from: "SnapCar Seguros <no-responder@snapcar.com.ar>",
+							from: "SnapCar Integrity <no-responder@snapcar.com.ar>",
 							to: toMail,
 							subject: "Invitación",
 							attachment: [{

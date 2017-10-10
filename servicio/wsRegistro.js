@@ -97,7 +97,7 @@ module.exports = function(req, res) {
 					}
 					linkUrl += '/do/cli/login/registro.vm';
                     email.server.send({
-                        from: 'SnapCar <no-responder@snapcar.com.ar>',
+                        from: 'SnapCar Integrity <no-responder@snapcar.com.ar>',
                         to: toMail,
                         subject: 'Confirme su registro',
                         attachment: [{

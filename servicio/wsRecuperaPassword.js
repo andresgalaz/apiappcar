@@ -35,7 +35,7 @@ module.exports = function (req, res) {
 						}
 
 						email.server.send({
-							from: 'SnapCar Seguros <no-responder@snapcar.com.ar>',
+							from: 'SnapCar Integrity <no-responder@snapcar.com.ar>',
 							to: toMail,
 							subject: 'Nueva contraseña',
 							attachment: [{
