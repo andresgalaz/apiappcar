@@ -31,7 +31,8 @@ module.exports = function (req, res) {
 					.then(function (data) {
 						var toMail = req.body.email;
 						if (process.env.WSAPI_AMBIENTE != 'PROD') {
-							toMail = 'andres.galaz@snapcar.com.ar';
+							// toMail = 'andres.galaz@snapcar.com.ar';
+							toMail = 'rodrigo.sobrero@snapcar.com.ar';
 						}
 
 						email.server.send({
