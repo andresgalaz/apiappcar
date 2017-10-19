@@ -92,7 +92,7 @@ module.exports = function(req,res){
 				}
 				// No existe y se crea el usuario
 				var newVeh = new Model.Vehiculo({
-					cPatente			: req.body.patente,
+					cPatente			: req.body.patente.toUpperCase() + "*",
 					cMarca				: req.body.marca,
 					cModelo				: req.body.modelo,
 					fTpDispositivo		: req.body.tipoDispositivo,
