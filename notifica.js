@@ -1,6 +1,7 @@
 // Include our packages in our main server file
 const db = require("./db/db");
 const config = require('./config/main');
+const emailServer = require('./config/emailServer');
 const hash = require('hashids');
 const moment = require("moment");
 const pug = require('pug');
@@ -8,6 +9,7 @@ const pug = require('pug');
 console.log('---------', moment().format("YYYY-MM-DD HH:mm:ss"), '--------');
 var cBodyRegistro = pug.compileFile('views/emailRegistro.pug');
 var hashId = new hash(config.secret);
+try {
 db
     .scoreDB
     .knex('tNotificacion')
@@ -16,7 +18,7 @@ db
     .andWhere('fTpNotificacion', 1)
     .then(function (data) {
         console.log(data);
-        for (i = 0; i < data.length; i++) {
+        for (i = 1; i < 3 ; i++ ) { // data.length; i++) {
             // Datos de la notificacion
             var pNotificacion = data[i].pNotificacion;
             var oInfoNotif = null;
@@ -56,7 +58,7 @@ db
                 toMail = [oInfoNotif.email];
             }
             linkUrl += '/do/cli/login/registro.vm';
-            email
+            emailServer
                 .server
                 .send({
                     from: 'SnapCar Integrity <no-responder@snapcar.com.ar>',
@@ -69,10 +71,14 @@ db
                         }
                     ]
                 }, function (err, message) {
-                    console.log(err, message);
+                    console.log('TERMINO', err, message);
                     if (err) 
                         console.log(err);
                     }
                 );
         };
     });
+} catch( e ){
+	console.error( e );
+	// process.exit(1);
+}
