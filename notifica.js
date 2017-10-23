@@ -81,8 +81,8 @@ try {
                         db.scoreDB.knex('tNotificacion')
                             .where('pNotificacion', pNotificacion)
                             .update({
-                                tEnviado: db.scoreDB.knex.fn.now()
-                            });
+                                tEnviado: moment().format("YYYY-MM-DD HH:mm:ss")
+                            }).then(function(dataUpd){ console.log('UPDATE:',dataUpd);});
                     }
                     );
             };
