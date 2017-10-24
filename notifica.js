@@ -1,4 +1,8 @@
-// Include our packages in our main server file
+/*
+	Proposito: Notificar de acuerdo a cierto tipo de registros contenidos en tNotificacion.
+			Tipo = 1 , registro autoático de usuarios
+	Autor: Andrés Galaz
+*/
 const db = require("./db/db");
 const config = require('./config/main');
 const emailServer = require('./config/emailServer');
@@ -17,7 +21,7 @@ var hashId = new hash(config.secret);
 db.scoreDB.knex('tNotificacion')
     .select('pNotificacion', 'cMensaje', 'fTpNotificacion')
     .whereNull('tEnviado')
-    .andWhere('fTpNotificacion', 1)
+    .andWhere('fTpNotificacion', 1) // Tipo = 1, Registro Usuarios
     .then(function (data) {
         if (data.length == 0)
             process.exit();
