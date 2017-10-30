@@ -1,6 +1,6 @@
 /*
 	Proposito: Notificar de acuerdo a cierto tipo de registros contenidos en tNotificacion.
-			Tipo = 1 , registro autoático de usuarios
+			Tipo = 1 , registro automático de usuarios
 	Autor: Andrés Galaz
 */
 const db = require("./db/db");
