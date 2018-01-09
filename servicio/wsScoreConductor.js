@@ -37,7 +37,7 @@ module.exports = function(req, res) {
         cFecFin = dFin.format("YYYY-MM-DD");
     }
     // Lista score
-    console.log("call prScoreConductorRangoFecha(?,?,?,?,?)", [req.user.pUsuario, null, nPeriodo, cFecIni, cFecFin]);
+    // console.log("call prScoreConductorRangoFecha(?,?,?,?,?)", [req.user.pUsuario, null, nPeriodo, cFecIni, cFecFin]);
     db.scoreDB.knex.raw("call prScoreConductorRangoFecha(?,?,?,?,?)", [req.user.pUsuario, null, nPeriodo, cFecIni, cFecFin])
         .then(function(data) {
             if (data === null) {
